@@ -1,0 +1,130 @@
+/* ===========================
+   Doctors Section
+   =========================== */
+
+.doctors-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+}
+
+.doctor-card {
+  background: white;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  border: 1px solid var(--color-border);
+  transition: var(--transition);
+}
+
+.doctor-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+  border-color: transparent;
+}
+
+.doctor-image {
+  position: relative;
+  height: 280px;
+  overflow: hidden;
+}
+
+.doctor-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s ease;
+}
+
+.doctor-card:hover .doctor-image img {
+  transform: scale(1.08);
+}
+
+.doctor-social {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  padding: 16px;
+  background: linear-gradient(transparent, rgba(0, 0, 0, 0.7));
+  transform: translateY(100%);
+  transition: var(--transition);
+}
+
+.doctor-card:hover .doctor-social {
+  transform: translateY(0);
+}
+
+@media (hover: none) {
+  .doctor-social {
+    transform: translateY(0);
+    background: linear-gradient(transparent, rgba(0, 0, 0, 0.5));
+  }
+}
+
+.doctor-social a {
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.9);
+  color: var(--color-text);
+  border-radius: 50%;
+  font-size: 0.85rem;
+  transition: var(--transition);
+}
+
+.doctor-social a:hover {
+  background: var(--color-primary);
+  color: white;
+  transform: translateY(-2px);
+}
+
+.doctor-info {
+  padding: 20px 24px 24px;
+  text-align: center;
+}
+
+.doctor-name {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--color-text);
+  margin-bottom: 4px;
+}
+
+.doctor-specialty {
+  display: inline-block;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--color-primary);
+  margin-bottom: 10px;
+  padding: 4px 12px;
+  background: rgba(26, 115, 232, 0.08);
+  border-radius: 50px;
+}
+
+.doctor-desc {
+  font-size: 0.85rem;
+  color: var(--color-text-light);
+  line-height: 1.6;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .doctors-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .doctors-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .doctor-image {
+    height: 240px;
+  }
+}
