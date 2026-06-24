@@ -1,18 +1,41 @@
-import React from 'react'
+import React, { useRef, useEffect } from 'react'
 import './Hero.css'
 
 function Hero() {
+  const videoRef = useRef(null)
+
+  useEffect(() => {
+    const video = videoRef.current
+    if (!video) return
+
+    const playVideo = async () => {
+      try {
+        await video.play()
+      } catch {
+        // Mobile browsers often block autoplay — silently handled
+      }
+    }
+
+    // Small delay to help mobile browsers register the play intent
+    const timer = setTimeout(playVideo, 100)
+    return () => clearTimeout(timer)
+  }, [])
+
   return (
     <section id="home" className="hero">
       <div className="hero-video-wrapper">
         <video
-          src="/videos/chb2.mp4"
+          ref={videoRef}
           autoPlay
           muted
           loop
           playsInline
+          preload="auto"
+          poster="/photos/hospital/image1.jpg"
           className="hero-video"
-        />
+        >
+          <source src="/videos/chb2.mp4" type="video/mp4" />
+        </video>
       </div>
       <div className="hero-overlay" />
       <div className="hero-content">
