@@ -8,6 +8,9 @@ function Hero() {
     const video = videoRef.current
     if (!video) return
 
+    // Remove poster attribute to prevent thumbnail flash
+    video.removeAttribute('poster')
+
     const playVideo = async () => {
       try {
         await video.play()
