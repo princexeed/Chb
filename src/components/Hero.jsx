@@ -31,7 +31,6 @@ function Hero() {
           loop
           playsInline
           preload="auto"
-          poster="/photos/hospital/image1.jpg"
           className="hero-video"
         >
           <source src="/videos/chb2.mp4" type="video/mp4" />
