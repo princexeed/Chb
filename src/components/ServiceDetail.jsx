@@ -30,9 +30,9 @@ const serviceDetails = [
     icon: 'fa-baby',
     title: 'Pediatrics',
     tagline: 'One of the few neonatal nurseries in South Orissa',
-    image: 'https://images.unsplash.com/photo-1584515933487-779824d29309?w=800&q=80',
+    image: '/photos/pediatrics/IMG_20260223_083445236.jpg',
     images: [
-      'https://images.unsplash.com/photo-1584515933487-779824d29309?w=600&q=80',
+      '/photos/pediatrics/IMG_20260223_083445236.jpg',
       'https://images.unsplash.com/photo-1498654896293-37aacf113fd9?w=600&q=80',
       'https://images.unsplash.com/photo-1629909613654-28e377c37b09?w=600&q=80',
     ],
@@ -237,9 +237,9 @@ const serviceDetails = [
     icon: 'fa-microscope',
     title: 'Endoscopy',
     tagline: 'Minimally invasive diagnosis & treatment',
-    image: 'https://images.unsplash.com/photo-1579684288337-4c1a6c81e26b?w=800&q=80',
+    image: '/photos/endoscopy/IMG_20260625_143607798.jpg',
     images: [
-      'https://images.unsplash.com/photo-1579684288337-4c1a6c81e26b?w=600&q=80',
+      '/photos/endoscopy/IMG_20260625_143607798.jpg',
       'https://images.unsplash.com/photo-1559757175-5700dde675bc?w=600&q=80',
       'https://images.unsplash.com/photo-1579154204601-01588f351e67?w=600&q=80',
     ],

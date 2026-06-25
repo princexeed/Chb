@@ -1,0 +1,42 @@
+{
+  version: 2,
+  mediaFileName: 'chb2.mp4',
+  cutSegments: [
+    {
+      start: 187.861833,
+      end: 187.899998,
+      name: '',
+      selected: true,
+    },
+    {
+      start: 218.423396,
+      end: 222.116012,
+      name: '',
+      selected: true,
+    },
+    {
+      start: 370.032507,
+      end: 371.723578,
+      name: '',
+      selected: true,
+    },
+    {
+      start: 434.433868,
+      end: 461.962998,
+      name: '',
+      selected: true,
+    },
+    {
+      start: 537.937903,
+      end: 542.713472,
+      name: '',
+      selected: true,
+    },
+    {
+      start: 660.730894,
+      end: 668.580688,
+      name: '',
+      selected: true,
+    },
+  ],
+}

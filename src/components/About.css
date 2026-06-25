@@ -1,161 +1,301 @@
-/* ===========================
-   About Section
-   =========================== */
+/* =============================
+   Bento About Section
+   ============================= */
 
-.about-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 60px;
-  align-items: center;
-}
-
-.about-image-wrapper {
+.bento-about {
+  background: linear-gradient(180deg, #ffffff 0%, #f0f5ff 50%, #e8f0fe 100%);
   position: relative;
-}
-
-.about-image {
-  border-radius: var(--radius-lg);
   overflow: hidden;
-  box-shadow: var(--shadow-xl);
+  z-index: 1;
 }
 
-.about-image img {
-  width: 100%;
-  height: 500px;
-  object-fit: cover;
-  transition: transform 0.6s ease;
-}
-
-.about-image:hover img {
-  transform: scale(1.03);
-}
-
-.about-experience {
+.bento-about::before {
+  content: '';
   position: absolute;
-  bottom: -30px;
-  right: -30px;
-  background: var(--color-primary);
-  color: white;
-  padding: 28px 32px;
-  border-radius: var(--radius-md);
-  text-align: center;
-  box-shadow: var(--shadow-lg);
+  top: -50%;
+  right: -20%;
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(26, 115, 232, 0.06) 0%, transparent 70%);
+  border-radius: 50%;
+  pointer-events: none;
 }
 
-@media (max-width: 480px) {
-  .about-experience {
-    position: relative;
-    bottom: auto;
-    right: auto;
-    margin-top: -50px;
-    margin-left: auto;
-    width: fit-content;
-    padding: 20px 24px;
-  }
-
-  .exp-number {
-    font-size: 1.5rem;
-  }
+.bento-about::after {
+  content: '';
+  position: absolute;
+  bottom: -30%;
+  left: -10%;
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, rgba(13, 148, 136, 0.05) 0%, transparent 70%);
+  border-radius: 50%;
+  pointer-events: none;
 }
 
-.exp-number {
+/* ───── Bento Card Base ───── */
+.bento-card {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  border-radius: 24px;
+  box-shadow:
+    0 4px 24px rgba(0, 0, 0, 0.04),
+    0 1px 4px rgba(0, 0, 0, 0.02);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.bento-card:hover {
+  transform: translateY(-2px);
+  box-shadow:
+    0 8px 40px rgba(0, 0, 0, 0.06),
+    0 2px 8px rgba(0, 0, 0, 0.03);
+}
+
+/* ───── Main Light Card ───── */
+.bento-main {
+  position: relative;
+  background: #ffffff;
+  border-color: rgba(226, 232, 240, 0.8);
+  min-height: 420px;
+  display: flex;
+  flex-direction: column;
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.04),
+    0 2px 8px rgba(0, 0, 0, 0.02),
+    0 0 0 1px rgba(0, 0, 0, 0.02);
+}
+
+/* ───── Slide Content ───── */
+.bento-slide {
+  display: flex;
+  flex-direction: row;
+  gap: 0;
+  flex: 1;
+  position: relative;
+  padding: 32px;
+}
+
+/* ───── Slow Fade Transition ───── */
+.bento-image-frame,
+.bento-text {
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.bento-image-frame.fade-out,
+.bento-text.fade-out {
+  opacity: 0;
+  transform: translateY(8px);
+}
+
+/* ───── Image ───── */
+.bento-image-outer {
+  flex: 0 0 55%;
+  display: flex;
+  align-items: stretch;
+  padding: 12px 20px 12px 0;
+}
+
+.bento-image-frame {
+  width: 100%;
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow:
+    0 4px 20px rgba(0, 0, 0, 0.06),
+    0 1px 4px rgba(0, 0, 0, 0.03);
+  position: relative;
+  transition: opacity 0.6s ease, transform 0.6s ease, box-shadow 0.4s ease;
+}
+
+.bento-image-frame:hover {
+  box-shadow:
+    0 8px 30px rgba(0, 0, 0, 0.1),
+    0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+.bento-image-frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
   display: block;
-  font-size: 2.2rem;
-  font-weight: 800;
-  line-height: 1;
-  margin-bottom: 4px;
+  transition: transform 0.4s ease;
 }
 
-.exp-text {
-  font-size: 0.85rem;
-  font-weight: 500;
-  opacity: 0.9;
+.bento-image-frame:hover img {
+  transform: scale(1.04);
+}
+
+/* ───── Text ───── */
+.bento-text {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 12px 0 12px 20px;
+  position: relative;
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.bento-tag {
+  display: inline-block;
+  font-size: 0.72rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: #3b82f6;
+  margin-bottom: 14px;
+  padding: 5px 16px;
+  background: rgba(59, 130, 246, 0.08);
+  border-radius: 20px;
+  border: 1px solid rgba(59, 130, 246, 0.12);
+  width: fit-content;
+}
+
+.bento-title {
+  font-family: var(--font-display);
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: #0f172a;
   line-height: 1.3;
-}
-
-.about-content {
-  padding-left: 20px;
-}
-
-.about-text {
-  font-size: 1rem;
-  line-height: 1.8;
-  color: var(--color-text-light);
   margin-bottom: 16px;
 }
 
-.about-values {
-  margin: 28px 0;
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
+.bento-desc {
+  font-size: 0.92rem;
+  line-height: 1.85;
+  color: #475569;
+  flex: 1;
 }
 
-.value-card {
-  display: flex;
-  align-items: flex-start;
-  gap: 16px;
-  padding: 16px;
-  border-radius: var(--radius-sm);
-  transition: var(--transition);
+/* ───── Full-Width Values Row ───── */
+.bento-full-row {
+  margin-top: 24px;
 }
 
-.value-card:hover {
-  background: var(--color-bg-alt);
+.bento-value-card {
+  padding: 36px 40px;
+  background: rgba(255, 255, 255, 0.9);
+  overflow: hidden;
 }
 
-.value-icon {
-  width: 44px;
-  height: 44px;
-  min-width: 44px;
+.bento-values-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+}
+
+.bento-value-item {
+  text-align: center;
+  padding: 20px 16px;
+  border-radius: 16px;
+  transition: all 0.3s ease;
+}
+
+.bento-value-item:hover {
+  background: rgba(26, 115, 232, 0.04);
+  transform: translateY(-2px);
+}
+
+.bento-value-icon {
+  width: 52px;
+  height: 52px;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(135deg, var(--color-primary-light), var(--color-primary));
-  border-radius: var(--radius-sm);
-  color: white;
-  font-size: 1.1rem;
+  background: linear-gradient(135deg, rgba(26, 115, 232, 0.1), rgba(26, 115, 232, 0.04));
+  border-radius: 14px;
+  color: var(--color-primary);
+  font-size: 1.15rem;
+  margin: 0 auto 14px;
+  transition: all 0.3s ease;
 }
 
-.value-title {
+.bento-value-item:hover .bento-value-icon {
+  background: linear-gradient(135deg, var(--color-primary), var(--color-primary-dark));
+  color: white;
+  transform: scale(1.1) rotate(-3deg);
+}
+
+.bento-value-item h4 {
   font-size: 0.95rem;
   font-weight: 600;
   color: var(--color-text);
-  margin-bottom: 4px;
+  margin-bottom: 6px;
 }
 
-.value-desc {
-  font-size: 0.85rem;
+.bento-value-item p {
+  font-size: 0.82rem;
   color: var(--color-text-light);
   line-height: 1.5;
 }
 
-.about-cta {
-  margin-top: 8px;
+/* ───── Responsive ───── */
+@media (max-width: 1024px) {
+  .bento-slide {
+    flex-direction: column;
+    padding: 24px;
+  }
+
+  .bento-image-outer {
+    flex: none;
+    padding: 0 0 16px 0;
+  }
+
+  .bento-image-frame {
+    height: 280px;
+  }
+
+  .bento-text {
+    padding: 0;
+  }
+
+  .bento-title {
+    font-size: 1.4rem;
+  }
+
+  .bento-values-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+
+  .bento-value-card {
+    padding: 28px 24px;
+  }
 }
 
-/* Responsive */
-@media (max-width: 968px) {
-  .about-grid {
+@media (max-width: 640px) {
+  .bento-main {
+    min-height: auto;
+  }
+
+  .bento-slide {
+    padding: 16px;
+  }
+
+  .bento-image-frame {
+    height: 200px;
+  }
+
+  .bento-text {
+    padding: 4px 0 0 0;
+  }
+
+  .bento-title {
+    font-size: 1.2rem;
+  }
+
+  .bento-desc {
+    font-size: 0.85rem;
+  }
+
+  .bento-values-grid {
     grid-template-columns: 1fr;
-    gap: 40px;
   }
 
-  .about-content {
-    padding-left: 0;
-  }
-
-  .about-image img {
-    height: 350px;
-  }
-
-  .about-experience {
-    bottom: -20px;
-    right: -10px;
-    padding: 20px 24px;
-  }
-
-  .exp-number {
-    font-size: 1.8rem;
+  .bento-image-outer {
+    padding: 0 0 12px 0;
   }
 }

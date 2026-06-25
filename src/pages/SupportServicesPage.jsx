@@ -3,7 +3,7 @@ import DeptDetail from '../components/DeptDetail'
 import './SupportServicesPage.css'
 
 const departments = [
-  { name: 'Administration & Finance', icon: 'fa-chart-pie', tagline: 'Stewarding resources for exceptional healthcare delivery', image: 'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=800&q=80', desc: 'Managing hospital operations, financial planning, budgeting, billing, payroll, and strategic resource allocation.', stats: { team: 45, metric: '₦2.5B+', metricLabel: 'Budget Managed' } },
+  { name: 'Administration & Finance', icon: 'fa-chart-pie', tagline: 'Stewarding resources for exceptional healthcare delivery', image: '/photos/administration%20and%20finance/IMG_20260625_102834100.jpg', desc: 'Managing hospital operations, financial planning, budgeting, billing, payroll, and strategic resource allocation.', stats: { team: 45, metric: '₦2.5B+', metricLabel: 'Budget Managed' } },
   { name: 'Medical Records', icon: 'fa-notes-medical', tagline: 'Preserving your health story with accuracy', image: 'https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=800&q=80', desc: 'Maintaining accurate, confidential patient records with secure digital archiving and compliance.', stats: { team: 30, metric: '150K+', metricLabel: 'Records/Year' } },
   { name: 'Chaplaincy', icon: 'fa-cross', tagline: 'Nurturing the spirit, comforting the soul', image: 'https://images.unsplash.com/photo-1507692049790-de58290a4334?w=800&q=80', desc: 'Providing spiritual care, emotional counseling, and faith-based support to patients and families.', stats: { team: 8, metric: '10K+', metricLabel: 'Sessions/Year' } },
   { name: 'Support Services', icon: 'fa-headset', tagline: 'Your first point of contact, your partner in care', image: 'https://images.unsplash.com/photo-1559136555-9303baea8ebd?w=800&q=80', desc: 'Patient navigation, appointment scheduling, discharge coordination, and round-the-clock assistance.', stats: { team: 35, metric: '200K+', metricLabel: 'Interactions/Year' } },
@@ -64,9 +64,12 @@ function SupportServicesPage() {
                 onClick={() => setSelectedDept(dept)}
                 aria-label={`View details about ${dept.name}`}
               >
-                <div className="svc-page-card-accent" />
-                <div className="svc-page-card-icon" style={{ color: accentColors[index], background: `color-mix(in srgb, ${accentColors[index]} 12%, transparent)` }}>
-                  <i className={`fas ${dept.icon}`} />
+                <div className="svc-page-card-top">
+                  <img src={dept.image} alt={dept.name} />
+                  <div className="svc-page-card-img-overlay" />
+                  <div className="svc-page-card-icon" style={{ color: 'white', background: `linear-gradient(135deg, ${accentColors[index]}, ${accentColors[index]}dd)` }}>
+                    <i className={`fas ${dept.icon}`} />
+                  </div>
                 </div>
                 <h3 className="svc-page-card-name">{dept.name}</h3>
                 <p className="svc-page-card-desc">{dept.desc}</p>

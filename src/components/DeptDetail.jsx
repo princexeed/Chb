@@ -6,7 +6,7 @@ const deptDetails = [
     name: 'Administration & Finance',
     icon: 'fa-chart-pie',
     tagline: 'Stewarding resources for exceptional healthcare delivery',
-    image: 'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=800&q=80',
+    image: '/photos/administration%20and%20finance/IMG_20260625_102834100.jpg',
     images: [
       'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=600&q=80',
       'https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=600&q=80',
