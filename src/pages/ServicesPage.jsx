@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useRef } from 'react'
 import ServiceDetail from '../components/ServiceDetail'
 import './ServicesPage.css'
 
@@ -20,8 +20,41 @@ const services = [
   { icon: 'fa-laptop-code', title: 'IT Services', tagline: 'Powering healthcare through innovative technology', image: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=800&q=80', desc: 'Managing hospital information systems, network infrastructure, and digital health solutions to ensure seamless, secure, and efficient healthcare operations.', category: 'Supportive Care', stats: { doctors: 12, patients: '24/7 Support' } },
 ]
 
+// Category filter definitions
+const filters = [
+  { key: 'All', icon: 'fa-th-large', accent: 'var(--color-primary)' },
+  { key: 'Primary Care', icon: 'fa-hand-holding-heart', accent: 'var(--color-primary)' },
+  { key: 'Surgical', icon: 'fa-scalpel', accent: 'var(--color-secondary)' },
+  { key: 'Specialized Medicine', icon: 'fa-star-of-life', accent: '#7c3aed' },
+  { key: 'Diagnostics', icon: 'fa-microscope', accent: '#dc2626' },
+  { key: 'Emergency & Critical', icon: 'fa-truck-medical', accent: '#e11d48' },
+  { key: 'Supportive Care', icon: 'fa-hand-holding-hand', accent: '#0891b2' },
+]
+
 function ServicesPage() {
   const [selectedService, setSelectedService] = useState(null)
+  const [activeFilter, setActiveFilter] = useState('All')
+  const [isFiltering, setIsFiltering] = useState(false)
+  const gridRef = useRef(null)
+  const filterTimeoutRef = useRef(null)
+
+  const filteredServices = activeFilter === 'All'
+    ? services
+    : services.filter(s => s.category === activeFilter)
+
+  const handleFilterClick = (key) => {
+    if (key === activeFilter) return
+    if (filterTimeoutRef.current) clearTimeout(filterTimeoutRef.current)
+    setIsFiltering(true)
+    filterTimeoutRef.current = setTimeout(() => {
+      setActiveFilter(key)
+      setIsFiltering(false)
+      filterTimeoutRef.current = null
+    }, 180)
+    if (window.innerWidth <= 768 && gridRef.current) {
+      gridRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' })
+    }
+  }
 
   return (
     <div className="med-page">
@@ -47,22 +80,58 @@ function ServicesPage() {
         </div>
       </section>
 
-      {/* Services Grid */}
-      <section className="med-page-grid-section">
+      {/* Services Grid with Filters */}
+      <section className="med-page-grid-section" ref={gridRef}>
         <div className="container">
-          <div className="med-page-grid">
-            {services.map((service) => (
+          {/* Filter Pills */}
+          <div className="med-page-filters">
+            {filters.map((filter) => {
+              const isActive = activeFilter === filter.key
+              return (
+                <button
+                  key={filter.key}
+                  type="button"
+                  className={`med-page-filter-pill ${isActive ? 'active' : ''}`}
+                  style={{ '--pill-accent': filter.accent }}
+                  onClick={() => handleFilterClick(filter.key)}
+                  aria-label={`Filter by ${filter.key}`}
+                >
+                  <i className={`fas ${filter.icon}`} />
+                  <span>{filter.key}</span>
+                  {isActive && (
+                    <span className="med-page-filter-count">
+                      {filteredServices.length}
+                    </span>
+                  )}
+                </button>
+              )
+            })}
+          </div>
+
+          {/* Active Filter Label */}
+          <div className="med-page-filter-status">
+            <span className="med-page-filter-label">
+              {activeFilter === 'All' ? 'All Services' : activeFilter}
+            </span>
+            <span className="med-page-filter-result-count">
+              {filteredServices.length} service{filteredServices.length !== 1 ? 's' : ''}
+            </span>
+          </div>
+
+          {/* Cards Grid */}
+          <div className={`med-page-grid ${isFiltering ? 'filtering' : ''}`}>
+            {filteredServices.map((service, index) => (
               <button
                 key={service.title}
                 type="button"
                 className="med-page-card"
+
                 onClick={() => setSelectedService(service)}
                 aria-label={`View details about ${service.title}`}
               >
                 <div className="med-page-card-top">
                   <img src={service.image} alt={service.title} />
                   <div className="med-page-card-img-overlay" />
-                  <span className="med-page-card-cat">{service.category}</span>
                 </div>
                 <div className="med-page-card-body">
                   <h3 className="med-page-card-title">{service.title}</h3>
@@ -81,6 +150,14 @@ function ServicesPage() {
               </button>
             ))}
           </div>
+
+          {/* Empty State */}
+          {filteredServices.length === 0 && (
+            <div className="med-page-empty">
+              <i className="fas fa-search" />
+              <p>No services found in this category.</p>
+            </div>
+          )}
         </div>
       </section>
 

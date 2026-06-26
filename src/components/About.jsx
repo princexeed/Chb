@@ -21,7 +21,7 @@ const slides = [
     tag: 'Our MITRA Program',
   },
   {
-    image: '/photos/clg/photo-1584515933487-779824d29309.jpg',
+    image: '/photos/clg/image1.jpg',
     title: 'Training the Next Generation',
     text: 'As a teaching institution, Christian Hospital Bissumcuttack is committed to training healthcare professionals who will carry forward our mission of compassionate, faith-based care. Our nursing and paramedical programs equip students with both clinical excellence and a heart for service.',
     tag: 'Education & Training',
