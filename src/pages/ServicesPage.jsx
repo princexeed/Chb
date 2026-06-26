@@ -1,8 +1,8 @@
-import React, { useState, useMemo } from 'react'
+import React, { useState } from 'react'
 import ServiceDetail from '../components/ServiceDetail'
 import './ServicesPage.css'
 
-const allServices = [
+const services = [
   { icon: 'fa-stethoscope', title: 'General Medicine', tagline: 'Education, research & clinical excellence in tropical and rural medicine', image: 'https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=800&q=80', desc: 'Comprehensive care for tropical infectious diseases, chronic NCDs, sickle cell disease, and endoscopic services — guided by evidence-based, affordable, holistic medicine.', category: 'Primary Care', stats: { doctors: 28, patients: '45K+' } },
   { icon: 'fa-baby', title: 'Pediatrics', tagline: 'One of the few neonatal nurseries in South Orissa', image: '/photos/pediatrics/IMG_20260223_083445236.jpg', desc: 'Neonatal intensive care for birth asphyxias, low birth weight & preterm babies. 6,000+ OPD visits & 1,000 admissions annually.', category: 'Primary Care', stats: { doctors: 22, patients: '6,000+ OPD/yr' } },
   { icon: 'fa-baby-carriage', title: 'Maternity & Obstetrics', tagline: '2,700 deliveries & 900 gynaecological surgeries per year', image: 'https://images.unsplash.com/photo-1584820927498-cfe5211fd8bf?w=800&q=80', desc: 'Referral hospital for complicated cases from 2 districts — 2,700 deliveries/yr, 900 gynaecological surgeries, JSY programme accredited by NRHM.', category: 'Primary Care', stats: { doctors: 16, patients: '2,700+ deliveries/yr' } },
@@ -20,21 +20,8 @@ const allServices = [
   { icon: 'fa-laptop-code', title: 'IT Services', tagline: 'Powering healthcare through innovative technology', image: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=800&q=80', desc: 'Managing hospital information systems, network infrastructure, and digital health solutions to ensure seamless, secure, and efficient healthcare operations.', category: 'Supportive Care', stats: { doctors: 12, patients: '24/7 Support' } },
 ]
 
-const categories = ['All', 'Primary Care', 'Specialized Medicine', 'Emergency & Critical', 'Diagnostics', 'Surgical', 'Supportive Care']
-
 function ServicesPage() {
   const [selectedService, setSelectedService] = useState(null)
-  const [activeCategory, setActiveCategory] = useState('All')
-  const [searchQuery, setSearchQuery] = useState('')
-
-  const filteredServices = useMemo(() => {
-    return allServices.filter(s => {
-      const matchesCategory = activeCategory === 'All' || s.category === activeCategory
-      const matchesSearch = s.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                            s.desc.toLowerCase().includes(searchQuery.toLowerCase())
-      return matchesCategory && matchesSearch
-    })
-  }, [activeCategory, searchQuery])
 
   return (
     <div className="med-page">
@@ -60,47 +47,11 @@ function ServicesPage() {
         </div>
       </section>
 
-      {/* Search & Filter */}
-      <section className="med-page-toolbar">
-        <div className="container">
-          <div className="med-page-toolbar-inner">
-            <div className="med-page-search">
-              <i className="fas fa-search" />
-              <input
-                type="text"
-                placeholder="Search services..."
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-              />
-              {searchQuery && (
-                <button className="med-page-search-clear" onClick={() => setSearchQuery('')}>
-                  <i className="fas fa-times" />
-                </button>
-              )}
-            </div>
-            <div className="med-page-categories">
-              {categories.map((cat) => (
-                <button
-                  key={cat}
-                  className={`med-page-cat-btn${activeCategory === cat ? ' active' : ''}`}
-                  onClick={() => setActiveCategory(cat)}
-                >
-                  {cat}
-                </button>
-              ))}
-            </div>
-          </div>
-          <div className="med-page-results">
-            <span>{filteredServices.length} service{filteredServices.length !== 1 ? 's' : ''} found</span>
-          </div>
-        </div>
-      </section>
-
       {/* Services Grid */}
       <section className="med-page-grid-section">
         <div className="container">
           <div className="med-page-grid">
-            {filteredServices.map((service, index) => (
+            {services.map((service) => (
               <button
                 key={service.title}
                 type="button"
@@ -111,11 +62,6 @@ function ServicesPage() {
                 <div className="med-page-card-top">
                   <img src={service.image} alt={service.title} />
                   <div className="med-page-card-img-overlay" />
-                  <div className="med-page-card-icon-wrap">
-                    <div className="med-page-card-icon">
-                      <i className={`fas ${service.icon}`} />
-                    </div>
-                  </div>
                   <span className="med-page-card-cat">{service.category}</span>
                 </div>
                 <div className="med-page-card-body">
@@ -132,20 +78,9 @@ function ServicesPage() {
                     </div>
                   </div>
                 </div>
-                <div className="med-page-card-cta">
-                  Explore Service <i className="fas fa-arrow-right" />
-                </div>
               </button>
             ))}
           </div>
-
-          {filteredServices.length === 0 && (
-            <div className="med-page-empty">
-              <i className="fas fa-search" />
-              <h3>No services found</h3>
-              <p>Try a different search term or category.</p>
-            </div>
-          )}
         </div>
       </section>
 

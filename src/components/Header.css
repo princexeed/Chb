@@ -38,14 +38,19 @@
 }
 
 .header-logo .logo-icon {
-  width: 40px;
-  height: 40px;
-  color: var(--color-primary);
+  width: 64px;
+  height: 64px;
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  flex-shrink: 0;
   transition: var(--transition);
 }
 
-.header.scrolled .logo-icon {
-  color: var(--color-primary);
+.header-logo .logo-icon img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
 }
 
 .logo-text {

@@ -115,10 +115,7 @@ function Header() {
       <div className="header-container">
         <Link to="/" className="header-logo" onClick={handleLogoClick}>
           <div className="logo-icon">
-            <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <rect width="32" height="32" rx="6" fill="currentColor"/>
-              <path d="M16 6L16 26M6 16L26 16" stroke="white" strokeWidth="4" strokeLinecap="round"/>
-            </svg>
+            <img src="/photos/logo/image.svg" alt="Christian Hospital" />
           </div>
           <div className="logo-text">
             <span className="logo-name">Christian Hospital</span>

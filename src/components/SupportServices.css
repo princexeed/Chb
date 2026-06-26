@@ -114,18 +114,18 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: color-mix(in srgb, var(--cat-accent) 10%, transparent);
+  background: color-mix(in srgb, var(--cat-accent) 12%, transparent);
   color: var(--cat-accent);
   border-radius: 50%;
-  font-size: 1.1rem;
+  font-size: 1rem;
   margin-bottom: 14px;
   transition: var(--transition);
 }
 
 .dept-card:hover .dept-card-icon {
-  background: var(--cat-accent);
-  color: white;
   transform: scale(1.1);
+  background: var(--cat-accent, var(--color-primary));
+  color: white;
 }
 
 .dept-card-title {

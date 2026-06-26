@@ -133,9 +133,7 @@ function SupportServices() {
                     onClick={() => setSelectedDept(item)}
                     aria-label={`View details about ${item.name}`}
                   >
-                    <div className="dept-card-icon">
-                      <i className={`fas ${item.icon}`} />
-                    </div>
+                    <div className="dept-card-icon"><i className={`fas ${item.icon}`} /></div>
                     <h4 className="dept-card-title">{item.name}</h4>
                     <p className="dept-card-desc">{item.desc}</p>
                     <span className="dept-card-learn">

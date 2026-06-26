@@ -67,9 +67,6 @@ function SupportServicesPage() {
                 <div className="svc-page-card-top">
                   <img src={dept.image} alt={dept.name} />
                   <div className="svc-page-card-img-overlay" />
-                  <div className="svc-page-card-icon" style={{ color: 'white', background: `linear-gradient(135deg, ${accentColors[index]}, ${accentColors[index]}dd)` }}>
-                    <i className={`fas ${dept.icon}`} />
-                  </div>
                 </div>
                 <h3 className="svc-page-card-name">{dept.name}</h3>
                 <p className="svc-page-card-desc">{dept.desc}</p>
@@ -83,9 +80,6 @@ function SupportServicesPage() {
                     <small>Team</small>
                   </div>
                 </div>
-                <span className="svc-page-card-cta">
-                  Learn More <i className="fas fa-arrow-right" />
-                </span>
               </button>
             ))}
           </div>

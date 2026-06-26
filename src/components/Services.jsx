@@ -69,9 +69,7 @@ function Services() {
               onClick={() => setSelectedService(service)}
               aria-label={`View details about ${service.title}`}
             >
-              <div className="service-icon">
-                <i className={`fas ${service.icon}`} />
-              </div>
+              <div className="service-icon"><i className={`fas ${service.icon}`} /></div>
               <h3 className="service-title">{service.title}</h3>
               <p className="service-desc">{service.desc}</p>
               <span className="service-learn-more">

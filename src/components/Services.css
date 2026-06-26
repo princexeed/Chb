@@ -47,17 +47,18 @@
 }
 
 .service-icon {
-  width: 56px;
-  height: 56px;
+  width: 48px;
+  height: 48px;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(135deg, rgba(26, 115, 232, 0.1), rgba(26, 115, 232, 0.05));
+  background: linear-gradient(135deg, rgba(26, 115, 232, 0.1), rgba(13, 148, 136, 0.1));
   border-radius: var(--radius-sm);
   color: var(--color-primary);
-  font-size: 1.4rem;
-  margin-bottom: 20px;
+  font-size: 1.3rem;
+  margin-bottom: 18px;
   transition: var(--transition);
+  flex-shrink: 0;
 }
 
 .service-card:hover .service-icon {
