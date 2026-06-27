@@ -1,0 +1,232 @@
+/* ───── Mission & Vision ───── */
+
+.mv-section {
+  padding: 0;
+  position: relative;
+  overflow: hidden;
+}
+
+/* ───── Background Image ───── */
+.mv-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.mv-bg-img {
+  width: 100%;
+  height: 100%;
+  background: url('/photos/hospital/image.jpeg') center / cover;
+  position: absolute;
+  inset: 0;
+}
+
+.mv-bg-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(15, 23, 42, 0.88) 0%, rgba(30, 58, 95, 0.82) 50%, rgba(15, 23, 42, 0.9) 100%);
+}
+
+/* ───── Animations ───── */
+.mv-in {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.mv-in.mv-show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ───── Statement Area ───── */
+.mv-statement {
+  text-align: center;
+  position: relative;
+  z-index: 2;
+  padding: 70px 0 24px;
+}
+
+.mv-badge {
+  display: inline-block;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(8px);
+  color: #93c5fd;
+  padding: 5px 18px;
+  border-radius: 20px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  margin-bottom: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.mv-statement-title {
+  font-family: var(--font-display);
+  font-size: clamp(1.8rem, 3.5vw, 2.5rem);
+  font-weight: 700;
+  color: #ffffff;
+  line-height: 1.3;
+}
+
+.mv-em {
+  background: linear-gradient(135deg, #93c5fd, #34d399);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ───── Pillars ───── */
+.mv-pillars {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+  position: relative;
+  z-index: 2;
+  padding-bottom: 56px;
+}
+
+.mv-pillar {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 18px;
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 30px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.9);
+  transition: all 0.3s ease;
+  cursor: default;
+}
+
+.mv-pillar:hover {
+  background: rgba(255, 255, 255, 0.14);
+  transform: translateY(-2px);
+  border-color: #93c5fd;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.2);
+}
+
+.mv-pillar i {
+  font-size: 0.8rem;
+  color: #93c5fd;
+}
+
+/* ───── Bottom Section ───── */
+.mv-bottom {
+  position: relative;
+  z-index: 2;
+  background: #ffffff;
+  border-radius: 20px 20px 0 0;
+  padding: 36px 40px;
+  margin: 0 -24px;
+}
+
+.mv-focus-label {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 2.5px;
+  color: var(--color-primary);
+  margin-bottom: 18px;
+  text-align: center;
+}
+
+.mv-focus-grid {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+}
+
+.mv-focus-card {
+  flex: 1;
+  max-width: 320px;
+  padding: 22px 22px 20px;
+  background: #ffffff;
+  border-radius: 14px;
+  border: 1px solid #e2e8f0;
+  transition: all 0.3s ease;
+}
+
+.mv-focus-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+  border-color: var(--color-primary);
+}
+
+.mv-focus-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, var(--color-primary), var(--color-primary-dark));
+  color: white;
+  font-size: 0.85rem;
+  margin-bottom: 12px;
+  box-shadow: 0 3px 8px rgba(26, 115, 232, 0.2);
+  transition: transform 0.3s ease;
+}
+
+.mv-focus-card:hover .mv-focus-icon {
+  transform: scale(1.08);
+}
+
+.mv-focus-title {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #0f172a;
+  margin-bottom: 6px;
+}
+
+.mv-focus-desc {
+  font-size: 0.82rem;
+  color: #64748b;
+  line-height: 1.6;
+}
+
+/* ───── Responsive ───── */
+@media (max-width: 768px) {
+  .mv-statement {
+    padding: 50px 0 20px;
+  }
+  .mv-pillars {
+    padding-bottom: 40px;
+    gap: 8px;
+  }
+  .mv-pillar {
+    font-size: 0.78rem;
+    padding: 6px 14px;
+  }
+  .mv-bottom {
+    padding: 28px 24px;
+    margin: 0 -24px;
+  }
+  .mv-focus-grid {
+    flex-direction: column;
+    align-items: center;
+  }
+  .mv-focus-card {
+    max-width: 400px;
+    width: 100%;
+  }
+}
+
+@media (max-width: 640px) {
+  .mv-statement {
+    padding: 40px 0 16px;
+  }
+  .mv-pillars {
+    padding-bottom: 32px;
+  }
+  .mv-bottom {
+    padding: 24px 18px;
+    border-radius: 16px 16px 0 0;
+  }
+  .mv-focus-card {
+    padding: 18px 18px 16px;
+  }
+}

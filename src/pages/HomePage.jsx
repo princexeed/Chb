@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react'
 import { useLocation } from 'react-router-dom'
 import Hero from '../components/Hero'
+import MissionVision from '../components/MissionVision'
 import About from '../components/About'
 import Services from '../components/Services'
 import Doctors from '../components/Doctors'
@@ -22,6 +23,7 @@ function HomePage() {
     <main>
       <Hero />
       <About />
+      <MissionVision />
       <Services />
       <Doctors />
       <Testimonials />

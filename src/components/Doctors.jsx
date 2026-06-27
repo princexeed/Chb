@@ -65,9 +65,6 @@ function Doctors() {
                 <h3 className="doctor-name">{doctor.name}</h3>
                 <span className="doctor-specialty">{doctor.specialty}</span>
                 <p className="doctor-desc">{doctor.desc}</p>
-                <button className="doctor-cta">
-                  Book Appointment <i className="fas fa-arrow-right" />
-                </button>
               </div>
             </div>
           ))}

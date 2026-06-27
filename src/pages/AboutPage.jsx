@@ -129,6 +129,50 @@ const superintendents = [
   },
 ]
 
+const marqueePhotos = [
+  '/photos/past/image11.png',
+  '/photos/past/image12.png',
+  '/photos/past/image13.png',
+  '/photos/past/image14.png',
+  '/photos/past/image16.png',
+  '/photos/past/image17.png',
+  '/photos/past/image19.png',
+  '/photos/past/image20.png',
+  '/photos/past/image21.png',
+  '/photos/past/image22.png',
+  '/photos/past/image23.png',
+  '/photos/past/image24.png',
+  '/photos/past/image25.png',
+  '/photos/past/image26.png',
+  '/photos/past/image27.png',
+  '/photos/past/image28.png',
+  '/photos/past/iamge29.png',
+  '/photos/past/image30.png',
+]
+
+function MarqueeColumn({ className }) {
+  return (
+    <div className={`timeline-marquee-col ${className}`}>
+      <div className="timeline-marquee-track">
+        <div className="timeline-marquee-images">
+          {marqueePhotos.map((src, i) => (
+            <div key={i} className="timeline-marquee-img">
+              <img src={src} alt="" loading="lazy" />
+            </div>
+          ))}
+        </div>
+        <div className="timeline-marquee-images">
+          {marqueePhotos.map((src, i) => (
+            <div key={`d-${i}`} className="timeline-marquee-img">
+              <img src={src} alt="" loading="lazy" />
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  )
+}
+
 function SuperintendentModal({ leader, onClose }) {
   useEffect(() => {
     document.body.style.overflow = 'hidden'
@@ -284,6 +328,11 @@ function AboutPage() {
 
       {/* Timeline */}
       <section className="about-page-timeline-section">
+        <div className="timeline-marquee">
+          <MarqueeColumn className="timeline-marquee-col--left" />
+          <MarqueeColumn className="timeline-marquee-col--right" />
+        </div>
+        
         <div className="container">
           <div className="section-header">
             <span className="section-tag">Our Journey</span>
@@ -385,4 +434,4 @@ function AboutPage() {
   )
 }
 
-export default AboutPage
+export default AboutPage

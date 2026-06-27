@@ -170,67 +170,7 @@
   flex: 1;
 }
 
-/* ───── Full-Width Values Row ───── */
-.bento-full-row {
-  margin-top: 24px;
-}
 
-.bento-value-card {
-  padding: 36px 40px;
-  background: rgba(255, 255, 255, 0.9);
-  overflow: hidden;
-}
-
-.bento-values-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 24px;
-}
-
-.bento-value-item {
-  text-align: center;
-  padding: 20px 16px;
-  border-radius: 16px;
-  transition: all 0.3s ease;
-}
-
-.bento-value-item:hover {
-  background: rgba(26, 115, 232, 0.04);
-  transform: translateY(-2px);
-}
-
-.bento-value-icon {
-  width: 52px;
-  height: 52px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: linear-gradient(135deg, rgba(26, 115, 232, 0.1), rgba(26, 115, 232, 0.04));
-  border-radius: 14px;
-  color: var(--color-primary);
-  font-size: 1.15rem;
-  margin: 0 auto 14px;
-  transition: all 0.3s ease;
-}
-
-.bento-value-item:hover .bento-value-icon {
-  background: linear-gradient(135deg, var(--color-primary), var(--color-primary-dark));
-  color: white;
-  transform: scale(1.1) rotate(-3deg);
-}
-
-.bento-value-item h4 {
-  font-size: 0.95rem;
-  font-weight: 600;
-  color: var(--color-text);
-  margin-bottom: 6px;
-}
-
-.bento-value-item p {
-  font-size: 0.82rem;
-  color: var(--color-text-light);
-  line-height: 1.5;
-}
 
 /* ───── Responsive ───── */
 @media (max-width: 1024px) {
@@ -256,14 +196,7 @@
     font-size: 1.4rem;
   }
 
-  .bento-values-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 16px;
-  }
 
-  .bento-value-card {
-    padding: 28px 24px;
-  }
 }
 
 @media (max-width: 640px) {

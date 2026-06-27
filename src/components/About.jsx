@@ -105,41 +105,6 @@ function About() {
           </div>
         </div>
 
-        {/* Bottom — Values */}
-        <div className="bento-full-row animate-in" style={{ transitionDelay: '0.3s' }}>
-          <div className="bento-card bento-value-card">
-            <div className="bento-values-grid">
-              <div className="bento-value-item">
-                <div className="bento-value-icon">
-                  <i className="fas fa-heart" />
-                </div>
-                <h4>Compassionate Care</h4>
-                <p>Every patient treated with dignity, respect, and love</p>
-              </div>
-              <div className="bento-value-item">
-                <div className="bento-value-icon">
-                  <i className="fas fa-star" />
-                </div>
-                <h4>Medical Excellence</h4>
-                <p>Cutting-edge technology with evidence-based practices</p>
-              </div>
-              <div className="bento-value-item">
-                <div className="bento-value-icon">
-                  <i className="fas fa-hand-holding-heart" />
-                </div>
-                <h4>Faith-Based Healing</h4>
-                <p>Spiritual care integrated into every treatment plan</p>
-              </div>
-              <div className="bento-value-item">
-                <div className="bento-value-icon">
-                  <i className="fas fa-users" />
-                </div>
-                <h4>Community Focused</h4>
-                <p>Dedicated to improving health for our entire community</p>
-              </div>
-            </div>
-          </div>
-        </div>
       </div>
     </section>
   )
