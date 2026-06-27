@@ -45,7 +45,7 @@ function Footer() {
               <ul className="footer-links">
                 <li><a href="#services">General Medicine</a></li>
                 <li><a href="#services">Pediatrics</a></li>
-                <li><a href="#services">Emergency Medicine</a></li>
+                <li><a href="#services">Blood Bank</a></li>
                 <li><a href="#services">Maternity</a></li>
                 <li><a href="#services">Endoscopy</a></li>
                 <li><a href="#services">Ophthalmology</a></li>

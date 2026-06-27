@@ -117,12 +117,10 @@ function SchoolsPage() {
                 onClick={() => setSelectedSchool(school)}
                 aria-label={`View details about ${school.name}`}
               >
-                <div className="schools-page-card-accent" style={{ '--card-accent': index === 0 ? 'var(--color-primary)' : index === 1 ? '#7c3aed' : 'var(--color-secondary)' }} />
-                <div className="schools-page-card-top">
-                  <div className="schools-page-card-icon" style={{ background: index === 0 ? 'rgba(26,115,232,0.1)' : index === 1 ? 'rgba(124,58,237,0.1)' : 'rgba(13,148,136,0.1)', color: index === 0 ? 'var(--color-primary)' : index === 1 ? '#7c3aed' : 'var(--color-secondary)' }}>
-                    <i className={`fas ${school.icon}`} />
-                  </div>
-                  <span className="schools-page-card-badge">{school.short}</span>
+                <div className="schools-page-card-thumb">
+                  <img src={school.image} alt={school.name} />
+                  <div className="schools-page-card-thumb-overlay" />
+
                 </div>
                 <h3 className="schools-page-card-name">{school.name}</h3>
                 <span className="schools-page-card-grade">{school.grade}</span>
@@ -141,9 +139,7 @@ function SchoolsPage() {
                     <small>Ratio</small>
                   </div>
                 </div>
-                <span className="schools-page-card-cta">
-                  Explore <i className="fas fa-arrow-right" />
-                </span>
+
               </button>
             ))}
           </div>

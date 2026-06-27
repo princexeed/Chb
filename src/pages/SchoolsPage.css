@@ -164,47 +164,28 @@
   border-color: transparent;
 }
 
-.schools-page-card-accent {
-  height: 4px;
-  background: var(--card-accent, var(--color-primary));
+/* Thumbnail Image */
+.schools-page-card-thumb {
+  position: relative;
+  height: 200px;
+  margin: 12px;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  transition: transform 0.5s ease;
 }
 
-.schools-page-card-top {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  padding: 28px 28px 0;
-  margin-bottom: 18px;
+.schools-page-card-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: var(--radius-md);
+  transition: transform 0.5s ease;
 }
 
-.schools-page-card-icon {
-  width: 52px;
-  height: 52px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: var(--radius-sm);
-  font-size: 1.4rem;
-  transition: var(--transition);
-  flex-shrink: 0;
-}
 
-.schools-page-card:hover .schools-page-card-icon {
-  background: var(--card-accent) !important;
-  color: white !important;
-  transform: scale(1.1);
-}
 
-.schools-page-card-badge {
-  display: inline-block;
-  font-size: 0.75rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 1.5px;
-  padding: 5px 14px;
-  background: rgba(26, 115, 232, 0.08);
-  color: var(--color-primary);
-  border-radius: 50px;
+.schools-page-card:hover .schools-page-card-thumb {
+  transform: scale(1.06);
 }
 
 .schools-page-card-name {
@@ -268,36 +249,6 @@
   letter-spacing: 0.5px;
 }
 
-/* CTA */
-.schools-page-card-cta {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  padding: 16px;
-  font-size: 0.9rem;
-  font-weight: 600;
-  color: var(--color-primary);
-  border-top: 1px solid var(--color-border);
-  transition: var(--transition);
-}
-
-.schools-page-card-cta i {
-  font-size: 0.8rem;
-  transition: var(--transition);
-}
-
-.schools-page-card:hover .schools-page-card-cta {
-  gap: 14px;
-  background: var(--color-primary);
-  color: white;
-  border-top-color: var(--color-primary);
-}
-
-.schools-page-card:hover .schools-page-card-cta i {
-  transform: translateX(4px);
-}
-
 /* Responsive */
 @media (max-width: 1024px) {
   .schools-page-title {
@@ -332,8 +283,9 @@
     gap: 20px;
   }
 
-  .schools-page-card-top {
-    padding: 24px 24px 0;
+  .schools-page-card-thumb {
+    height: 160px;
+    margin: 8px;
   }
 
   .schools-page-card-name {

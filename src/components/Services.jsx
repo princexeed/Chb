@@ -13,7 +13,7 @@ const services = [
   { icon: 'fa-microscope', title: 'Endoscopy', desc: 'Advanced endoscopic procedures for accurate diagnosis and minimally invasive treatment of gastrointestinal conditions.' },
   { icon: 'fa-hand-holding-heart', title: 'Community Health', desc: 'MITRA — serving 12,700 people in 53 tribal villages through mobile clinics, health education, residential school, and community empowerment.' },
   { icon: 'fa-x-ray', title: 'Radiology & Imaging', desc: 'Cutting-edge diagnostic imaging including MRI, CT scan, ultrasound, X-ray, and interventional radiology.' },
-  { icon: 'fa-kit-medical', title: 'Emergency Medicine', desc: '24/7 emergency department with trauma care, staffed by board-certified emergency physicians and specialists.' },
+  { icon: 'fa-droplet', title: 'Blood Bank', desc: 'Safe blood collection, screening, storage and transfusion services — available 24/7 for emergencies and routine procedures.' },
   { icon: 'fa-flask', title: 'Laboratory Services', desc: 'Full-service clinical laboratory offering comprehensive diagnostic testing with rapid turnaround times.' },
   { icon: 'fa-prescription', title: 'Pharmacy', desc: 'In-house pharmacy providing prescribed medications, clinical consultations, and medication management.' },
   { icon: 'fa-user-nurse', title: 'Nursing Care', desc: 'Holistic nursing care — bedside care, medication management, wound care, patient education, and compassionate support for every patient.' },

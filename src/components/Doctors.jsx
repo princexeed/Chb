@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react'
+import React from 'react'
 import './Doctors.css'
 
 const doctors = [
@@ -41,32 +41,10 @@ const doctors = [
 ]
 
 function Doctors() {
-  const sectionRef = useRef(null)
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.querySelectorAll('.animate-in').forEach((el) => {
-              el.classList.add('visible')
-            })
-          }
-        })
-      },
-      { threshold: 0.1 }
-    )
-
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current)
-    }
-
-    return () => observer.disconnect()
-  }, [])
-
   return (
-    <section id="doctors" className="doctors section" ref={sectionRef}>
-      <div className="container">          <div className="section-header animate-in">
+    <section id="doctors" className="doctors section">
+      <div className="container">
+        <div className="section-header">
           <span className="section-tag">Our Team</span>
           <h2 className="section-title">
             Meet Our Expert Physicians
@@ -79,19 +57,17 @@ function Doctors() {
 
         <div className="doctors-grid">
           {doctors.map((doctor, index) => (
-            <div key={index} className="doctor-card animate-in" style={{ transitionDelay: `${index * 0.1}s` }}>
-              <div className="doctor-image">
+            <div key={index} className="doctor-card">
+              <div className="doctor-img">
                 <img src={doctor.img} alt={doctor.name} loading="lazy" />
-                <div className="doctor-social">
-                  <a href="#" aria-label="LinkedIn"><i className="fab fa-linkedin-in" /></a>
-                  <a href="#" aria-label="Twitter"><i className="fab fa-twitter" /></a>
-                  <a href="#" aria-label="Email"><i className="fas fa-envelope" /></a>
-                </div>
               </div>
-              <div className="doctor-info">
+              <div className="doctor-card-body">
                 <h3 className="doctor-name">{doctor.name}</h3>
                 <span className="doctor-specialty">{doctor.specialty}</span>
                 <p className="doctor-desc">{doctor.desc}</p>
+                <button className="doctor-cta">
+                  Book Appointment <i className="fas fa-arrow-right" />
+                </button>
               </div>
             </div>
           ))}

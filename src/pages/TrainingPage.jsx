@@ -218,7 +218,7 @@ function TrainingPage() {
             </div>
             <div className="training-objectives-img">
               <img
-                src="https://images.unsplash.com/photo-1584515933487-779824d29309?w=800&q=80"
+                src="./photos/training/clg1.png"
                 alt="Nursing students"
               />
             </div>

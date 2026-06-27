@@ -282,36 +282,6 @@ function AboutPage() {
         </div>
       </section>
 
-      {/* Medical Superintendents */}
-      <section className="about-page-founders">
-        <div className="container">
-          <div className="section-header">
-            <span className="section-tag">Our Leaders</span>
-            <h2 className="section-title">The Six Medical Superintendents</h2>
-            <p className="section-subtitle">
-              Click on each leader to learn their story — the visionaries who have guided CHB 
-              from a church verandah to a thriving hospital over seven decades.
-            </p>
-          </div>
-          <div className="about-page-founders-grid">
-            {superintendents.map((leader, i) => (
-              <div key={i} className="about-page-founder-card" onClick={() => setSelectedLeader(leader)}>
-                <div className="about-page-founder-img">
-                  <img src={leader.img} alt={leader.name} />
-                </div>
-                <h3 className="about-page-founder-name">{leader.name}</h3>
-                <span className="about-page-founder-role">{leader.role}</span>
-                <p className="about-page-founder-tenure">{leader.period}</p>
-                <p className="about-page-founder-desc">{leader.desc}</p>
-                <span className="about-page-founder-cta">
-                  Read Full Story <i className="fas fa-arrow-right" />
-                </span>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* Timeline */}
       <section className="about-page-timeline-section">
         <div className="container">
@@ -333,6 +303,38 @@ function AboutPage() {
                   </div>
                   <h3 className="about-page-milestone-title">{m.title}</h3>
                   <p className="about-page-milestone-desc">{m.desc}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Medical Superintendents */}
+      <section className="about-page-founders">
+        <div className="container">
+          <div className="section-header">
+            <span className="section-tag">Our Leaders</span>
+            <h2 className="section-title">The Six Medical Superintendents</h2>
+            <p className="section-subtitle">
+              Click on each leader to learn their story — the visionaries who have guided CHB 
+              from a church verandah to a thriving hospital over seven decades.
+            </p>
+          </div>
+          <div className="about-page-founders-grid">
+            {superintendents.map((leader, i) => (
+              <div key={i} className="about-page-founder-card" onClick={() => setSelectedLeader(leader)}>
+                <div className="about-page-founder-img">
+                  <img src={leader.img} alt={leader.name} />
+                </div>
+                <div className="about-page-founder-card-body">
+                  <h3 className="about-page-founder-name">{leader.name}</h3>
+                  <span className="about-page-founder-role">{leader.role}</span>
+                  <p className="about-page-founder-tenure">{leader.period}</p>
+                  <p className="about-page-founder-desc">{leader.desc}</p>
+                  <button className="about-page-founder-cta" onClick={(e) => { e.stopPropagation(); setSelectedLeader(leader); }}>
+                    View Profile <i className="fas fa-arrow-right" />
+                  </button>
                 </div>
               </div>
             ))}
