@@ -118,7 +118,7 @@ function SchoolsPage() {
                 aria-label={`View details about ${school.name}`}
               >
                 <div className="schools-page-card-thumb">
-                  <img src={school.image} alt={school.name} />
+                  <img src={school.image} alt={school.name} loading="lazy" />
                   <div className="schools-page-card-thumb-overlay" />
 
                 </div>

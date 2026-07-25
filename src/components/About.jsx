@@ -33,17 +33,29 @@ function About() {
   const [currentSlide, setCurrentSlide] = useState(0)
   const [isFading, setIsFading] = useState(false)
 
-  // Auto-rotate slides every 5 seconds with slow fade
+  // Auto-rotate slides every 5 seconds with slow fade — pauses when off-screen
   useEffect(() => {
-    const id = setInterval(() => {
-      setIsFading(true)
-      setTimeout(() => {
-        setCurrentSlide((prev) => (prev + 1) % slides.length)
-        setIsFading(false)
-      }, 600)
-    }, 5000)
-
-    return () => clearInterval(id)
+    const el = sectionRef.current
+    if (!el) return
+    let id
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          id = setInterval(() => {
+            setIsFading(true)
+            setTimeout(() => {
+              setCurrentSlide((prev) => (prev + 1) % slides.length)
+              setIsFading(false)
+            }, 600)
+          }, 5000)
+        } else {
+          clearInterval(id)
+        }
+      },
+      { threshold: 0 }
+    )
+    observer.observe(el)
+    return () => { observer.disconnect(); clearInterval(id) }
   }, [])
 
   // Intersection observer for initial entrance

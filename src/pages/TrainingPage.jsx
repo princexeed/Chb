@@ -220,6 +220,7 @@ function TrainingPage() {
               <img
                 src="./photos/training/clg1.png"
                 alt="Nursing students"
+                loading="lazy"
               />
             </div>
           </div>
@@ -328,9 +329,9 @@ function TrainingPage() {
               </div>
             </div>
             <div className="training-hostel-gallery">
-              <img src="https://images.unsplash.com/photo-1559027615-cd4628902d4a?w=600&q=80" alt="Nursing students" className="training-hostel-img" />
-              <img src="https://images.unsplash.com/photo-1579684453373-1b5e0dcb3da2?w=600&q=80" alt="Hospital facility" className="training-hostel-img" />
-              <img src="https://images.unsplash.com/photo-1579684385127-1ef15d508118?w=600&q=80" alt="Medical training" className="training-hostel-img" />
+              <img src="https://images.unsplash.com/photo-1559027615-cd4628902d4a?w=600&q=80" alt="Nursing students" className="training-hostel-img" loading="lazy" />
+              <img src="https://images.unsplash.com/photo-1579684453373-1b5e0dcb3da2?w=600&q=80" alt="Hospital facility" className="training-hostel-img" loading="lazy" />
+              <img src="https://images.unsplash.com/photo-1579684385127-1ef15d508118?w=600&q=80" alt="Medical training" className="training-hostel-img" loading="lazy" />
             </div>
           </div>
         </div>

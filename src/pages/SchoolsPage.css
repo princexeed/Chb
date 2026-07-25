@@ -78,8 +78,7 @@
   padding: 8px 20px;
   border: 1px solid rgba(20, 184, 166, 0.3);
   border-radius: 50px;
-  backdrop-filter: blur(10px);
-  background: rgba(20, 184, 166, 0.08);
+  background: rgba(20, 184, 166, 0.15);
 }
 
 .schools-page-title {

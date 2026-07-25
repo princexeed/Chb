@@ -1,8 +1,12 @@
 import express from 'express'
 import cors from 'cors'
+import path from 'path'
+import { fileURLToPath } from 'url'
 import mysql from 'mysql2/promise'
 import dotenv from 'dotenv'
 dotenv.config()
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url))
 
 const app = express()
 const PORT = process.env.PORT || 5000
@@ -10,6 +14,11 @@ const PORT = process.env.PORT || 5000
 // Middleware
 app.use(cors({ origin: process.env.CORS_ORIGIN || 'http://localhost:5173' }))
 app.use(express.json())
+
+// Serve built frontend in production
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static(path.join(__dirname, '../dist')))
+}
 
 let pool
 
@@ -94,6 +103,13 @@ app.get('/api/contacts', async (_req, res) => {
     res.status(500).json({ success: false, message: 'Failed to fetch messages.' })
   }
 })
+
+// ─── SPA fallback (production only) ───
+if (process.env.NODE_ENV === 'production') {
+  app.get('*', (_req, res) => {
+    res.sendFile(path.join(__dirname, '../dist/index.html'))
+  })
+}
 
 // ─── Start Server ───
 initDatabase()

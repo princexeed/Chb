@@ -97,7 +97,7 @@ function Testimonials() {
                   </div>
                   <p className="marquee-text">"{t.text}"</p>
                   <div className="marquee-author">
-                    <img src={t.img} alt={t.name} className="marquee-avatar" />
+                    <img src={t.img} alt={t.name} className="marquee-avatar" loading="lazy" />
                     <div>
                       <h4 className="marquee-name">{t.name}</h4>
                       <span className="marquee-role">{t.role}</span>
@@ -117,7 +117,7 @@ function Testimonials() {
                   </div>
                   <p className="marquee-text">"{t.text}"</p>
                   <div className="marquee-author">
-                    <img src={t.img} alt={t.name} className="marquee-avatar" />
+                    <img src={t.img} alt={t.name} className="marquee-avatar" loading="lazy" />
                     <div>
                       <h4 className="marquee-name">{t.name}</h4>
                       <span className="marquee-role">{t.role}</span>

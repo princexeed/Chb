@@ -27,15 +27,14 @@
 }
 .training-badge {
   display: inline-block;
-  background: rgba(255,255,255,.12);
-  backdrop-filter: blur(8px);
+  background: rgba(255,255,255,.18);
   color: #93c5fd;
   padding: 6px 18px;
   border-radius: 20px;
   font-size: .85rem;
   letter-spacing: 1px;
   margin-bottom: 24px;
-  border: 1px solid rgba(255,255,255,.1);
+  border: 1px solid rgba(255,255,255,.15);
 }
 .training-title {
   font-size: clamp(2rem, 5vw, 3.3rem);

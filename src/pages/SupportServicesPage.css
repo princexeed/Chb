@@ -67,8 +67,7 @@
   padding: 8px 20px;
   border: 1px solid rgba(167, 139, 250, 0.3);
   border-radius: 50px;
-  backdrop-filter: blur(10px);
-  background: rgba(167, 139, 250, 0.08);
+  background: rgba(167, 139, 250, 0.15);
 }
 
 .svc-page-title {
@@ -192,6 +191,22 @@
   inset: 12px;
   border-radius: var(--radius-md);
   background: linear-gradient(180deg, transparent 40%, rgba(15, 23, 42, 0.7) 100%);
+}
+
+.svc-page-img-fallback {
+  position: absolute;
+  inset: 12px;
+  border-radius: var(--radius-md);
+  background: linear-gradient(135deg, #e0e7ff, #f0f4ff);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.svc-page-img-fallback i {
+  font-size: 3rem;
+  color: var(--color-primary);
+  opacity: .5;
 }
 
 .svc-page-card-name {

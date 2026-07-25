@@ -64,14 +64,10 @@ function ServicesPage() {
         <div className="med-page-hero-content">
           <span className="med-page-badge">Medical Services</span>
           <h1 className="med-page-title">
-            World-Class Medical
+            Your Health,
             <br />
-            <span className="med-page-highlight">Care &amp; Expertise</span>
+            <span className="med-page-highlight">Our Commitment</span>
           </h1>
-          <p className="med-page-subtitle">
-            From primary care to advanced surgery, our specialized departments
-            deliver compassionate, cutting-edge healthcare tailored to every patient's needs.
-          </p>
         </div>
         <div className="med-page-scroll">
           <span>Explore Services</span>
@@ -129,7 +125,22 @@ function ServicesPage() {
                 aria-label={`View details about ${service.title}`}
               >
                 <div className="med-page-card-top">
-                  <img src={service.image} alt={service.title} />
+                  <img
+                    src={service.image}
+                    alt={service.title}
+                    onError={(e) => {
+                      e.target.onerror = null
+                      const s = service
+                      e.target.style.display = 'none'
+                      const p = e.target.parentElement
+                      if (!p.querySelector('.med-page-img-fallback')) {
+                        const f = document.createElement('div')
+                        f.className = 'med-page-img-fallback'
+                        f.innerHTML = `<i class="fas ${s.icon}"></i>`
+                        p.appendChild(f)
+                      }
+                    }}
+                  />
                   <div className="med-page-card-img-overlay" />
                 </div>
                 <div className="med-page-card-body">

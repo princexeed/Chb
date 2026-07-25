@@ -8,9 +8,6 @@ function Hero() {
     const video = videoRef.current
     if (!video) return
 
-    // Remove poster attribute to prevent thumbnail flash
-    video.removeAttribute('poster')
-
     const playVideo = async () => {
       try {
         await video.play()
@@ -19,9 +16,22 @@ function Hero() {
       }
     }
 
-    // Small delay to help mobile browsers register the play intent
-    const timer = setTimeout(playVideo, 100)
+    const timer = setTimeout(playVideo, 500)
     return () => clearTimeout(timer)
+  }, [])
+
+  useEffect(() => {
+    const video = videoRef.current
+    if (!video) return
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) video.play().catch(() => {})
+        else video.pause()
+      },
+      { threshold: 0 }
+    )
+    observer.observe(video)
+    return () => observer.disconnect()
   }, [])
 
   return (
@@ -33,7 +43,8 @@ function Hero() {
           muted
           loop
           playsInline
-          preload="auto"
+          preload="none"
+          poster="/photos/hospital/image.jpeg"
           className="hero-video"
         >
           <source src="/videos/chb2.mp4" type="video/mp4" />

@@ -3,9 +3,12 @@ server/node_modules
 dist
 .env
 .env.local
+server/.env
 *.local
 .DS_Store
 .vscode/
 *.log
 nul
 NUL
+
+.vercel

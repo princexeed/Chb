@@ -65,7 +65,22 @@ function SupportServicesPage() {
                 aria-label={`View details about ${dept.name}`}
               >
                 <div className="svc-page-card-top">
-                  <img src={dept.image} alt={dept.name} />
+                  <img
+                    src={dept.image}
+                    alt={dept.name}
+                    loading="lazy"
+                    onError={(e) => {
+                      e.target.onerror = null
+                      e.target.style.display = 'none'
+                      const p = e.target.parentElement
+                      if (!p.querySelector('.svc-page-img-fallback')) {
+                        const f = document.createElement('div')
+                        f.className = 'svc-page-img-fallback'
+                        f.innerHTML = `<i class="fas ${dept.icon}"></i>`
+                        p.appendChild(f)
+                      }
+                    }}
+                  />
                   <div className="svc-page-card-img-overlay" />
                 </div>
                 <h3 className="svc-page-card-name">{dept.name}</h3>
