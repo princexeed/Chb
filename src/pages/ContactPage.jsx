@@ -106,14 +106,18 @@ function ContactPage() {
             Our team is available 24/7 for emergency services.
           </p>
         </div>
-        <div className="contact-page-scroll">
+        <div
+          className="contact-page-scroll"
+          onClick={() => document.getElementById('contact-content')?.scrollIntoView({ behavior: 'smooth' })}
+          style={{ cursor: 'pointer' }}
+        >
           <span>Contact Us</span>
           <i className="fas fa-chevron-down" />
         </div>
       </section>
 
       {/* Contact Content */}
-      <section className="contact-page-content">
+      <section className="contact-page-content" id="contact-content">
         <div className="container">
           <div className="contact-page-grid">
             {/* Left - Contact Info */}

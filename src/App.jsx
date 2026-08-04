@@ -7,11 +7,12 @@ import './App.css'
 
 const HomePage = lazy(() => import('./pages/HomePage'))
 const SchoolsPage = lazy(() => import('./pages/SchoolsPage'))
-const SupportServicesPage = lazy(() => import('./pages/SupportServicesPage'))
 const ServicesPage = lazy(() => import('./pages/ServicesPage'))
 const AboutPage = lazy(() => import('./pages/AboutPage'))
 const TrainingPage = lazy(() => import('./pages/TrainingPage'))
 const ContactPage = lazy(() => import('./pages/ContactPage'))
+const StoryPage = lazy(() => import('./pages/StoryPage'))
+const StoriesPage = lazy(() => import('./pages/StoriesPage'))
 const NotFoundPage = lazy(() => import('./pages/NotFoundPage'))
 
 function ErrorFallback({ error, resetErrorBoundary }) {
@@ -44,11 +45,12 @@ function App() {
             <Routes>
               <Route path="/" element={<HomePage />} />
               <Route path="/schools" element={<SchoolsPage />} />
-              <Route path="/support-services" element={<SupportServicesPage />} />
               <Route path="/services" element={<ServicesPage />} />
               <Route path="/about" element={<AboutPage />} />
               <Route path="/training" element={<TrainingPage />} />
               <Route path="/contact" element={<ContactPage />} />
+              <Route path="/stories" element={<StoriesPage />} />
+              <Route path="/stories/:slug" element={<StoryPage />} />
               <Route path="*" element={<NotFoundPage />} />
             </Routes>
           </Suspense>

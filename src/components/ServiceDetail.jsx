@@ -329,9 +329,9 @@ const serviceDetails = [
     icon: 'fa-laptop-code',
     title: 'IT Services',
     tagline: 'Powering healthcare through innovative technology',
-    image: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=800&q=80',
+    image: '/photos/it/image1.png',
     images: [
-      'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=600&q=80',
+      '/photos/it/image1.png',
       'https://images.unsplash.com/photo-1531482615713-2afd69097998?w=600&q=80',
       'https://images.unsplash.com/photo-1573164713988-8665fc963095?w=600&q=80',
     ],
@@ -381,33 +381,32 @@ function ServiceDetail({ service, onClose }) {
           <i className="fas fa-times" />
         </button>
 
-        {/* Hero Image */}
-        <div className="modal-hero">
-          <img src={detail.image} alt={detail.title} />
-          <div className="modal-hero-overlay" />
-          <div className="modal-hero-content">
-            <div className="modal-hero-icon">
-              <i className={`fas ${detail.icon}`} />
+        {/* Sidebar */}
+        <div className="modal-sidebar">
+          <div className="modal-side-icon">
+            <i className={`fas ${detail.icon}`} />
+          </div>
+          <h2 className="modal-side-title">{detail.title}</h2>
+          <p className="modal-side-tagline">{detail.tagline}</p>
+
+          <div className="modal-side-stats">
+            <div className="modal-side-stat">
+              <span className="modal-side-stat-num">{detail.stats.doctors}</span>
+              <span className="modal-side-stat-label">Specialists</span>
             </div>
-            <h2 className="modal-hero-title">{detail.title}</h2>
-            <p className="modal-hero-tagline">{detail.tagline}</p>
+            <div className="modal-side-stat">
+              <span className="modal-side-stat-num">{detail.stats.patients}</span>
+              <span className="modal-side-stat-label">Patients Treated</span>
+            </div>
+          </div>
+
+          <div className="modal-side-img">
+            <img src={detail.image} alt={detail.title} />
           </div>
         </div>
 
-        <div className="modal-body">
-          {/* Stats Bar */}
-          <div className="modal-stats">
-            <div className="modal-stat">
-              <span className="modal-stat-number">{detail.stats.doctors}</span>
-              <span className="modal-stat-label">Specialists</span>
-            </div>
-            <div className="modal-stat">
-              <span className="modal-stat-number">{detail.stats.patients}</span>
-              <span className="modal-stat-label">Patients Treated</span>
-            </div>
-          </div>
-
-          {/* Description */}
+        {/* Content */}
+        <div className="modal-main">
           <div className="modal-section">
             <h3 className="modal-section-title">Overview</h3>
             <p className="modal-text">{detail.longDesc}</p>
@@ -444,8 +443,6 @@ function ServiceDetail({ service, onClose }) {
               ))}
             </div>
           </div>
-
-
         </div>
       </div>
     </div>

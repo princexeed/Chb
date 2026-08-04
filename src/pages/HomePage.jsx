@@ -3,7 +3,7 @@ import { useLocation } from 'react-router-dom'
 import Hero from '../components/Hero'
 import MissionVision from '../components/MissionVision'
 import About from '../components/About'
-import Services from '../components/Services'
+import Institutions from '../components/Institutions'
 import Doctors from '../components/Doctors'
 import Testimonials from '../components/Testimonials'
 
@@ -24,7 +24,7 @@ function HomePage() {
       <Hero />
       <About />
       <MissionVision />
-      <Services />
+      <Institutions />
       <Doctors />
       <Testimonials />
     </main>

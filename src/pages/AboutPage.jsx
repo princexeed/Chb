@@ -25,6 +25,7 @@ const superintendents = [
     name: 'Dr. Elizabeth Madsen',
     role: 'Founder & 1st Medical Superintendent',
     period: '1954 – 1975',
+    icon: 'fa-shield-heart',
     img: 'https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=300&q=80',
     desc: 'A lady doctor from Denmark who heard of the huge health needs in this region and came to begin work on the verandah of the Church.',
     fullImg: 'https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=800&q=80',
@@ -43,6 +44,7 @@ const superintendents = [
     name: 'Dr. Virendra K. Henry',
     role: '2nd Medical Superintendent',
     period: '1976 – 1998',
+    icon: 'fa-shield-heart',
     img: 'https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=300&q=80',
     desc: 'A Surgeon from Chhattisgarh who, with his wife Nancy Henry, led CHB through 22 years of vision and building.',
     fullImg: 'https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=800&q=80',
@@ -61,6 +63,7 @@ const superintendents = [
     name: 'Dr. Padmashree Sahu',
     role: '3rd Medical Superintendent',
     period: '1998 – 2011',
+    icon: 'fa-shield-heart',
     img: 'https://images.unsplash.com/photo-1594824476967-48c8b964273f?w=300&q=80',
     desc: 'An Obstetrician colleague since 1977 who led CHB through 13 years of busy growth and expansion.',
     fullImg: 'https://images.unsplash.com/photo-1594824476967-48c8b964273f?w=800&q=80',
@@ -79,6 +82,7 @@ const superintendents = [
     name: 'Dr. Hemaprabha Mohanty',
     role: '4th Medical Superintendent',
     period: '2011 – 2021',
+    icon: 'fa-shield-heart',
     img: 'https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=300&q=80',
     desc: 'A consultant Ophthalmologist who became the 4th Medical Superintendent and led CHB through a decade of structural transformation.',
     fullImg: 'https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=800&q=80',
@@ -97,6 +101,7 @@ const superintendents = [
     name: 'Dr. John Cherian Oommen',
     role: '5th Medical Superintendent',
     period: '2021 – 2024',
+    icon: 'fa-shield-heart',
     img: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300&q=80',
     desc: 'The 5th Medical Superintendent who navigated CHB through the COVID-19 waves and continued the legacy.',
     fullImg: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&q=80',
@@ -115,6 +120,7 @@ const superintendents = [
     name: 'Dr. Sunil Chander Jiwanmall',
     role: '6th Medical Superintendent',
     period: '2024 – Present',
+    icon: 'fa-shield-heart',
     img: 'https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=300&q=80',
     desc: 'The current Medical Superintendent who leads CHB with vision and dedication, continuing the legacy of compassionate care.',
     fullImg: 'https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=800&q=80',
@@ -151,11 +157,13 @@ function SuperintendentModal({ leader, onClose }) {
         </button>
 
         <div className="about-founder-modal-hero">
-          <img src={leader.fullImg} alt={leader.name} loading="lazy" />
+          <div className="about-founder-modal-hero-bg">
+            <i className={`fas ${leader.icon}`} />
+          </div>
           <div className="about-founder-modal-hero-overlay" />
           <div className="about-founder-modal-hero-content">
             <div className="about-founder-modal-hero-avatar">
-              <img src={leader.img} alt={leader.name} loading="lazy" />
+              <i className={`fas ${leader.icon}`} />
             </div>
             <h2 className="about-founder-modal-hero-title">{leader.name}</h2>
             <span className="about-founder-modal-hero-role">{leader.role}</span>
@@ -228,14 +236,18 @@ function AboutPage() {
             built on faith, perseverance, and the dedication of countless individuals.
           </p>
         </div>
-        <div className="about-page-scroll">
+        <div
+          className="about-page-scroll"
+          onClick={() => document.getElementById('about-vision')?.scrollIntoView({ behavior: 'smooth' })}
+          style={{ cursor: 'pointer' }}
+        >
           <span>Explore Our Journey</span>
           <i className="fas fa-chevron-down" />
         </div>
       </section>
 
       {/* Founding Vision */}
-      <section className="about-page-vision">
+      <section className="about-page-vision" id="about-vision">
         <div className="container">
           <div className="about-page-vision-grid">
             <div className="about-page-vision-text">
@@ -325,7 +337,7 @@ function AboutPage() {
             {superintendents.map((leader, i) => (
               <div key={i} className="about-page-founder-card" onClick={() => setSelectedLeader(leader)}>
                 <div className="about-page-founder-img">
-                  <img src={leader.img} alt={leader.name} loading="lazy" />
+                  <i className={`fas ${leader.icon} about-page-founder-icon`} />
                 </div>
                 <div className="about-page-founder-card-body">
                   <h3 className="about-page-founder-name">{leader.name}</h3>

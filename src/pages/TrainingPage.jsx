@@ -73,14 +73,18 @@ function TrainingPage() {
             nursing profession to its highest level of excellence.
           </p>
         </div>
-        <div className="training-scroll-indicator">
+        <div
+          className="training-scroll-indicator"
+          onClick={() => document.getElementById('training-history')?.scrollIntoView({ behavior: 'smooth' })}
+          style={{ cursor: 'pointer' }}
+        >
           <span>Discover More</span>
           <i className="fas fa-chevron-down" />
         </div>
       </section>
 
       {/* History */}
-      <section className="training-section training-history">
+      <section className="training-section training-history" id="training-history">
         <div className="container">
           <div className="training-history-grid">
             <div className="training-history-text">

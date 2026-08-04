@@ -78,6 +78,22 @@
   object-position: center 30%;
 }
 
+.doctor-img-icon {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 4rem;
+  color: #cbd5e1;
+  background: linear-gradient(135deg, #f1f5f9, #e2e8f0);
+  transition: color .4s ease;
+}
+
+.doctor-card:hover .doctor-img-icon {
+  color: var(--color-primary);
+}
+
 /* Card Body */
 .doctor-card-body {
   padding: 10px 12px 14px;

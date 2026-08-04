@@ -9,11 +9,12 @@ const schools = [
     icon: 'fa-book-open',
     tagline: 'Quality English-medium education from foundational years',
     grade: 'Pre-K to Class 10',
-    image: 'https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=800&q=80',
+    image: '/photos/school/image2.jpg',
     images: [
-      'https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=600&q=80',
-      'https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=600&q=80',
-      'https://images.unsplash.com/photo-1509062522246-3755977927d7?w=600&q=80',
+      '/photos/school/image2.jpg',
+      '/photos/school/image1.jpg',
+      '/photos/school/image3.jpg',
+      '/photos/school/image4.jpg',
     ],
     desc: 'Providing affordable, quality English-medium education to children in our community.',
     longDesc: 'New Life English Medium School (NLEM) is a Christian Hospital initiative dedicated to providing quality English-medium education to children from pre-kindergarten through Class 10. Our curriculum blends academic excellence with moral and spiritual development, creating well-rounded individuals prepared for higher education and life. With experienced teachers, modern classrooms, and a nurturing environment, NLEM is shaping the next generation of leaders.',
@@ -99,14 +100,18 @@ function SchoolsPage() {
             quality learning, residential care, and holistic development.
           </p>
         </div>
-        <div className="schools-page-scroll">
+        <div
+          className="schools-page-scroll"
+          onClick={() => document.getElementById('schools-intro')?.scrollIntoView({ behavior: 'smooth' })}
+          style={{ cursor: 'pointer' }}
+        >
           <span>Explore Our Schools</span>
           <i className="fas fa-chevron-down" />
         </div>
       </section>
 
       {/* Schools Overview */}
-      <section className="schools-page-intro">
+      <section className="schools-page-intro" id="schools-intro">
         <div className="container">
           <div className="schools-page-intro-grid">
             {schools.map((school, index) => (
@@ -125,21 +130,6 @@ function SchoolsPage() {
                 <h3 className="schools-page-card-name">{school.name}</h3>
                 <span className="schools-page-card-grade">{school.grade}</span>
                 <p className="schools-page-card-desc">{school.desc}</p>
-                <div className="schools-page-card-stats">
-                  <div className="schools-page-card-stat">
-                    <span>{school.stats.enrolled}</span>
-                    <small>Students</small>
-                  </div>
-                  <div className="schools-page-card-stat">
-                    <span>{school.stats.teachers}</span>
-                    <small>Teachers</small>
-                  </div>
-                  <div className="schools-page-card-stat">
-                    <span>{school.stats.ratio}</span>
-                    <small>Ratio</small>
-                  </div>
-                </div>
-
               </button>
             ))}
           </div>

@@ -5,7 +5,6 @@ import './Header.css'
 const navLinks = [
   { to: '/', label: 'Home', hash: 'home' },
   { to: '/services', label: 'Services' },
-  { to: '/support-services', label: 'Support' },
   { to: '/training', label: 'Training' },
   { to: '/schools', label: 'Schools' },
   { to: '/about', label: 'About' },
@@ -20,12 +19,16 @@ function Header() {
   const navigate = useNavigate()
   const isSchoolsPage = location.pathname === '/schools'
   const isServicesPage = location.pathname === '/services'
-  const isSupportPage = location.pathname === '/support-services'
   const isAboutPage = location.pathname === '/about'
   const isTrainingPage = location.pathname === '/training'
   const isContactPage = location.pathname === '/contact'
+  const isStoriesPage = location.pathname.startsWith('/stories')
 
   useEffect(() => {
+    if (isStoriesPage) {
+      setIsScrolled(true)
+      return
+    }
     let ticking = false
     const handleScroll = () => {
       if (!ticking) {
@@ -38,7 +41,7 @@ function Header() {
     }
     window.addEventListener('scroll', handleScroll, { passive: true })
     return () => window.removeEventListener('scroll', handleScroll)
-  }, [])
+  }, [isStoriesPage])
 
   useEffect(() => {
     if (isMobileOpen) {
@@ -69,12 +72,6 @@ function Header() {
       return
     }
 
-    if (link.to === '/support-services') {
-      navigate('/support-services')
-      window.scrollTo({ top: 0, behavior: 'smooth' })
-      return
-    }
-
     if (link.to === '/about') {
       navigate('/about')
       window.scrollTo({ top: 0, behavior: 'smooth' })
@@ -95,7 +92,7 @@ function Header() {
 
     // Hash link — scroll to section
     if (link.hash) {
-      if (isSchoolsPage || isServicesPage || isSupportPage || isAboutPage || isTrainingPage || isContactPage) {
+      if (isSchoolsPage || isServicesPage || isAboutPage || isTrainingPage || isContactPage || isStoriesPage) {
         // Navigate home first, hash-scrolling happens in HomePage useEffect
         navigate('/#' + link.hash)
       } else {
@@ -110,7 +107,7 @@ function Header() {
   }
 
   const handleLogoClick = (e) => {
-    if (!isSchoolsPage && !isServicesPage && !isSupportPage && !isAboutPage && !isTrainingPage && !isContactPage) {
+    if (!isSchoolsPage && !isServicesPage && !isAboutPage && !isTrainingPage && !isContactPage && !isStoriesPage) {
       e.preventDefault()
       setIsMobileOpen(false)
       window.scrollTo({ top: 0, behavior: 'smooth' })
