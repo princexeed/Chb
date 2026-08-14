@@ -63,7 +63,7 @@ function TrainingPage() {
         <div className="training-hero-content">
           <span className="training-badge">College of Nursing</span>
           <h1 className="training-title">
-            Shaping the Next Generation
+            Shaping The Next Generation
             <br />
             <span className="training-highlight">Of Nursing Professionals</span>
           </h1>

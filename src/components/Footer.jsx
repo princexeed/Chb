@@ -35,6 +35,7 @@ function Footer() {
                 <li><Link to="/schools">Schools</Link></li>
                 <li><Link to="/about">About</Link></li>
                 <li><Link to="/#testimonials">Testimonials</Link></li>
+                <li><Link to="/reports">Reports</Link></li>
                 <li><Link to="/contact">Contact</Link></li>
               </ul>
             </div>
@@ -42,31 +43,25 @@ function Footer() {
             <div className="footer-col">
               <h4 className="footer-heading">Departments</h4>
               <ul className="footer-links">
-                <li><a href="#services">General Medicine</a></li>
-                <li><a href="#services">Pediatrics</a></li>
-                <li><a href="#services">Blood Bank</a></li>
-                <li><a href="#services">Maternity</a></li>
-                <li><a href="#services">Endoscopy</a></li>
-                <li><a href="#services">Ophthalmology</a></li>
+                <li><Link to="/services?dept=General+Medicine">General Medicine</Link></li>
+                <li><Link to="/services?dept=Pediatrics">Pediatrics</Link></li>
+                <li><Link to="/services?dept=Blood+Bank">Blood Bank</Link></li>
+                <li><Link to="/services?dept=Maternity">Maternity</Link></li>
+                <li><Link to="/services?dept=Endoscopy">Endoscopy</Link></li>
+                <li><Link to="/services?dept=Ophthalmology">Ophthalmology</Link></li>
               </ul>
             </div>
 
-            <div className="footer-col">
-              <h4 className="footer-heading">Newsletter</h4>
-              <p className="footer-newsletter-text">
-                Subscribe to receive health tips, updates, and news from Christian Hospital.
-              </p>
-              <form className="footer-newsletter" onSubmit={(e) => e.preventDefault()}>
-                <input type="email" placeholder="Your email address" required />
-                <button type="submit" aria-label="Subscribe">
-                  <i className="fas fa-arrow-right" />
-                </button>
-              </form>
-              <div className="footer-social">
-                <a href="#" aria-label="Facebook"><i className="fab fa-facebook-f" /></a>
-                <a href="#" aria-label="Twitter"><i className="fab fa-twitter" /></a>
-                <a href="#" aria-label="Instagram"><i className="fab fa-instagram" /></a>
-                <a href="#" aria-label="YouTube"><i className="fab fa-youtube" /></a>
+            <div className="footer-col footer-map-col">
+              <h4 className="footer-heading">Find Us</h4>
+              <div className="footer-map">
+                <iframe
+                  src="https://www.google.com/maps?q=Christian+Hospital+Bissamcuttack,+Rayagada,+Odisha+765019&output=embed"
+                  title="Christian Hospital Bissamcuttack location map"
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                  allowFullScreen
+                />
               </div>
             </div>
           </div>

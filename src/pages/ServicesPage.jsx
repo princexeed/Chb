@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useSearchParams } from 'react-router-dom'
 import ServiceDetail from '../components/ServiceDetail'
 import './ServicesPage.css'
 
@@ -69,6 +69,15 @@ const departments = [
     badgeBg: '#ffe4e6',
     iconColor: '#e11d48',
     linkColor: '#e11d48'
+  },
+    {
+    title: 'Oral & Maxillofacial Surgery',
+    desc: 'Surgical management of facial injuries, jaw disorders, oral pathology, cleft lip & palate, and impacted teeth — combining dental expertise with advanced surgical care.',
+    icon: 'fa-tooth',
+    img: 'https://images.unsplash.com/photo-1606811971618-4486d14f3f99?w=800&q=80',
+    badgeBg: '#e0f2fe',
+    iconColor: '#0ea5e9',
+    linkColor: '#0d9488'
   },
   {
     title: 'Ophthalmology',
@@ -150,23 +159,30 @@ const departments = [
     badgeBg: '#d1fae5',
     iconColor: '#059669',
     linkColor: '#047857'
-  },
-  {
-    title: 'IT Services',
-    desc: 'Managing hospital information systems, network infrastructure, and digital health solutions to ensure seamless, secure, and efficient healthcare operations.',
-    icon: 'fa-laptop-code',
-    img: '/photos/it/image1.png',
-    badgeBg: '#e0e7ff',
-    iconColor: '#6366f1',
-    linkColor: '#4f46e5'
   }
 ]
 
 function ServicesPage() {
   const [hovered, setHovered] = useState(null)
   const [selected, setSelected] = useState(null)
+  const [searchParams, setSearchParams] = useSearchParams()
 
   const active = hovered || departments[0]
+
+  useEffect(() => {
+    const dept = searchParams.get('dept')
+    if (dept) {
+      const match = departments.find(
+        (d) => d.title.toLowerCase() === dept.toLowerCase() || d.title.toLowerCase().startsWith(dept.toLowerCase())
+      )
+      if (match) setSelected(match)
+    }
+  }, [searchParams])
+
+  const openDept = (dept) => {
+    setSelected(dept)
+    setSearchParams({ dept: dept.title }, { replace: true })
+  }
 
   return (
     <div className="med-page">
@@ -210,7 +226,7 @@ function ServicesPage() {
                   className={`services-card${isActive ? ' services-card--active' : ''}`}
                   onMouseEnter={() => setHovered(dept)}
                   onMouseLeave={() => setHovered(null)}
-                  onClick={() => setSelected(dept)}
+                  onClick={() => openDept(dept)}
                 >
                   <div className="services-card-bg">
                     <div className="services-card-gradient" />
@@ -242,7 +258,7 @@ function ServicesPage() {
         <div className="container">
           <div className="mission-layout">
             <div className="mission-image">
-              <img src="/photos/hospital/image3.png" alt="" />
+              <img src="/photos/hospital/image7.jpg" alt="" />
             </div>
             <div className="mission-content">
               <span className="mission-badge">Our Mission</span>
@@ -305,6 +321,40 @@ function ServicesPage() {
 
           <div className="other-layout other-layout--reverse">
             <div className="other-image">
+              <RotatingImage images={['/photos/it/image1.png', 'https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=600&q=80', 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=600&q=80']} alt="" />
+            </div>
+            <div className="other-content">
+              <span className="other-tagline">Powering healthcare with secure, seamless technology</span>
+              <h3 className="other-title">IT Services</h3>
+              <p className="other-text">
+                Managing hospital information systems, network infrastructure, and digital health solutions to ensure seamless, secure, and efficient healthcare operations.
+              </p>
+              <p className="other-text">
+                The IT department forms the digital backbone of Christian Hospital, keeping clinical and administrative systems running around the clock. From Hospital Information Systems (HIS) and electronic health records to network security, data backup, and user support, our team ensures that technology enables — never hinders — patient care.
+              </p>
+              <div className="other-features">
+                <div className="other-feature"><i className="fas fa-check-circle" /> Hospital Information System (HIS) management</div>
+                <div className="other-feature"><i className="fas fa-check-circle" /> Network infrastructure &amp; cybersecurity</div>
+                <div className="other-feature"><i className="fas fa-check-circle" /> Electronic Health Record (EHR) support</div>
+                <div className="other-feature"><i className="fas fa-check-circle" /> Data backup &amp; disaster recovery</div>
+                <div className="other-feature"><i className="fas fa-check-circle" /> Helpdesk &amp; end-user technical support</div>
+                <div className="other-feature"><i className="fas fa-check-circle" /> Digital health solutions &amp; telemedicine</div>
+              </div>
+              <div className="other-stats">
+                <div className="other-stat">
+                  <span className="other-stat-num">12</span>
+                  <span className="other-stat-label">Team Members</span>
+                </div>
+                <div className="other-stat">
+                  <span className="other-stat-num">24/7</span>
+                  <span className="other-stat-label">System Uptime</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="other-layout">
+            <div className="other-image">
               <RotatingImage images={['https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=800&q=80', 'https://images.unsplash.com/photo-1559757175-5700dde675bc?w=600&q=80', 'https://images.unsplash.com/photo-1579154204601-01588f351e67?w=600&q=80']} alt="" />
             </div>
             <div className="other-content">
@@ -337,7 +387,7 @@ function ServicesPage() {
             </div>
           </div>
 
-          <div className="other-layout">
+          <div className="other-layout other-layout--reverse">
             <div className="other-image">
               <RotatingImage images={['https://images.unsplash.com/photo-1579154204601-01588f351e67?w=800&q=80', 'https://images.unsplash.com/photo-1581595219747-8f5a12e3ae3e?w=600&q=80', 'https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?w=600&q=80']} alt="" />
             </div>
@@ -371,7 +421,7 @@ function ServicesPage() {
             </div>
           </div>
 
-          <div className="other-layout other-layout--reverse">
+          <div className="other-layout">
             <div className="other-image">
               <RotatingImage images={['https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?w=800&q=80', 'https://images.unsplash.com/photo-1579154204601-01588f351e67?w=600&q=80', 'https://images.unsplash.com/photo-1581595219747-8f5a12e3ae3e?w=600&q=80']} alt="" />
             </div>
@@ -405,7 +455,7 @@ function ServicesPage() {
             </div>
           </div>
 
-          <div className="other-layout">
+          <div className="other-layout other-layout--reverse">
             <div className="other-image">
               <RotatingImage images={['https://images.unsplash.com/photo-1507692049790-de58290a4334?w=800&q=80', 'https://images.unsplash.com/photo-1473177104440-ffee2f3760f9?w=600&q=80', 'https://images.unsplash.com/photo-1490730141103-6cac27aaab94?w=600&q=80']} alt="" />
             </div>
@@ -439,7 +489,7 @@ function ServicesPage() {
             </div>
           </div>
 
-          <div className="other-layout other-layout--reverse">
+          <div className="other-layout">
             <div className="other-image">
               <RotatingImage images={['https://images.unsplash.com/photo-1582735689369-4fe89db7114c?w=800&q=80', 'https://images.unsplash.com/photo-1540555700478-4be289fbec6d?w=600&q=80', 'https://images.unsplash.com/photo-1581091226033-d5c48150dbaa?w=600&q=80']} alt="" />
             </div>
@@ -473,7 +523,7 @@ function ServicesPage() {
             </div>
           </div>
 
-          <div className="other-layout">
+          <div className="other-layout other-layout--reverse">
             <div className="other-image">
               <RotatingImage images={['https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=800&q=80', 'https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?w=600&q=80', 'https://images.unsplash.com/photo-1621905251918-48416bd8575a?w=600&q=80']} alt="" />
             </div>
@@ -507,7 +557,7 @@ function ServicesPage() {
             </div>
           </div>
 
-          <div className="other-layout other-layout--reverse">
+          <div className="other-layout">
             <div className="other-image">
               <RotatingImage images={['https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?w=800&q=80']} alt="" />
             </div>
@@ -546,7 +596,10 @@ function ServicesPage() {
       {selected && (
         <ServiceDetail
           service={selected}
-          onClose={() => setSelected(null)}
+          onClose={() => {
+            setSelected(null)
+            setSearchParams({}, { replace: true })
+          }}
         />
       )}
     </div>

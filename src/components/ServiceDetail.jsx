@@ -164,6 +164,29 @@ const serviceDetails = [
     treatments: 'Hernia repair, Cholecystectomy, Appendectomy, Pyelolithotomy, Urethrolithotomy, Cystolithotomy, Laparoscopic surgery, GI & colorectal surgery, Hepatobiliary surgery, Orthopaedic fixation & reductions, Paediatric surgery, Emergency trauma surgery',
   },
   {
+    slug: 'oral-maxillofacial-surgery',
+    icon: 'fa-tooth',
+    title: 'Oral & Maxillofacial Surgery',
+    tagline: 'Surgical care for the face, jaw & oral cavity',
+    image: 'https://images.unsplash.com/photo-1559757175-5700dde675bc?w=800&q=80',
+    images: [
+      'https://images.unsplash.com/photo-1559757175-5700dde675bc?w=600&q=80',
+      'https://images.unsplash.com/photo-1606811971618-4486d14f3f99?w=600&q=80',
+      'https://images.unsplash.com/photo-1579154204601-01588f351e67?w=600&q=80',
+    ],
+    longDesc: 'Oral & Maxillofacial Surgery deals with the diagnosis and surgical management of diseases, injuries and defects of the mouth, jaws, face and neck. Our department provides treatment for facial trauma, impacted teeth, jaw misalignment, oral infections, and pathological conditions of the oral cavity, restoring both function and appearance.',
+    features: [
+      'Management of facial injuries & fractures',
+      'Removal of impacted & complex teeth',
+      'Surgical treatment of jaw disorders & misalignment',
+      'Oral pathology — cysts, tumours & cancer screening',
+      'Cleft lip & palate corrective surgery',
+      'TMJ (jaw joint) disorder treatment',
+    ],
+    stats: { doctors: 2, patients: '500+' },
+    treatments: 'Facial trauma, Impacted wisdom teeth, Jaw fractures & disorders, Oral cysts & tumours, Cleft lip & palate, TMJ disorders, Oral cancer screening, Surgical tooth extraction',
+  },
+  {
     slug: 'ophthalmology',
     icon: 'fa-eye',
     title: 'Ophthalmology',
@@ -409,16 +432,37 @@ function ServiceDetail({ service, onClose }) {
         <div className="modal-main">
           <div className="modal-section">
             <h3 className="modal-section-title">Overview</h3>
-            <p className="modal-text">{detail.longDesc}</p>
-          </div>
-
-          {/* Image Gallery */}
-          <div className="modal-gallery">
-            {detail.images.map((img, i) => (
-              <div key={i} className="modal-gallery-img">
-                <img src={img} alt={`${detail.title} - Image ${i + 1}`} loading="lazy" />
-              </div>
-            ))}
+            {detail.slug === 'general-medicine' ? (
+              (() => {
+                const paragraphs = detail.longDesc.split(/\n\s*\n/).filter(p => p.trim())
+                const images = detail.images || []
+                const nodes = []
+                paragraphs.forEach((para, i) => {
+                  nodes.push(
+                    <p key={`p-${i}`} className="modal-text">{para}</p>
+                  )
+                  if (images[i]) {
+                    nodes.push(
+                      <figure key={`img-${i}`} className={`modal-inline-img${i % 2 === 1 ? ' modal-inline-img--left' : ''}`}>
+                        <img src={images[i]} alt={`${detail.title} - Image ${i + 1}`} loading="lazy" />
+                      </figure>
+                    )
+                  }
+                })
+                return nodes
+              })()
+            ) : (
+              <>
+                <p className="modal-text">{detail.longDesc}</p>
+                <div className="modal-gallery">
+                  {detail.images.map((img, i) => (
+                    <div key={i} className="modal-gallery-img">
+                      <img src={img} alt={`${detail.title} - Image ${i + 1}`} loading="lazy" />
+                    </div>
+                  ))}
+                </div>
+              </>
+            )}
           </div>
 
           {/* Features */}

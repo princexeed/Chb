@@ -9,6 +9,7 @@ const navLinks = [
   { to: '/schools', label: 'Schools' },
   { to: '/about', label: 'About' },
   { to: '/', label: 'Testimonials', hash: 'testimonials' },
+  { to: '/reports', label: 'Reports' },
   { to: '/contact', label: 'Contact' },
 ]
 
@@ -92,7 +93,7 @@ function Header() {
 
     // Hash link — scroll to section
     if (link.hash) {
-      if (isSchoolsPage || isServicesPage || isAboutPage || isTrainingPage || isContactPage || isStoriesPage) {
+      if (isSchoolsPage || isServicesPage || isAboutPage || isTrainingPage || isContactPage || isStoriesPage || location.pathname === '/reports') {
         // Navigate home first, hash-scrolling happens in HomePage useEffect
         navigate('/#' + link.hash)
       } else {

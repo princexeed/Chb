@@ -1,5 +1,5 @@
-import React, { Suspense, lazy } from 'react'
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import React, { Suspense, lazy, useEffect } from 'react'
+import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom'
 import { ErrorBoundary } from 'react-error-boundary'
 import Header from './components/Header'
 import Footer from './components/Footer'
@@ -11,6 +11,7 @@ const ServicesPage = lazy(() => import('./pages/ServicesPage'))
 const AboutPage = lazy(() => import('./pages/AboutPage'))
 const TrainingPage = lazy(() => import('./pages/TrainingPage'))
 const ContactPage = lazy(() => import('./pages/ContactPage'))
+const ReportsPage = lazy(() => import('./pages/ReportsPage'))
 const StoryPage = lazy(() => import('./pages/StoryPage'))
 const StoriesPage = lazy(() => import('./pages/StoriesPage'))
 const NotFoundPage = lazy(() => import('./pages/NotFoundPage'))
@@ -35,11 +36,30 @@ function PageLoader() {
   )
 }
 
+function ScrollToTop() {
+  const { pathname, hash } = useLocation()
+
+  useEffect(() => {
+    if (hash) {
+      const id = hash.replace('#', '')
+      // give the lazy-loaded page time to render scrollable content
+      setTimeout(() => {
+        document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' })
+      }, 150)
+    } else {
+      window.scrollTo(0, 0)
+    }
+  }, [pathname, hash])
+
+  return null
+}
+
 function App() {
   return (
     <BrowserRouter>
       <ErrorBoundary FallbackComponent={ErrorFallback}>
         <div className="app">
+          <ScrollToTop />
           <Header />
           <Suspense fallback={<PageLoader />}>
             <Routes>
@@ -49,6 +69,7 @@ function App() {
               <Route path="/about" element={<AboutPage />} />
               <Route path="/training" element={<TrainingPage />} />
               <Route path="/contact" element={<ContactPage />} />
+              <Route path="/reports" element={<ReportsPage />} />
               <Route path="/stories" element={<StoriesPage />} />
               <Route path="/stories/:slug" element={<StoryPage />} />
               <Route path="*" element={<NotFoundPage />} />

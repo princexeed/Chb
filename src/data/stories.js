@@ -1,5 +1,41 @@
 const stories = [
   {
+    slug: 'a-rare-cervical-fibroid-causing-haematocolpus',
+    category: 'Hospital',
+    author: 'Dr K Dhanusha (Gyn)',
+    date: 'Apr 25, 2026',
+    readTime: '4 min read',
+    views: 1250,
+    comments: 6,
+    likes: 48,
+    title: 'A Rare Cervical Fibroid Causing Haematocolpus',
+    excerpt:
+      'Mrs Kabita Majhi, aged 29 years, P2L1, a housewife from a middle-class family, presented with 8–9 months of amenorrhoea, cyclical lower abdominal pain, and a slowly growing swelling with heaviness in the lower abdomen — a rare case managed successfully with minimal investigation.',
+    image: '/photos/cs/kabita maji/image1.jpg',
+    imageAlt: 'Case of cervical fibroid with haematocolpus — Mrs Kabita Majhi',
+    inlineImage: '/photos/cs/kabita maji/image2.jpg',
+    inlineImageAlt: 'Surgical management of the rare cervical fibroid case',
+    content: [
+      {
+        lead: 'Mrs Kabita Majhi, aged 29 years, married for 10 years, P2L1, a housewife belonging to a middle-class family, came to the OPD on 25/04/2026 with 8–9 months of amenorrhoea with cyclical lower abdominal pain for 3–4 days every month and a swelling with a sensation of heaviness in the lower part of the abdomen, which was growing slowly.',
+      },
+      {
+        text: 'Her menstrual history was regular at an interval of 28–30 days with normal flow initially, followed by increased flow since 1 year, associated with dysmenorrhoea. There was no significant past history or contraceptive usage.',
+        sideImage: '/photos/cs/kabita maji/image3.jpg',
+        sideImageAlt: 'Clinical documentation of the cervical fibroid case',
+      },
+      { heading: 'Examination & Investigations' },
+      'On general examination, there was mild pallor, with vitals and cardiovascular and respiratory systems normal.',
+      'Per abdomen – a mass of 24 weeks size, globular, with a regular surface, firm, mobile and non-tender, was seen, which correlated with the per vaginal examination.',
+      'On radiological examination – a cervical fibroid lying in the lower uterine segment was seen, with haematocolpus above the fibroid occupying the uterine cavity.',
+      { heading: 'Surgical Intervention' },
+      'Proceeded for surgical intervention with myomectomy — a cervical fibroid of 15 × 10 cm was removed — with drainage of haematocolpus of about 150–200 ml.',
+      'Postoperative recovery was uncomplicated with satisfactory wound healing, and the patient was discharged in stable condition.',
+      { heading: 'Outcome' },
+      'This is a rare case of cervical fibroid causing haematocolpus which had a good prognosis, done with minimal investigation.',
+    ],
+  },
+  {
     slug: 'a-bed-on-a-church-verandah',
     category: 'Hospital',
     author: 'CHB IT Team',

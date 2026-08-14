@@ -4,45 +4,57 @@ import './Doctors.css'
 const doctors = [
   {
     name: 'Dr. Sunil Chander Jiwanmall',
-    specialty: 'Chief of Cardiology',
+    specialty: 'MS Surgery',
     img: 'https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=400&q=80',
-    desc: 'Board-certified cardiologist with 20+ years of experience in interventional cardiology.',
+    desc: 'Board-certified MS Surgery with 20+ years of experience in..',
   },
   {
     name: 'Dr. Pragya Jiwanmall',
-    specialty: 'Chief of Surgery',
+    specialty: 'MD Medicine',
     img: 'https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=400&q=80',
     desc: 'Renowned general surgeon specializing in minimally invasive and robotic-assisted procedures.',
   },
   {
     name: 'Dr. Subash',
-    specialty: 'Head of Pediatrics',
+    specialty: 'MS Surgery',
     img: 'https://images.unsplash.com/photo-1594824476967-48c8b964273f?w=400&q=80',
     desc: 'Dedicated pediatrician passionate about providing compassionate care to children of all ages.',
   },
   {
     name: 'Dr. Keerti',
-    specialty: 'Neurologist',
-    img: 'https://images.unsplash.com/photo-1622253692010-333f2da2031d?w=400&q=80',
-    desc: 'Expert neurologist specializing in stroke treatment, epilepsy, and neurodegenerative disorders.',
+    specialty: 'MS Obstetrician & Gynecologist',
+    img: 'https://images.unsplash.com/photo-1582750433449-648ed127bb54?w=400&q=80',
+    desc: 'Compassionate OB/GYN dedicated to women\'s health and safe maternity care.',
   },
   {
     name: 'Dr. Bobby',
-    specialty: 'Obstetrician & Gynecologist',
-    img: 'https://images.unsplash.com/photo-1623852751415-12b2c47571d3?w=400&q=80',
+    specialty: 'MD Medicine',
+    img: 'https://images.unsplash.com/photo-1579684385127-1ef15d508118?w=400&q=80',
     desc: 'Compassionate OB/GYN dedicated to women\'s health and safe maternity care.',
   },
   {
     name: 'Dr. David',
-    specialty: 'Orthopedic Surgeon',
+    specialty: 'MD pediatrician',
     img: 'https://images.unsplash.com/photo-1537368910025-700350fe46c7?w=400&q=80',
-    desc: 'Specialist in joint replacement, sports medicine, and minimally invasive spine surgery.',
+    desc: 'Dedicated pediatrician passionate about providing compassionate care to children of all ages.',
   },
     {
     name: 'Dr. Lilly',
-    specialty: 'Orthopedic Surgeon',
+    specialty: 'MD pediatrician',
     img: 'https://images.unsplash.com/photo-1537368910025-700350fe46c7?w=400&q=80',
-    desc: 'Specialist in joint replacement, sports medicine, and minimally invasive spine surgery.',
+    desc: 'Dedicated pediatrician passionate about providing compassionate care to children of all ages.',
+  },
+   {
+    name: 'Dr. Livingstone',
+    specialty: 'MDS Oral & Maxillofacial Surgery',
+    img: '/photos/doctors/Dr Livingstone.jpg',
+    desc: 'Dedicated pediatrician passionate about providing compassionate care to children of all ages.',
+  },
+    {
+    name: 'Dr. Graceline Vandana Nickelson',
+    specialty: 'MD Anaesthesiologist',
+    img: 'https://images.unsplash.com/photo-1537368910025-700350fe46c7?w=400&q=80',
+    desc: 'Dedicated pediatrician passionate about providing compassionate care to children of all ages.',
   },
 ]
 
@@ -60,13 +72,16 @@ function Doctors() {
         <div className="doctors-grid">
           {doctors.map((doctor, index) => (
             <div key={index} className="doctor-card">
-              <div className="doctor-img">
-                <i className="fas fa-stethoscope doctor-img-icon" />
+              <div className="doctor-photo">
+                <img className="doctor-photo-img" src={doctor.img} alt={doctor.name} loading="lazy" />
+                <div className="doctor-overlay">
+                  <span className="doctor-specialty">{doctor.specialty}</span>
+                  <p className="doctor-desc">{doctor.desc}</p>
+                </div>
               </div>
               <div className="doctor-card-body">
                 <h3 className="doctor-name">{doctor.name}</h3>
-                <span className="doctor-specialty">{doctor.specialty}</span>
-                <p className="doctor-desc">{doctor.desc}</p>
+                <span className="doctor-qualification">{doctor.specialty}</span>
               </div>
             </div>
           ))}

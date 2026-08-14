@@ -108,7 +108,7 @@ function StoriesPage() {
               >
                 <div
                   className="story-card-bg"
-                  style={{ backgroundImage: `url(${story.image})` }}
+                  style={{ backgroundImage: `url("${story.image}")` }}
                 />
                 <div className="story-card-overlay" />
 

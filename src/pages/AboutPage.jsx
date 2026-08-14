@@ -226,7 +226,7 @@ function AboutPage() {
         <div className="about-page-hero-content">
           <span className="about-page-badge">Our Story</span>
           <h1 className="about-page-title">
-            From a Church Verandah
+            From A Church Verandah
             <br />
             <span className="about-page-highlight">To 70 Years of Healing</span>
           </h1>
@@ -397,4 +397,4 @@ function AboutPage() {
   )
 }
 
-export default AboutPage
+export default AboutPage

@@ -75,7 +75,7 @@
 .modal-sidebar {
   background: linear-gradient(160deg, #0f172a, #1e3a8a);
   color: white;
-  padding: 32px 26px;
+  padding: 32px 25px;
   display: flex;
   flex-direction: column;
   overflow-y: auto;
@@ -198,6 +198,39 @@
   color: var(--color-text-light);
   white-space: pre-line;
   overflow-wrap: break-word;
+}
+
+/* Inline images between paragraphs */
+.modal-inline-img {
+  float: right;
+  width: 300px;
+  max-width: 45%;
+  margin: 6px 0 16px 24px;
+  clear: both;
+}
+
+.modal-inline-img img {
+  width: 100%;
+  max-height: 340px;
+  object-fit: cover;
+  border-radius: 10px;
+  border: 1px solid var(--color-border);
+  display: block;
+}
+
+.modal-inline-img--left {
+  float: left;
+  margin: 6px 24px 16px 0;
+}
+
+@media (max-width: 640px) {
+  .modal-inline-img {
+    float: none;
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    margin: 16px 0;
+  }
 }
 
 /* Gallery */

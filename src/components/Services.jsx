@@ -7,6 +7,7 @@ const services = [
   { icon: 'fa-baby', title: 'Pediatrics', desc: 'Neonatal intensive care for birth asphyxias, low birth weight & preterm babies. 6,000+ OPD visits & 1,000 admissions annually.' },
   { icon: 'fa-baby-carriage', title: 'Maternity & Obstetrics', desc: 'Referral hospital for complicated cases from 2 districts — 2,700 deliveries/yr, 900 gynaecological surgeries, JSY programme accredited by NRHM.' },
   { icon: 'fa-user-md', title: 'Surgery', desc: 'Open & laparoscopic surgeries, orthopaedic care, paediatric surgery, and emergency trauma care — serving a 200 km radius with no other surgical facilities.' },
+  { icon: 'fa-tooth', title: 'Oral & Maxillofacial Surgery', desc: 'Surgical management of facial injuries, jaw disorders, oral pathology, cleft lip & palate, and impacted teeth — combining dental expertise with advanced surgical care.' },
   { icon: 'fa-eye', title: 'Ophthalmology', desc: 'Complete eye care from routine exams to advanced cataract, glaucoma, and retinal surgery.' },
   { icon: 'fa-syringe', title: 'Anaesthesiology', desc: 'General, spinal, local & regional anaesthesia for routine and emergency surgeries — with preanaesthetic evaluation and labour pain management.' },
   { icon: 'fa-tooth', title: 'Dental Care', desc: 'Diagnosis, restorative & surgical procedures, oral cancer screening, and tobacco cessation counselling — serving 1,100+ patients annually.' },

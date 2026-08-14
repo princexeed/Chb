@@ -1,0 +1,194 @@
+/* ===========================
+   Reports Page
+   =========================== */
+
+.reports-hero {
+  position: relative;
+  height: 62vh;
+  min-height: 420px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.reports-hero-bg,
+.reports-hero-overlay {
+  position: absolute;
+  top: calc(-1 * var(--header-height));
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.reports-hero-content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  max-width: 780px;
+  padding: var(--header-height) 24px 0;
+  animation: heroContentFade 1s ease;
+}
+
+.reports-hero-bg {
+  background: url('https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=1920&q=80') center/cover no-repeat;
+  animation: heroZoom 20s ease-in-out infinite alternate;
+}
+
+@keyframes heroZoom {
+  from { transform: scale(1); }
+  to { transform: scale(1.08); }
+}
+
+.reports-hero-overlay {
+  background: linear-gradient(
+    135deg,
+    rgba(15, 23, 42, 0.88) 0%,
+    rgba(15, 23, 42, 0.5) 50%,
+    rgba(26, 115, 232, 0.3) 100%
+  );
+}
+
+@keyframes heroContentFade {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.reports-badge {
+  display: inline-block;
+  font-size: 0.72rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  color: var(--color-secondary-light);
+  margin-bottom: 14px;
+  padding: 6px 16px;
+  border: 1px solid rgba(20, 184, 166, 0.3);
+  border-radius: 50px;
+}
+
+.reports-title {
+  font-family: var(--font-display);
+  font-size: clamp(1.9rem, 4.6vw, 3rem);
+  font-weight: 800;
+  color: white;
+  line-height: 1.12;
+  margin-bottom: 18px;
+  text-shadow: 0 8px 40px rgba(0, 0, 0, 0.35);
+}
+
+.reports-highlight {
+  background: linear-gradient(135deg, var(--color-secondary-light), var(--color-primary));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.reports-subtitle {
+  font-size: 0.98rem;
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.78);
+  max-width: 620px;
+  margin: 0 auto 28px;
+}
+
+.reports-scroll {
+  position: absolute;
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 0.85rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  animation: scrollBounce 2s ease-in-out infinite;
+}
+
+.reports-scroll i {
+  font-size: 0.9rem;
+}
+
+@keyframes scrollBounce {
+  0%, 100% { transform: translate(-50%, 0); }
+  50% { transform: translate(-50%, 8px); }
+}
+
+/* Reports list */
+.reports-section {
+  padding: 80px 0;
+}
+
+.reports-block {
+  max-width: 720px;
+  margin: 0 auto 36px;
+}
+
+.reports-block-title {
+  font-family: var(--font-display);
+  font-size: clamp(1.2rem, 2.6vw, 1.6rem);
+  font-weight: 700;
+  color: var(--color-primary);
+  margin-bottom: 16px;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+
+.report-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 14px;
+  background: linear-gradient(135deg, #eff6ff 0%, #f0fdfa 100%);
+  border: 1px solid #dbeafe;
+  border-radius: var(--radius-md);
+  text-decoration: none;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.report-row:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 28px rgba(15, 23, 42, 0.1);
+  border-color: var(--color-primary);
+}
+
+.report-row-thumb {
+  width: 72px;
+  height: 72px;
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  flex-shrink: 0;
+  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.12);
+}
+
+.report-row-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.report-row-name {
+  flex: 1;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.35rem;
+  font-weight: 700;
+  font-style: italic;
+  letter-spacing: 0.02em;
+  color: var(--color-text);
+}
+
+.report-row-action {
+  color: var(--color-primary);
+  font-size: 1.05rem;
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+  .reports-section {
+    padding: 60px 0;
+  }
+}
