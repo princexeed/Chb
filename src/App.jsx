@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom'
 import { ErrorBoundary } from 'react-error-boundary'
 import Header from './components/Header'
 import Footer from './components/Footer'
+import FloatingMessage from './components/FloatingMessage'
 import './App.css'
 
 const HomePage = lazy(() => import('./pages/HomePage'))
@@ -10,6 +11,8 @@ const SchoolsPage = lazy(() => import('./pages/SchoolsPage'))
 const ServicesPage = lazy(() => import('./pages/ServicesPage'))
 const AboutPage = lazy(() => import('./pages/AboutPage'))
 const TrainingPage = lazy(() => import('./pages/TrainingPage'))
+const SupportPage = lazy(() => import('./pages/SupportPage'))
+const DonatePage = lazy(() => import('./pages/DonatePage'))
 const ContactPage = lazy(() => import('./pages/ContactPage'))
 const ReportsPage = lazy(() => import('./pages/ReportsPage'))
 const StoryPage = lazy(() => import('./pages/StoryPage'))
@@ -54,29 +57,41 @@ function ScrollToTop() {
   return null
 }
 
+function AppContent() {
+  const { pathname } = useLocation()
+  const standalone = pathname === '/donate'
+
+  return (
+    <div className="app">
+      <ScrollToTop />
+      {!standalone && <Header />}
+      <Suspense fallback={<PageLoader />}>
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/schools" element={<SchoolsPage />} />
+          <Route path="/services" element={<ServicesPage />} />
+          <Route path="/about" element={<AboutPage />} />
+          <Route path="/training" element={<TrainingPage />} />
+          <Route path="/support" element={<SupportPage />} />
+          <Route path="/donate" element={<DonatePage />} />
+          <Route path="/contact" element={<ContactPage />} />
+          <Route path="/reports" element={<ReportsPage />} />
+          <Route path="/stories" element={<StoriesPage />} />
+          <Route path="/stories/:slug" element={<StoryPage />} />
+          <Route path="*" element={<NotFoundPage />} />
+        </Routes>
+      </Suspense>
+      {!standalone && <Footer />}
+      {!standalone && <FloatingMessage />}
+    </div>
+  )
+}
+
 function App() {
   return (
     <BrowserRouter>
       <ErrorBoundary FallbackComponent={ErrorFallback}>
-        <div className="app">
-          <ScrollToTop />
-          <Header />
-          <Suspense fallback={<PageLoader />}>
-            <Routes>
-              <Route path="/" element={<HomePage />} />
-              <Route path="/schools" element={<SchoolsPage />} />
-              <Route path="/services" element={<ServicesPage />} />
-              <Route path="/about" element={<AboutPage />} />
-              <Route path="/training" element={<TrainingPage />} />
-              <Route path="/contact" element={<ContactPage />} />
-              <Route path="/reports" element={<ReportsPage />} />
-              <Route path="/stories" element={<StoriesPage />} />
-              <Route path="/stories/:slug" element={<StoryPage />} />
-              <Route path="*" element={<NotFoundPage />} />
-            </Routes>
-          </Suspense>
-          <Footer />
-        </div>
+        <AppContent />
       </ErrorBoundary>
     </BrowserRouter>
   )

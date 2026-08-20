@@ -2,6 +2,68 @@
    Testimonials Section
    =========================== */
 
+.testimonials {
+  padding-top: 70px;
+  padding-bottom: 70px;
+}
+
+/* Section header — redesigned for Testimonials only */
+.testimonials .section-header {
+  position: relative;
+  max-width: 640px;
+}
+
+.testimonials .section-tag {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  color: var(--color-primary);
+  margin-bottom: 14px;
+}
+
+.testimonials .section-tag::before,
+.testimonials .section-tag::after {
+  content: '';
+  width: 34px;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--color-primary));
+  opacity: 0.5;
+}
+
+.testimonials .section-tag::after {
+  background: linear-gradient(270deg, transparent, var(--color-primary));
+}
+
+.testimonials .section-title {
+  font-size: 2.4rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: var(--color-text);
+  margin-bottom: 14px;
+}
+
+.testimonials .section-title::after {
+  content: '';
+  display: block;
+  width: 56px;
+  height: 3px;
+  margin: 16px auto 0;
+  border-radius: 3px;
+  background: linear-gradient(90deg, var(--color-primary), var(--color-primary-light));
+}
+
+.testimonials .section-subtitle {
+  font-size: 1.02rem;
+  color: var(--color-text-light);
+  line-height: 1.7;
+  font-weight: 400;
+}
+
 /* Marquee wrapper — clips the track */
 .marquee-wrapper {
   max-width: 100%;

@@ -1,0 +1,430 @@
+/* ===========================
+   Support Page
+   =========================== */
+
+/* Hero */
+.support-hero {
+  position: relative;
+  min-height: 50vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  padding: 120px 20px 60px;
+}
+
+.support-hero-bg {
+  position: absolute;
+  inset: 0;
+  background: url('https://images.unsplash.com/photo-1593113598332-cd288d649433?w=1920&q=80') center/cover no-repeat;
+  filter: brightness(.4);
+  transform: scale(1.05);
+}
+
+.support-hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(15, 23, 42, .92), rgba(26, 115, 232, .7));
+}
+
+.support-hero-content {
+  position: relative;
+  text-align: center;
+  max-width: 720px;
+  z-index: 1;
+}
+
+.support-badge {
+  display: inline-block;
+  padding: 6px 18px;
+  background: rgba(255, 255, 255, .18);
+  border: 1px solid rgba(255, 255, 255, .25);
+  border-radius: 50px;
+  font-size: .85rem;
+  font-weight: 500;
+  color: rgba(255, 255, 255, .85);
+  margin-bottom: 20px;
+}
+
+.support-title {
+  font-family: var(--font-display);
+  font-size: clamp(2.2rem, 5vw, 3.4rem);
+  font-weight: 800;
+  color: white;
+  line-height: 1.2;
+  margin-bottom: 16px;
+}
+
+.support-highlight {
+  background: linear-gradient(135deg, #60a5fa, #3b82f6);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.support-subtitle {
+  font-size: 1.1rem;
+  color: rgba(255, 255, 255, .7);
+  line-height: 1.7;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.support-scroll {
+  position: absolute;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  color: rgba(255, 255, 255, .8);
+  font-size: .9rem;
+  letter-spacing: 1px;
+  z-index: 1;
+  animation: supportBounce 2s ease-in-out infinite;
+}
+
+.support-scroll i {
+  font-size: 1rem;
+}
+
+@keyframes supportBounce {
+  0%, 100% { transform: translateX(-50%) translateY(0); }
+  50% { transform: translateX(-50%) translateY(8px); }
+}
+
+/* Sections */
+.support-section {
+  padding: 90px 0;
+}
+
+/* Donate ways */
+.support-donate {
+  background: #ffffff;
+}
+
+.support-donate-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 22px;
+  margin-top: 40px;
+}
+
+.support-donate-card {
+  background: #f8faff;
+  border: 1px solid var(--color-border);
+  border-radius: 16px;
+  padding: 28px 22px;
+  text-align: center;
+  transition: transform .35s ease, box-shadow .35s ease;
+}
+
+.support-donate-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 30px rgba(26, 115, 232, .1);
+}
+
+.support-donate-icon {
+  width: 60px;
+  height: 60px;
+  margin: 0 auto 16px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--color-primary), var(--color-primary-dark));
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.3rem;
+}
+
+.support-donate-title {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--color-text);
+  margin-bottom: 8px;
+}
+
+.support-donate-desc {
+  font-size: .86rem;
+  line-height: 1.6;
+  color: var(--color-text-light);
+}
+
+/* Indian donors */
+.support-indian {
+  background: var(--color-bg-alt);
+}
+
+.support-indian-grid {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: 50px;
+  align-items: center;
+}
+
+.support-mini-badge {
+  display: inline-block;
+  font-size: .8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: var(--color-primary);
+  margin-bottom: 12px;
+}
+
+.support-indian-title {
+  font-family: var(--font-display);
+  font-size: 2.2rem;
+  font-weight: 800;
+  color: var(--color-text);
+  margin-bottom: 14px;
+  line-height: 1.2;
+}
+
+.support-indian-desc {
+  font-size: 1rem;
+  color: var(--color-text-light);
+  line-height: 1.7;
+  margin-bottom: 24px;
+}
+
+.support-bank {
+  background: white;
+  border-radius: 14px;
+  overflow: hidden;
+  border: 1px solid var(--color-border);
+  margin-bottom: 20px;
+}
+
+.support-bank-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 12px 18px;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.support-bank-row:last-child {
+  border-bottom: none;
+}
+
+.support-bank-label {
+  font-size: .85rem;
+  font-weight: 600;
+  color: var(--color-text-light);
+}
+
+.support-bank-value {
+  font-size: .88rem;
+  font-weight: 700;
+  color: var(--color-text);
+  text-align: right;
+}
+
+.support-note {
+  font-size: .86rem;
+  color: var(--color-text-light);
+  line-height: 1.6;
+  background: rgba(26, 115, 232, .06);
+  border: 1px dashed rgba(26, 115, 232, .3);
+  border-radius: 12px;
+  padding: 14px 18px;
+}
+
+.support-note i {
+  color: var(--color-primary);
+  margin-right: 8px;
+}
+
+.support-note a {
+  color: var(--color-primary);
+  font-weight: 600;
+}
+
+.support-indian-card {
+  background: linear-gradient(150deg, var(--color-primary), var(--color-primary-dark));
+  color: white;
+  border-radius: 18px;
+  padding: 40px 34px;
+  text-align: center;
+  box-shadow: 0 16px 40px rgba(26, 115, 232, .3);
+}
+
+.support-indian-card-icon {
+  width: 64px;
+  height: 64px;
+  margin: 0 auto 18px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, .18);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4rem;
+}
+
+.support-indian-card h3 {
+  font-size: 1.25rem;
+  font-weight: 800;
+  margin-bottom: 12px;
+}
+
+.support-indian-card p {
+  font-size: .9rem;
+  line-height: 1.6;
+  opacity: .9;
+  margin-bottom: 24px;
+}
+
+.support-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 28px;
+  background: white;
+  color: var(--color-primary);
+  border-radius: 50px;
+  font-weight: 700;
+  font-size: .92rem;
+  text-decoration: none;
+  transition: transform .3s ease, box-shadow .3s ease;
+}
+
+.support-cta:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 22px rgba(0, 0, 0, .2);
+}
+
+/* Overseas donors */
+.support-overseas {
+  background: #ffffff;
+}
+
+.support-overseas-content {
+  max-width: 780px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.support-overseas-title {
+  font-family: var(--font-display);
+  font-size: 2.2rem;
+  font-weight: 800;
+  color: var(--color-text);
+  margin-bottom: 14px;
+  line-height: 1.2;
+}
+
+.support-overseas-desc {
+  font-size: 1rem;
+  color: var(--color-text-light);
+  line-height: 1.7;
+  margin-bottom: 28px;
+}
+
+.support-overseas-list {
+  text-align: left;
+  background: #f8faff;
+  border: 1px solid var(--color-border);
+  border-radius: 14px;
+  padding: 22px 26px;
+  margin-bottom: 24px;
+}
+
+.support-overseas-item {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+}
+
+.support-overseas-item i {
+  font-size: 1.4rem;
+  color: var(--color-primary);
+  margin-top: 4px;
+}
+
+.support-overseas-item h4 {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--color-text);
+  margin-bottom: 6px;
+}
+
+.support-overseas-item p {
+  font-size: .88rem;
+  color: var(--color-text-light);
+  line-height: 1.6;
+}
+
+.support-overseas .support-note {
+  text-align: left;
+}
+
+/* CTA */
+.support-cta-section {
+  background: linear-gradient(135deg, var(--color-primary), var(--color-primary-dark));
+  padding: 80px 0;
+}
+
+.support-cta-content {
+  max-width: 640px;
+  margin: 0 auto;
+  text-align: center;
+  color: white;
+}
+
+.support-cta-title {
+  font-family: var(--font-display);
+  font-size: 2.4rem;
+  font-weight: 800;
+  margin-bottom: 14px;
+}
+
+.support-cta-text {
+  font-size: 1rem;
+  line-height: 1.7;
+  opacity: .9;
+  margin-bottom: 28px;
+}
+
+.support-cta-btn {
+  background: white;
+  color: var(--color-primary);
+}
+
+.support-cta-btn:hover {
+  background: #f0f4ff;
+  color: var(--color-primary-dark);
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .support-donate-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .support-indian-grid {
+    grid-template-columns: 1fr;
+    gap: 36px;
+  }
+}
+
+@media (max-width: 600px) {
+  .support-section {
+    padding: 60px 0;
+  }
+
+  .support-donate-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .support-bank-row {
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .support-bank-value {
+    text-align: left;
+  }
+}

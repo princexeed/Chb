@@ -76,11 +76,6 @@ function Testimonials() {
       <div className="container">
         <div className="section-header animate-in">
           <span className="section-tag">Testimonials</span>
-          <h2 className="section-title">What Our Patients Say</h2>
-          <p className="section-subtitle">
-            The greatest reward is the trust our patients place in us.
-            Here are some of their stories.
-          </p>
         </div>
 
         {/* Marquee wrapper */}

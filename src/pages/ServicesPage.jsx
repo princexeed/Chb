@@ -306,16 +306,6 @@ function ServicesPage() {
                 <div className="other-feature"><i className="fas fa-check-circle" /> Strategic planning &amp; business development</div>
                 <div className="other-feature"><i className="fas fa-check-circle" /> Regulatory compliance &amp; audit management</div>
               </div>
-              <div className="other-stats">
-                <div className="other-stat">
-                  <span className="other-stat-num">45</span>
-                  <span className="other-stat-label">Team Members</span>
-                </div>
-                <div className="other-stat">
-                  <span className="other-stat-num">₦2.5B+</span>
-                  <span className="other-stat-label">Annual Budget Managed</span>
-                </div>
-              </div>
             </div>
           </div>
 
@@ -339,16 +329,6 @@ function ServicesPage() {
                 <div className="other-feature"><i className="fas fa-check-circle" /> Data backup &amp; disaster recovery</div>
                 <div className="other-feature"><i className="fas fa-check-circle" /> Helpdesk &amp; end-user technical support</div>
                 <div className="other-feature"><i className="fas fa-check-circle" /> Digital health solutions &amp; telemedicine</div>
-              </div>
-              <div className="other-stats">
-                <div className="other-stat">
-                  <span className="other-stat-num">12</span>
-                  <span className="other-stat-label">Team Members</span>
-                </div>
-                <div className="other-stat">
-                  <span className="other-stat-num">24/7</span>
-                  <span className="other-stat-label">System Uptime</span>
-                </div>
               </div>
             </div>
           </div>
@@ -374,16 +354,6 @@ function ServicesPage() {
                 <div className="other-feature"><i className="fas fa-check-circle" /> Release of information &amp; patient access</div>
                 <div className="other-feature"><i className="fas fa-check-circle" /> Data quality assurance &amp; compliance</div>
               </div>
-              <div className="other-stats">
-                <div className="other-stat">
-                  <span className="other-stat-num">30</span>
-                  <span className="other-stat-label">Team Members</span>
-                </div>
-                <div className="other-stat">
-                  <span className="other-stat-num">150K+</span>
-                  <span className="other-stat-label">Records/Year</span>
-                </div>
-              </div>
             </div>
           </div>
 
@@ -408,16 +378,6 @@ function ServicesPage() {
                 <div className="other-feature"><i className="fas fa-check-circle" /> Emergency instrument processing</div>
                 <div className="other-feature"><i className="fas fa-check-circle" /> Endoscope reprocessing &amp; care</div>
               </div>
-              <div className="other-stats">
-                <div className="other-stat">
-                  <span className="other-stat-num">22</span>
-                  <span className="other-stat-label">Team Members</span>
-                </div>
-                <div className="other-stat">
-                  <span className="other-stat-num">50K+</span>
-                  <span className="other-stat-label">Packs/Month</span>
-                </div>
-              </div>
             </div>
           </div>
 
@@ -441,16 +401,6 @@ function ServicesPage() {
                 <div className="other-feature"><i className="fas fa-check-circle" /> Sharps disposal &amp; management</div>
                 <div className="other-feature"><i className="fas fa-check-circle" /> Chemical &amp; pharmaceutical waste handling</div>
                 <div className="other-feature"><i className="fas fa-check-circle" /> Regulatory compliance &amp; reporting</div>
-              </div>
-              <div className="other-stats">
-                <div className="other-stat">
-                  <span className="other-stat-num">12</span>
-                  <span className="other-stat-label">Team Members</span>
-                </div>
-                <div className="other-stat">
-                  <span className="other-stat-num">100%</span>
-                  <span className="other-stat-label">Compliance Rate</span>
-                </div>
               </div>
             </div>
           </div>
@@ -510,16 +460,6 @@ function ServicesPage() {
                 <div className="other-feature"><i className="fas fa-check-circle" /> Infection control laundry protocols</div>
                 <div className="other-feature"><i className="fas fa-check-circle" /> Linen inventory &amp; distribution management</div>
               </div>
-              <div className="other-stats">
-                <div className="other-stat">
-                  <span className="other-stat-num">18</span>
-                  <span className="other-stat-label">Team Members</span>
-                </div>
-                <div className="other-stat">
-                  <span className="other-stat-num">15T/wk</span>
-                  <span className="other-stat-label">Laundry Volume</span>
-                </div>
-              </div>
             </div>
           </div>
 
@@ -544,16 +484,6 @@ function ServicesPage() {
                 <div className="other-feature"><i className="fas fa-check-circle" /> Building &amp; structural maintenance</div>
                 <div className="other-feature"><i className="fas fa-check-circle" /> Preventive maintenance scheduling</div>
               </div>
-              <div className="other-stats">
-                <div className="other-stat">
-                  <span className="other-stat-num">28</span>
-                  <span className="other-stat-label">Team Members</span>
-                </div>
-                <div className="other-stat">
-                  <span className="other-stat-num">99.5%</span>
-                  <span className="other-stat-label">Systems Uptime</span>
-                </div>
-              </div>
             </div>
           </div>
 
@@ -577,16 +507,6 @@ function ServicesPage() {
                 <div className="other-feature"><i className="fas fa-check-circle" /> Laboratory specimen &amp; report courier</div>
                 <div className="other-feature"><i className="fas fa-check-circle" /> Pharmaceutical distribution runs</div>
                 <div className="other-feature"><i className="fas fa-check-circle" /> Wheelchair &amp; stretcher management</div>
-              </div>
-              <div className="other-stats">
-                <div className="other-stat">
-                  <span className="other-stat-num">24</span>
-                  <span className="other-stat-label">Team Members</span>
-                </div>
-                <div className="other-stat">
-                  <span className="other-stat-num">1,200+</span>
-                  <span className="other-stat-label">Transports/Day</span>
-                </div>
               </div>
             </div>
           </div>

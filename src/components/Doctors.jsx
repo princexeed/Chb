@@ -32,6 +32,17 @@ const doctors = [
     specialty: 'MD pediatrician',
     desc: 'Dedicated pediatrician passionate about providing compassionate care to children of all ages.',
   },
+  {
+    name: 'Dr. Anish',
+    specialty: 'MD pediatrician',
+    desc: 'Dedicated pediatrician passionate about providing compassionate care to children of all ages.',
+  },
+  {
+    name: 'Dr. Bishal',
+    specialty: 'MS Surgery',
+    img: '/photos/doctors/Dr Bishal.jpg',
+    desc: 'Dedicated pediatrician passionate about providing compassionate care to children of all ages.',
+  },
     {
     name: 'Dr. Lilly',
     specialty: 'MD pediatrician',

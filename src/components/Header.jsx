@@ -6,11 +6,10 @@ const navLinks = [
   { to: '/', label: 'Home', hash: 'home' },
   { to: '/services', label: 'Services' },
   { to: '/training', label: 'Training' },
+  { to: '/support', label: 'Support' },
   { to: '/schools', label: 'Schools' },
   { to: '/about', label: 'About' },
-  { to: '/', label: 'Testimonials', hash: 'testimonials' },
   { to: '/reports', label: 'Reports' },
-  { to: '/contact', label: 'Contact' },
 ]
 
 function Header() {
@@ -154,10 +153,11 @@ function Header() {
           </ul>
           <Link
             to="/contact"
-            className="btn btn-primary nav-cta"
+            className="nav-cta"
             onClick={(e) => handleNavClick(e, { to: '/contact' })}
           >
-            +91-8118060163
+            <i className="fas fa-phone" />
+            <span>+91 81180 60163</span>
           </Link>
         </nav>
 

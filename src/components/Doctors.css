@@ -38,9 +38,8 @@
 /* Grid */
 .doctors-grid {
   display: grid;
-  grid-template-columns: repeat(4, 185px);
-  justify-content: center;
-  gap: 44px;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 32px 28px;
   margin-top: 50px;
   position: relative;
   z-index: 2;
@@ -155,13 +154,16 @@
 
 /* Responsive */
 @media (max-width: 1200px) {
-  .doctors-grid { grid-template-columns: repeat(3, 185px); gap: 44px; }
+  .doctors-grid { grid-template-columns: repeat(4, 1fr); gap: 32px 24px; }
 }
-@media (max-width: 900px) {
-  .doctors-grid { grid-template-columns: repeat(2, 185px); gap: 44px; }
+@media (max-width: 1000px) {
+  .doctors-grid { grid-template-columns: repeat(3, 1fr); gap: 30px 22px; }
 }
-@media (max-width: 640px) {
-  .doctors-grid { grid-template-columns: 1fr; }
+@media (max-width: 720px) {
+  .doctors-grid { grid-template-columns: repeat(2, 1fr); gap: 28px 18px; }
+}
+@media (max-width: 480px) {
+  .doctors-grid { grid-template-columns: 1fr; gap: 24px 0; }
   .doctor-card-body { padding: 11px 10px 3px; }
   .doctor-name { font-size: .84rem; }
   .doctor-specialty { font-size: .72rem; }

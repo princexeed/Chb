@@ -133,10 +133,60 @@
 
 /* ───── Founders ───── */
 .about-page-founders {
-  padding: 100px 0;
+  padding: 30px 0 60px;
   position: relative;
   overflow: hidden;
   background: linear-gradient(135deg, #e0e7ff, #fce7f3, #fef3c7, #ffffff);
+}
+
+/* Section header — beautiful tag + underlined title */
+.about-page-founders .section-header {
+  max-width: 640px;
+  margin-bottom: 36px;
+}
+
+.about-page-founders .section-tag {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  color: var(--color-primary);
+  margin-bottom: 14px;
+}
+
+.about-page-founders .section-tag::before,
+.about-page-founders .section-tag::after {
+  content: '';
+  width: 34px;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--color-primary));
+  opacity: 0.5;
+}
+
+.about-page-founders .section-tag::after {
+  background: linear-gradient(270deg, transparent, var(--color-primary));
+}
+
+.about-page-founders .section-title {
+  font-size: 2.4rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: var(--color-text);
+  margin-bottom: 14px;
+}
+
+.about-page-founders .section-title::after {
+  content: '';
+  display: block;
+  width: 56px;
+  height: 3px;
+  margin: 16px auto 0;
+  border-radius: 3px;
+  background: linear-gradient(90deg, var(--color-primary), var(--color-primary-light));
 }
 
 /* Blobs */
@@ -164,21 +214,19 @@
 }
 .about-page-founders-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 14px;
-  margin-top: 50px;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 12px 10px;
+  margin-top: 30px;
   position: relative;
   z-index: 2;
 }
 
 /* ─── Slim Premium Portfolio Card ─── */
 .about-page-founder-card {
+  width: 100%;
   background: #ffffff;
-  border-radius: 16px;
   overflow: hidden;
   cursor: pointer;
-  max-width: 245px;
-  margin: 0 auto;
   transition: transform .4s cubic-bezier(.4,0,.2,1), box-shadow .4s cubic-bezier(.4,0,.2,1);
   box-shadow: 0 8px 22px rgba(0,0,0,.08), 0 1px 3px rgba(0,0,0,.04);
 }
@@ -187,123 +235,109 @@
   box-shadow: 0 14px 32px rgba(0,0,0,.12), 0 5px 14px rgba(99,102,241,.08);
 }
 
-/* ─── Slim Floating Portrait ─── */
-.about-page-founder-img {
-  width: 200px;
-  height: 200px;
-  border-radius: 12px;
+/* ─── Scaled Photo fills the cell ─── */
+.about-page-founder-photo {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1 / 0.85;
   overflow: hidden;
-  margin: 10px auto 0;
-  box-shadow: 0 7px 18px rgba(0,0,0,.14), 0 2px 5px rgba(0,0,0,.06);
-  transition: box-shadow .4s ease, transform .4s ease;
 }
-.about-page-founder-card:hover .about-page-founder-img {
-  transform: scale(1.04);
-  box-shadow: 0 10px 24px rgba(0,0,0,.18);
-}
-.about-page-founder-img img {
+.about-page-founder-photo-img {
+  position: absolute;
+  inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
   object-position: center 30%;
+  transition: filter .45s ease, transform .45s ease;
 }
-
-.about-page-founder-icon {
-  width: 100%;
-  height: 100%;
+.about-page-founder-photo-icon {
+  position: absolute;
+  inset: 0;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 4.2rem;
-  color: #cbd5e1;
-  background: linear-gradient(135deg, #f1f5f9, #e2e8f0);
-  transition: color .4s ease;
+  background: linear-gradient(160deg, #eef2ff 0%, #e0e7ff 100%);
+  transition: transform .45s ease;
+}
+.about-page-founder-photo-icon i {
+  font-size: 2.2rem;
+  color: var(--color-primary, #4f46e5);
+  opacity: .75;
+  transition: transform .45s ease;
+}
+.about-page-founder-card:hover .about-page-founder-photo-icon {
+  transform: scale(1.04);
+}
+.about-page-founder-card:hover .about-page-founder-photo-icon i {
+  transform: scale(1.06);
+}
+.about-page-founder-card:hover .about-page-founder-photo-img {
+  filter: blur(2.5px);
+  transform: scale(1.04);
 }
 
-.about-page-founder-card:hover .about-page-founder-icon {
-  color: var(--color-primary);
+/* ─── Details overlay — appears clearly on hover ─── */
+.about-page-founder-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 18px;
+  text-align: center;
+  background: rgba(15, 23, 42, .55);
+  opacity: 0;
+  transition: opacity .45s ease;
+}
+.about-page-founder-card:hover .about-page-founder-overlay {
+  opacity: 1;
 }
 
 /* ─── Card Body ─── */
 .about-page-founder-card-body {
-  padding: 10px 12px 14px;
+  padding: 6px 4px 8px;
   text-align: center;
 }
 
 /* ─── Text ─── */
 .about-page-founder-name {
-  font-size: .88rem;
+  font-size: .82rem;
   font-weight: 700;
   color: #1e1e1e;
   margin-bottom: 2px;
   letter-spacing: -.02em;
-  line-height: 1.25;
+  line-height: 1.2;
 }
-.about-page-founder-role {
-  font-size: .68rem;
-  color: #7a7a7a;
-  font-weight: 500;
-  display: block;
-  margin-bottom: 1px;
-}
-.about-page-founder-tenure {
+.about-page-founder-qualification {
   font-size: .6rem;
-  color: #a0a0a0;
-  font-weight: 400;
-  margin-bottom: 7px;
+  font-weight: 600;
+  color: var(--color-primary, #4f46e5);
+  margin-top: 2px;
+  display: block;
 }
-
-/* ─── Bio ─── */
+.about-page-founder-specialty {
+  font-size: .66rem;
+  color: #ffffff;
+  font-weight: 600;
+  display: block;
+}
 .about-page-founder-desc {
-  font-size: .72rem;
-  color: #6b6b6b;
-  line-height: 1.4;
-  margin-bottom: 10px;
+  font-size: .64rem;
+  color: #e2e8f0;
+  line-height: 1.35;
+  margin: 0 auto;
   display: -webkit-box;
-  -webkit-line-clamp: 2;
+  -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
 
-/* ─── Slim Pill CTA ─── */
-.about-page-founder-cta {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 4px;
-  width: 100%;
-  padding: 7px 14px;
-  font-size: .68rem;
-  font-weight: 600;
-  color: #1e1e1e;
-  background: #ffffff;
-  border: 1px solid #eaeaea;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: all .35s ease;
-  box-shadow: 0 2px 4px rgba(0,0,0,.04);
-  font-family: inherit;
-}
-.about-page-founder-cta:hover {
-  border-color: #6366f1;
-  color: #6366f1;
-  box-shadow: 0 3px 10px rgba(99,102,241,.1);
-  transform: translateY(-1px);
-  gap: 6px;
-}
-.about-page-founder-cta i {
-  font-size: .6rem;
-  transition: transform .35s ease;
-  color: #c0c0c0;
-}
-.about-page-founder-cta:hover i {
-  transform: translateX(3px);
-  color: #6366f1;
-}
-
 /* ───── Timeline ───── */
 .about-page-timeline-section {
-  padding: 100px 0;
+  padding: 10px 0 0;
   background: #f1f5f9;
   position: relative;
   overflow: hidden;
@@ -317,7 +351,7 @@
 
 /* Reduce section header bottom gap in timeline */
 .about-page-timeline-section .section-header {
-  margin-bottom: 10px;
+  margin-bottom: 0;
 }
 
 
@@ -344,6 +378,9 @@
   display: flex;
   align-items: flex-start;
   margin-bottom: 40px;
+}
+.about-page-milestone:last-child {
+  margin-bottom: 0;
 }
 .about-page-milestone.left {
   flex-direction: row;
@@ -485,7 +522,7 @@
 
 /* ───── Responsive ───── */
 @media (max-width: 1200px) {
-  .about-page-founders-grid { grid-template-columns: repeat(3, 1fr); gap: 14px; }
+  .about-page-founders-grid { grid-template-columns: repeat(3, 1fr); gap: 12px; }
 }
 @media (max-width: 1024px) {
   .about-page-vision-grid {
@@ -503,18 +540,11 @@
   .about-page-founders-grid { grid-template-columns: repeat(2, 1fr); gap: 14px; }
 }
 @media (max-width: 640px) {
-  .about-page-founders-grid { grid-template-columns: 1fr; }
-  .about-page-founder-img {
-    width: 170px;
-    height: 170px;
-    margin-top: 9px;
-    border-radius: 11px;
-  }
-  .about-page-founder-card-body { padding: 9px 10px 12px; }
-  .about-page-founder-name { font-size: .82rem; }
-  .about-page-founder-role { font-size: .65rem; }
-  .about-page-founder-cta { padding: 6px 12px; font-size: .65rem; }
-  .about-page-founder-desc { font-size: .7rem; margin-bottom: 9px; }
+  .about-page-founders-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+  .about-page-founder-card-body { padding: 6px 4px 8px; }
+  .about-page-founder-name { font-size: .72rem; }
+  .about-page-founder-qualification { font-size: .6rem; }
+  .about-page-founder-desc { font-size: .64rem; }
 }
 /* ───── Founder Modal ───── */
 .about-founder-overlay {
