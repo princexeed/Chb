@@ -3,8 +3,14 @@ import cors from 'cors'
 import path from 'path'
 import { fileURLToPath } from 'url'
 import mysql from 'mysql2/promise'
+import crypto from 'crypto'
+import Razorpay from 'razorpay'
 import dotenv from 'dotenv'
 dotenv.config()
+
+const razorpay = process.env.RAZORPAY_KEY_ID && !process.env.RAZORPAY_KEY_ID.includes('xxxx')
+  ? new Razorpay({ key_id: process.env.RAZORPAY_KEY_ID, key_secret: process.env.RAZORPAY_KEY_SECRET })
+  : null
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 
@@ -101,6 +107,75 @@ app.get('/api/contacts', async (_req, res) => {
   } catch (error) {
     console.error('Fetch contacts error:', error)
     res.status(500).json({ success: false, message: 'Failed to fetch messages.' })
+  }
+})
+
+// ─── Razorpay Donation — Create Order ───
+app.post('/api/donate/create-order', async (req, res) => {
+  try {
+    const { amount, fullName, email, phone, countryCode } = req.body
+    const num = Number(amount)
+    if (!num || num < 1 || num > 1000000) {
+      return res.status(400).json({ success: false, message: 'Invalid amount. Must be between ₹1 and ₹10,00,000.' })
+    }
+    if (!fullName?.trim() || !email?.trim() || !phone?.trim()) {
+      return res.status(400).json({ success: false, message: 'Name, email and phone are required.' })
+    }
+
+    // If Razorpay not configured (still test placeholder), return mock order for local dev
+    if (!razorpay) {
+      console.warn('⚠️  Razorpay keys not set — returning mock order. Set RAZORPAY_KEY_ID/SECRET in server/.env')
+      return res.json({
+        success: true,
+        mock: true,
+        orderId: `order_mock_${Date.now()}`,
+        amount: Math.round(num * 100),
+        currency: 'INR',
+        key: 'rzp_test_mock',
+      })
+    }
+
+    const order = await razorpay.orders.create({
+      amount: Math.round(num * 100), // paise
+      currency: 'INR',
+      receipt: `don_${Date.now()}`,
+      notes: { fullName: fullName.trim(), email: email.trim(), phone: `${countryCode || '+91'}${phone.trim()}` },
+    })
+
+    res.json({ success: true, orderId: order.id, amount: order.amount, currency: order.currency, key: process.env.RAZORPAY_KEY_ID })
+  } catch (error) {
+    console.error('Create order error:', error)
+    res.status(500).json({ success: false, message: 'Failed to create payment order. Try again.' })
+  }
+})
+
+// ─── Razorpay Donation — Verify Payment Signature ───
+app.post('/api/donate/verify', async (req, res) => {
+  try {
+    const { razorpay_order_id, razorpay_payment_id, razorpay_signature, fullName, email, phone, countryCode, amount } = req.body
+    if (!razorpay_order_id || !razorpay_payment_id || !razorpay_signature) {
+      return res.status(400).json({ success: false, message: 'Missing payment verification data.' })
+    }
+
+    // Mock flow — skip verification if keys not set
+    if (!razorpay || !process.env.RAZORPAY_KEY_SECRET || process.env.RAZORPAY_KEY_SECRET.includes('xxxx')) {
+      console.log('✅ Mock payment verified:', { fullName, email, phone, amount, razorpay_payment_id })
+      return res.json({ success: true, message: 'Payment verified (mock). Thank you for your donation!' })
+    }
+
+    const body = `${razorpay_order_id}|${razorpay_payment_id}`
+    const expected = crypto.createHmac('sha256', process.env.RAZORPAY_KEY_SECRET).update(body).digest('hex')
+    if (expected !== razorpay_signature) {
+      return res.status(400).json({ success: false, message: 'Payment verification failed. Signature mismatch.' })
+    }
+
+    // TODO: save donation to DB and send 80G receipt
+    console.log('✅ Payment verified:', { razorpay_payment_id, razorpay_order_id, fullName, email, phone, amount })
+
+    res.json({ success: true, message: 'Payment verified successfully. Thank you for donating to CHB!' })
+  } catch (error) {
+    console.error('Verify error:', error)
+    res.status(500).json({ success: false, message: 'Verification failed. Contact support.' })
   }
 })
 

@@ -17,12 +17,12 @@ function Footer() {
                 </div>
                 <div className="logo-text">
                   <span className="logo-name">Christian Hospital</span>
-                  <span className="logo-location">Bissumcuttack</span>
+                  <span className="logo-location">Bissamcuttack</span>
                 </div>
               </div>
               <p className="footer-brand-text">
-                Christian Hospital Bissumcuttack — providing compassionate, world-class
-                healthcare since 1989. Healing body, mind, and spirit through faith and medical excellence.
+                Christian Hospital Bissamcuttack — providing compassionate, world-class
+                healthcare since 1954. Healing body, mind, and spirit through faith and medical excellence.
               </p>
             </div>
 
@@ -31,7 +31,7 @@ function Footer() {
               <ul className="footer-links">
                 <li><Link to="/">Home</Link></li>
                 <li><Link to="/services">Services</Link></li>
-                <li><Link to="/training">Training</Link></li>
+                <li><Link to="/training">Nursing</Link></li>
                 <li><Link to="/schools">Schools</Link></li>
                 <li><Link to="/about">About</Link></li>
                 <li><Link to="/#testimonials">Testimonials</Link></li>
@@ -71,8 +71,8 @@ function Footer() {
       <div className="footer-bottom">
         <div className="container">
           <div className="footer-bottom-left">
-            <p>&copy; {currentYear} Christian Hospital Bissumcuttack. All rights reserved.</p>
-            <p className="footer-developed">Developed by <strong>CHB IT Team</strong></p>
+            <p>&copy; {currentYear} Christian Hospital Bissamcuttack. All rights reserved.</p>
+            <p className="footer-developed"><span className="footer-dev-icon"><i className="fas fa-code" /></span> Developed by <strong>CHB IT Team</strong> <span className="footer-dev-heart"><i className="fas fa-heart" /></span></p>
           </div>
           <div className="footer-bottom-links">
             <a href="#">Privacy Policy</a>

@@ -399,7 +399,7 @@ function ServiceDetail({ service, onClose }) {
 
   return (
     <div className="service-overlay" onClick={onClose}>
-      <div className="service-modal" onClick={(e) => e.stopPropagation()}>
+      <div className="service-modal service-modal--gm" onClick={(e) => e.stopPropagation()}>
         <button className="modal-close" onClick={onClose} aria-label="Close modal">
           <i className="fas fa-times" />
         </button>
@@ -432,14 +432,17 @@ function ServiceDetail({ service, onClose }) {
         <div className="modal-main">
           <div className="modal-section">
             <h3 className="modal-section-title">Overview</h3>
-            {detail.slug === 'general-medicine' ? (
-              (() => {
-                const paragraphs = detail.longDesc.split(/\n\s*\n/).filter(p => p.trim())
-                const images = detail.images || []
+            {(() => {
+              const paragraphs = detail.longDesc.split(/\n\s*\n/).filter((p) => p.trim())
+              const images = detail.images || []
+              // Use inline interleaving if description has multiple paragraphs, otherwise gallery below
+              if (paragraphs.length > 1) {
                 const nodes = []
                 paragraphs.forEach((para, i) => {
                   nodes.push(
-                    <p key={`p-${i}`} className="modal-text">{para}</p>
+                    <p key={`p-${i}`} className="modal-text">
+                      {para}
+                    </p>
                   )
                   if (images[i]) {
                     nodes.push(
@@ -450,19 +453,20 @@ function ServiceDetail({ service, onClose }) {
                   }
                 })
                 return nodes
-              })()
-            ) : (
-              <>
-                <p className="modal-text">{detail.longDesc}</p>
-                <div className="modal-gallery">
-                  {detail.images.map((img, i) => (
-                    <div key={i} className="modal-gallery-img">
-                      <img src={img} alt={`${detail.title} - Image ${i + 1}`} loading="lazy" />
-                    </div>
-                  ))}
-                </div>
-              </>
-            )}
+              }
+              return (
+                <>
+                  <p className="modal-text">{detail.longDesc}</p>
+                  <div className="modal-gallery">
+                    {images.map((img, i) => (
+                      <div key={i} className="modal-gallery-img">
+                        <img src={img} alt={`${detail.title} - Image ${i + 1}`} loading="lazy" />
+                      </div>
+                    ))}
+                  </div>
+                </>
+              )
+            })()}
           </div>
 
           {/* Features */}

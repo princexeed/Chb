@@ -1,5 +1,5 @@
 -- ========================================
--- CHB — Christian Hospital Bissumcuttack
+-- CHB — Christian Hospital Bissamcuttack
 -- Database Schema for Contact Form
 -- ========================================
 -- Run this script in SQLyog Community 64

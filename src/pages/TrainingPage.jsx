@@ -56,30 +56,55 @@ const timeline = [
 function TrainingPage() {
   return (
     <div className="training-page">
-      {/* Hero */}
+      {/* Hero — LIGHT EDITORIAL SPLIT (premium, high contrast) */}
       <section className="training-hero">
-        <div className="training-hero-bg" />
-        <div className="training-hero-overlay" />
-        <div className="training-hero-content">
-          <span className="training-badge">College of Nursing</span>
-          <h1 className="training-title">
-            Shaping The Next Generation
-            <br />
-            <span className="training-highlight">Of Nursing Professionals</span>
-          </h1>
-          <p className="training-subtitle">
-            With guidance from Christ, integrity and commitment, we envision being the best 
-            School of Nursing in developing nurses in, from and for Odisha — leading the 
-            nursing profession to its highest level of excellence.
-          </p>
-        </div>
-        <div
-          className="training-scroll-indicator"
-          onClick={() => document.getElementById('training-history')?.scrollIntoView({ behavior: 'smooth' })}
-          style={{ cursor: 'pointer' }}
-        >
-          <span>Discover More</span>
-          <i className="fas fa-chevron-down" />
+        <div className="container training-hero-inner">
+          <div className="training-hero-text">
+            <span className="training-badge"><i className="fas fa-graduation-cap" /> College of Nursing — Est. 1978</span>
+            <h1 className="training-title">
+              Shaping the Next Generation<br />
+              <span className="training-highlight">of Nursing Professionals</span>
+            </h1>
+            <p className="training-subtitle">
+              With guidance from Christ, integrity and commitment — developing nurses <strong>in, from and for Odisha</strong> to lead the profession to its highest excellence.
+            </p>
+            <div className="training-hero-meta">
+              <span><i className="fas fa-circle-check" /> INC & ONMC Recognised</span>
+              <span className="training-meta-dot">•</span>
+              <span><i className="fas fa-users" /> 20 per batch</span>
+              <span className="training-meta-dot">•</span>
+              <span><i className="fas fa-building-columns" /> Berhampur University</span>
+            </div>
+            <div className="training-hero-actions">
+              <a
+                href="https://conchb.ac.in/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="training-hero-btn training-hero-btn--official"
+                aria-label="Visit official College of Nursing website (opens in new tab)"
+              >
+                Official College Website <i className="fas fa-arrow-up-right-from-square" />
+              </a>
+              <a href="#training-history" className="training-hero-btn training-hero-btn--primary" onClick={(e) => { e.preventDefault(); document.getElementById('training-history')?.scrollIntoView({ behavior: 'smooth' }) }}>
+                Explore Programmes <i className="fas fa-arrow-right" />
+              </a>
+            </div>
+          </div>
+          <div className="training-hero-visual">
+            <div className="training-hero-image-wrap">
+              <img src="/photos/clg/image1.jpg" alt="College of Nursing at Christian Hospital Bissamcuttack" />
+              <div className="training-hero-float training-hero-float--stats">
+                <span className="training-float-icon"><i className="fas fa-user-graduate" /></span>
+                <div>
+                  <strong>500+</strong>
+                  <small>Nurses Trained</small>
+                </div>
+              </div>
+              <div className="training-hero-float training-hero-float--badge">
+                <i className="fas fa-award" /> INC Approved
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -189,7 +214,7 @@ function TrainingPage() {
           </div>
           <div className="training-strategies-grid">
             {strategies.map((s, i) => (
-              <div key={i} className="training-strategy-item">
+              <div key={i} className="training-strategy-item" data-num={(i + 1).toString().padStart(2, '0')}>
                 <div className="training-strategy-num">{(i + 1).toString().padStart(2, '0')}</div>
                 <div className="training-strategy-icon">
                   <i className={`fas ${s.icon}`} />
@@ -222,7 +247,7 @@ function TrainingPage() {
             </div>
             <div className="training-objectives-img">
               <img
-                src="./photos/training/clg1.png"
+                src="/photos/training/clg1.png"
                 alt="Nursing students"
                 loading="lazy"
               />
@@ -351,10 +376,23 @@ function TrainingPage() {
               Interested in joining the College of Nursing at Christian Hospital Bissamcuttack? 
               Contact us for admissions information, campus tours, and application details.
             </p>
-            <a href="/#contact" className="btn btn-primary training-cta-btn">
-              <i className="fas fa-envelope" />
-              Enquire About Admissions
-            </a>
+            <div className="training-cta-actions">
+              <a
+                href="https://conchb.ac.in/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="training-cta-btn training-cta-btn--official"
+                aria-label="Visit official College of Nursing website (opens in new tab)"
+              >
+                <i className="fas fa-globe" />
+                Visit Official Website — conchb.ac.in
+                <i className="fas fa-arrow-up-right-from-square" />
+              </a>
+              <a href="/#contact" className="btn btn-primary training-cta-btn training-cta-btn--ghost">
+                <i className="fas fa-envelope" />
+                Enquire About Admissions
+              </a>
+            </div>
           </div>
         </div>
       </section>

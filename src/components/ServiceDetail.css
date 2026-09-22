@@ -328,6 +328,198 @@
   background: var(--color-text-lighter);
 }
 
+/* ───── General Medicine — premium professional variant ───── */
+.service-modal--gm {
+  max-width: 1120px;
+  grid-template-columns: 380px 1fr;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 24px 64px rgba(15, 23, 42, 0.16), 0 8px 24px rgba(15, 23, 42, 0.08);
+}
+
+.service-modal--gm .modal-close {
+  background: #ffffff;
+  color: #17283D;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 2px 10px rgba(15, 23, 42, 0.08);
+}
+
+.service-modal--gm .modal-close:hover {
+  background: #17283D;
+  color: #ffffff;
+  border-color: #17283D;
+  transform: none;
+}
+
+.service-modal--gm .modal-sidebar {
+  background: #ffffff;
+  color: #17283D;
+  padding: 28px 28px 24px;
+  border-right: 1px solid #e2e8f0;
+}
+
+.service-modal--gm .modal-side-icon {
+  width: 52px;
+  height: 52px;
+  background: #f0fdf4;
+  border: 1px solid #dcfce7;
+  color: #009E5A;
+  font-size: 1.25rem;
+  margin-bottom: 16px;
+}
+
+.service-modal--gm .modal-side-title {
+  font-family: 'Poppins', system-ui, -apple-system, sans-serif;
+  font-size: 1.55rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: #17283D;
+  line-height: 1.2;
+}
+
+.service-modal--gm .modal-side-tagline {
+  font-family: 'Poppins', system-ui, sans-serif;
+  font-size: 0.84rem;
+  font-weight: 500;
+  color: #475569;
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+
+.service-modal--gm .modal-side-stats {
+  gap: 10px;
+  margin-bottom: 22px;
+}
+
+.service-modal--gm .modal-side-stat {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  padding: 14px 10px;
+  border-radius: 0;
+}
+
+.service-modal--gm .modal-side-stat-num {
+  font-family: 'Poppins', sans-serif;
+  font-size: 1.2rem;
+  font-weight: 800;
+  color: #17283D;
+  letter-spacing: -0.02em;
+}
+
+.service-modal--gm .modal-side-stat-label {
+  color: #64748b;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+.service-modal--gm .modal-side-img {
+  border: 1px solid #e2e8f0;
+  height: 200px;
+  border-radius: 0;
+  overflow: hidden;
+  box-shadow: 0 4px 16px rgba(15, 23, 42, 0.06);
+}
+
+.service-modal--gm .modal-main {
+  padding: 28px 30px 30px;
+  background: #ffffff;
+}
+
+.service-modal--gm .modal-section-title {
+  font-family: 'Poppins', system-ui, sans-serif;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 1.4px;
+  text-transform: uppercase;
+  color: #009E5A;
+  padding-left: 0;
+  padding-bottom: 8px;
+  border-bottom: 1px solid #e2e8f0;
+  margin-bottom: 16px;
+}
+
+.service-modal--gm .modal-section-title::before {
+  display: none;
+}
+
+.service-modal--gm .modal-text {
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 0.88rem;
+  line-height: 1.85;
+  color: #334155;
+}
+
+.service-modal--gm .modal-inline-img {
+  width: 320px;
+  max-width: 46%;
+  margin: 8px 0 18px 22px;
+}
+
+.service-modal--gm .modal-inline-img img {
+  max-height: 260px;
+  border-radius: 0;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 8px 22px rgba(15, 23, 42, 0.08);
+}
+
+.service-modal--gm .modal-inline-img--left {
+  margin: 8px 22px 18px 0;
+}
+
+.service-modal--gm .modal-features {
+  gap: 10px;
+}
+
+.service-modal--gm .modal-feature {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  padding: 12px 14px;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.84rem;
+  font-weight: 500;
+  color: #1e293b;
+  line-height: 1.5;
+  box-shadow: 0 1px 4px rgba(15, 23, 42, 0.04);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.service-modal--gm .modal-feature:hover {
+  border-color: #86efac;
+  box-shadow: 0 4px 14px rgba(15, 23, 42, 0.06);
+  transform: translateY(-1px);
+}
+
+.service-modal--gm .modal-feature i {
+  color: #009E5A;
+  font-size: 0.9rem;
+}
+
+.service-modal--gm .modal-treatments {
+  gap: 7px;
+}
+
+.service-modal--gm .modal-treatment-tag {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.2px;
+  color: #334155;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  padding: 7px 13px;
+  border-radius: 50px;
+  transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+
+.service-modal--gm .modal-treatment-tag:hover {
+  background: #17283D;
+  color: #ffffff;
+  border-color: #17283D;
+}
+
+.service-modal--gm .modal-sidebar::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+}
+
 /* Responsive */
 @media (max-width: 768px) {
   .service-overlay {

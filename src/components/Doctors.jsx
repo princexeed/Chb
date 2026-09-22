@@ -5,12 +5,20 @@ const doctors = [
   {
     name: 'Dr. Sunil Chander Jiwanmall',
     specialty: 'MS Surgery',
+    role: 'Medical Superintendent',
     desc: 'Board-certified MS Surgery with 20+ years of experience in..',
   },
   {
     name: 'Dr. Pragya Jiwanmall',
     specialty: 'MD Medicine',
+    role: 'Deputy Medical Superintendent',
     desc: 'Renowned general surgeon specializing in minimally invasive and robotic-assisted procedures.',
+  },
+  {
+    name: 'Chandra Sekhar Ray',
+    specialty: 'General Administrator',
+    img: '/photos/doctors/Chandra Sekhar Ray.jpeg',
+    desc: 'General Administrator overseeing hospital operations, finance and strategic administration.',
   },
   {
     name: 'Dr. Subash',
@@ -36,6 +44,11 @@ const doctors = [
     name: 'Dr. Anish',
     specialty: 'MD pediatrician',
     desc: 'Dedicated pediatrician passionate about providing compassionate care to children of all ages.',
+  },
+  {
+    name: 'Dr. Dhanusha',
+    specialty: 'MS Obstetrician & Gynecologist',
+    desc: 'Compassionate OB/GYN dedicated to women\'s health and safe maternity care.',
   },
   {
     name: 'Dr. Bishal',
@@ -67,9 +80,6 @@ function Doctors() {
       <div className="container">
         <div className="section-header">
           <span className="section-tag">Our Team</span>
-          <h2 className="section-title">
-            Meet Our Expert Physicians
-          </h2>
         </div>
 
         <div className="doctors-grid">
@@ -83,14 +93,11 @@ function Doctors() {
                     <i className="fas fa-user-doctor" />
                   </div>
                 )}
-                <div className="doctor-overlay">
-                  <span className="doctor-specialty">{doctor.specialty}</span>
-                  <p className="doctor-desc">{doctor.desc}</p>
-                </div>
               </div>
               <div className="doctor-card-body">
                 <h3 className="doctor-name">{doctor.name}</h3>
                 <span className="doctor-qualification">{doctor.specialty}</span>
+                {doctor.role && <span className="doctor-role">{doctor.role}</span>}
               </div>
             </div>
           ))}

@@ -34,11 +34,11 @@ const contactInfo = [
 ]
 
 const timings = [
-  { label: 'Office', value: 'Monday – Saturday: 8:00 AM – 7:00 PM', note: 'Sunday: Closed' },
-  { label: 'OPD Registration', value: 'Monday – Saturday: 8:00 AM – 1:30 PM' },
-  { label: 'OPD', value: 'Monday – Saturday: 8:00 AM – 5:00 PM' },
+  { label: 'Office', value: 'Mon – Sat: 8:00 AM – 7:00 PM', note: 'Sunday: Closed' },
+  { label: 'OPD Registration', value: 'Mon – Sat: 8:00 AM – 1:30 PM' },
+  { label: 'OPD', value: 'Mon – Sat: 8:00 AM – 5:00 PM' },
   { label: '24×7 Services', value: 'Emergency / Casualty, Laboratory, Radiology' },
-  { label: 'Other Departments', value: 'Monday – Saturday: 7:30 AM – 5:30 PM' },
+  { label: 'Other Departments', value: 'Mon – Sat: 7:30 AM – 5:30 PM' },
 ]
 
 function ContactPage() {
@@ -46,7 +46,6 @@ function ContactPage() {
     fullName: '',
     email: '',
     phone: '',
-    department: '',
     message: '',
   })
   const [status, setStatus] = useState({ type: '', message: '' })
@@ -74,7 +73,7 @@ function ContactPage() {
 
       if (data.success) {
         setStatus({ type: 'success', message: 'Thank you! Your message has been sent. We will get back to you shortly.' })
-        setFormData({ fullName: '', email: '', phone: '', department: '', message: '' })
+        setFormData({ fullName: '', email: '', phone: '', message: '' })
       } else {
         setStatus({ type: 'error', message: data.message })
       }
@@ -91,186 +90,174 @@ function ContactPage() {
   return (
     <div className="contact-page">
       {/* Hero */}
-      <section className="contact-page-hero">
-        <div className="contact-page-hero-bg" />
-        <div className="contact-page-hero-overlay" />
-        <div className="contact-page-hero-content">
-          <span className="contact-page-badge">Get in Touch</span>
-          <h1 className="contact-page-title">
+      <section className="contact-hero">
+        <div className="contact-hero-bg" />
+        <div className="contact-hero-overlay" />
+        <div className="contact-hero-content">
+          <span className="contact-hero-badge">Get in Touch</span>
+          <h1 className="contact-hero-title">
             We're Here to
             <br />
-            <span className="contact-page-highlight">Help You</span>
+            <span className="contact-hero-highlight">Help You</span>
           </h1>
-          <p className="contact-page-subtitle">
-            For emergencies, please call our hospital number directly.
-            Our team is available 24/7 for emergency services.
-          </p>
         </div>
         <div
-          className="contact-page-scroll"
-          onClick={() => document.getElementById('contact-content')?.scrollIntoView({ behavior: 'smooth' })}
-          style={{ cursor: 'pointer' }}
+          className="contact-hero-scroll"
+          onClick={() => document.getElementById('contact-info-section')?.scrollIntoView({ behavior: 'smooth' })}
         >
           <span>Contact Us</span>
           <i className="fas fa-chevron-down" />
         </div>
       </section>
 
-      {/* Contact Content */}
-      <section className="contact-page-content" id="contact-content">
-        <div className="container">
-          <div className="contact-page-grid">
-            {/* Left - Contact Info */}
-            <div className="contact-page-info">
-              <h2 className="contact-page-info-title">Contact Information</h2>
+      <div className="contact-main" id="contact-info-section">        <div className="contact-layout">
+          {/* LEFT — Contact Information */}
+          <div className="contact-left">
+            <h1 className="contact-title">We're Here to Help You</h1>
+            <span className="contact-title-underline" />
 
-              <div className="contact-page-details">
-                {contactInfo.map((item, i) => (
-                  <div key={i} className="contact-page-detail">
-                    <div className="contact-page-detail-icon">
-                      <i className={`fas ${item.icon}`} />
+            <p className="contact-description">
+              For emergencies, please call our hospital number directly. Our team is available
+              <strong> 24/7 for emergency services.</strong>
+            </p>
+
+            {contactInfo.map((item, i) => (
+              <div key={i} className="contact-info-block">
+                <h2 className="contact-section-heading">{item.title}</h2>
+                {item.isEmail ? (
+                  item.lines.map((line, j) => (
+                    <div key={j} className="contact-info-row">
+                      <span className="contact-info-icon"><i className={`fas ${j === 0 ? item.icon : 'fa-envelope'}`} /></span>
+                      <p className="contact-info-text">
+                        <a href={`mailto:${line.email}`} className="contact-email-link">{line.email}</a>
+                        <span className="contact-email-note"> — {line.label}</span>
+                      </p>
                     </div>
-                    <div className="contact-page-detail-body">
-                      <h3 className="contact-page-detail-title">{item.title}</h3>
-                      {item.isEmail ? (
-                        item.lines.map((line, j) => (
-                          <p key={j} className="contact-page-detail-text">
-                            <a href={`mailto:${line.email}`} className="contact-page-email">{line.email}</a>
-                            <span className="contact-page-email-label"> — {line.label}</span>
-                          </p>
-                        ))
-                      ) : (
-                        item.lines.map((line, j) => (
-                          <p key={j} className="contact-page-detail-text">{line}</p>
-                        ))
-                      )}
+                  ))
+                ) : (
+                  item.lines.map((line, j) => (
+                    <div key={j} className="contact-info-row">
+                      <span className="contact-info-icon">{j === 0 && <i className={`fas ${item.icon}`} />}</span>
+                      <p className="contact-info-text">{line}</p>
                     </div>
-                  </div>
-                ))}
+                  ))
+                )}
               </div>
+            ))}
 
-              {/* Timings */}
-              <div className="contact-page-timings">
-                <h3 className="contact-page-timings-title">
-                  <i className="fas fa-clock" /> Hospital Timings
-                </h3>
-                <div className="contact-page-timings-list">
-                  {timings.map((t, i) => (
-                    <div key={i} className="contact-page-timing-row">
-                      <span className="contact-page-timing-label">{t.label}</span>
-                      <span className="contact-page-timing-value">
-                        {t.value}
-                        {t.note && <span className="contact-page-timing-note">{t.note}</span>}
-                      </span>
-                    </div>
-                  ))}
+            {/* Timings */}
+            <div className="contact-timings">
+              <h2 className="contact-section-heading">Hospital Timings</h2>
+              {timings.map((t, i) => (
+                <div key={i} className="contact-timing-row">
+                  <span className="contact-timing-label">{t.label}</span>
+                  <span className="contact-timing-value">
+                    {t.value}
+                    {t.note && <span className="contact-timing-closed">{t.note}</span>}
+                  </span>
                 </div>
+              ))}
+            </div>
+
+            {/* Social */}
+            <div className="contact-social">
+              <h2 className="contact-section-heading">Follow Us</h2>
+              <div className="contact-social-links">
+                <a href="#" aria-label="Facebook"><i className="fab fa-facebook-f" /></a>
+                <a href="#" aria-label="Twitter"><i className="fab fa-twitter" /></a>
+                <a href="#" aria-label="Instagram"><i className="fab fa-instagram" /></a>
+                <a href="#" aria-label="YouTube"><i className="fab fa-youtube" /></a>
               </div>
+            </div>
+          </div>
 
-              <div className="contact-page-social">
-                <h3>Follow Us</h3>
-                <div className="contact-page-social-links">
-                  <a href="#" aria-label="Facebook"><i className="fab fa-facebook-f" /></a>
-                  <a href="#" aria-label="Twitter"><i className="fab fa-twitter" /></a>
-                  <a href="#" aria-label="Instagram"><i className="fab fa-instagram" /></a>
-                  <a href="#" aria-label="YouTube"><i className="fab fa-youtube" /></a>
-                </div>
+          {/* RIGHT — Contact Form Card */}
+          <form className="contact-card" onSubmit={handleSubmit}>
+            <h2 className="contact-card-title">Send Us a Message</h2>
+            <span className="contact-card-underline" />
+
+            <div className="contact-row">
+              <label className="contact-label" htmlFor="cpName">
+                Full Name<span className="contact-required">*</span>
+              </label>
+              <div className="contact-input-area">
+                <input
+                  type="text"
+                  id="cpName"
+                  name="fullName"
+                  placeholder="Your full name"
+                  value={formData.fullName}
+                  onChange={handleChange}
+                  required
+                />
               </div>
             </div>
 
-            {/* Right - Contact Form */}
-            <form className="contact-page-form" onSubmit={handleSubmit}>
-              <h2 className="contact-page-form-title">Send Us a Message</h2>
-              <p className="contact-page-form-text">
-                Have a question or need assistance? Fill out the form below and we'll get back to you.
-              </p>
-
-              <div className="contact-page-form-row">
-                <div className="contact-page-form-group">
-                  <label htmlFor="cpName">Full Name</label>
-                  <input
-                    type="text"
-                    id="cpName"
-                    name="fullName"
-                    placeholder="Your full name"
-                    value={formData.fullName}
-                    onChange={handleChange}
-                    required
-                  />
-                </div>
-                <div className="contact-page-form-group">
-                  <label htmlFor="cpEmail">Email Address</label>
-                  <input
-                    type="email"
-                    id="cpEmail"
-                    name="email"
-                    placeholder="your@email.com"
-                    value={formData.email}
-                    onChange={handleChange}
-                    required
-                  />
-                </div>
+            <div className="contact-row">
+              <label className="contact-label" htmlFor="cpEmail">
+                Email Address<span className="contact-required">*</span>
+              </label>
+              <div className="contact-input-area">
+                <input
+                  type="email"
+                  id="cpEmail"
+                  name="email"
+                  placeholder="your@email.com"
+                  value={formData.email}
+                  onChange={handleChange}
+                  required
+                />
               </div>
+            </div>
 
-              <div className="contact-page-form-row">
-                <div className="contact-page-form-group">
-                  <label htmlFor="cpPhone">Phone Number</label>
-                  <input
-                    type="tel"
-                    id="cpPhone"
-                    name="phone"
-                    placeholder="+91-8118060163"
-                    value={formData.phone}
-                    onChange={handleChange}
-                  />
-                </div>
-                <div className="contact-page-form-group">
-                  <label htmlFor="cpDepartment">Department</label>
-                  <select
-                    id="cpDepartment"
-                    name="department"
-                    value={formData.department}
-                    onChange={handleChange}
-                  >
-                    <option value="">Select a department</option>
-                    <option value="General Medicine">General Medicine</option>
-                    <option value="Pediatrics">Pediatrics</option>
-                    <option value="Maternity">Maternity</option>
-                    <option value="Emergency">Emergency</option>
-                    <option value="Endoscopy">Endoscopy</option>
-                    <option value="Ophthalmology">Ophthalmology</option>
-                    <option value="Other">Other</option>
-                  </select>
-                </div>
+            <div className="contact-row">
+              <label className="contact-label" htmlFor="cpPhone">
+                Phone Number
+              </label>
+              <div className="contact-input-area">
+                <input
+                  type="tel"
+                  id="cpPhone"
+                  name="phone"
+                  placeholder="+91-8118060163"
+                  value={formData.phone}
+                  onChange={handleChange}
+                />
               </div>
+            </div>
 
-              <div className="contact-page-form-group">
-                <label htmlFor="cpMessage">Message</label>
+            <div className="contact-row">
+              <label className="contact-label" htmlFor="cpMessage">
+                Message<span className="contact-required">*</span>
+              </label>
+              <div className="contact-input-area">
                 <textarea
                   id="cpMessage"
                   name="message"
-                  rows="6"
+                  rows="5"
                   placeholder="How can we help you?"
                   value={formData.message}
                   onChange={handleChange}
                   required
                 />
               </div>
+            </div>
 
-              {status.message && (
-                <div className={`contact-page-notification ${status.type}`}>
-                  {status.type === 'success' ? (
-                    <i className="fas fa-check-circle" />
-                  ) : (
-                    <i className="fas fa-exclamation-circle" />
-                  )}
-                  <span>{status.message}</span>
-                </div>
-              )}
+            {status.message && (
+              <div className={`contact-notification ${status.type}`}>
+                {status.type === 'success' ? (
+                  <i className="fas fa-check-circle" />
+                ) : (
+                  <i className="fas fa-exclamation-circle" />
+                )}
+                <span>{status.message}</span>
+              </div>
+            )}
 
+            <div className="contact-card-footer">
               <button
                 type="submit"
-                className="contact-page-submit"
+                className="contact-submit-btn"
                 disabled={isSubmitting}
               >
                 {isSubmitting ? (
@@ -285,10 +272,10 @@ function ContactPage() {
                   </>
                 )}
               </button>
-            </form>
-          </div>
+            </div>
+          </form>
         </div>
-      </section>
+      </div>
     </div>
   )
 }

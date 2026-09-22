@@ -5,7 +5,7 @@ import './Header.css'
 const navLinks = [
   { to: '/', label: 'Home', hash: 'home' },
   { to: '/services', label: 'Services' },
-  { to: '/training', label: 'Training' },
+  { to: '/training', label: 'Nursing' },
   { to: '/support', label: 'Support' },
   { to: '/schools', label: 'Schools' },
   { to: '/about', label: 'About' },
@@ -23,9 +23,10 @@ function Header() {
   const isTrainingPage = location.pathname === '/training'
   const isContactPage = location.pathname === '/contact'
   const isStoriesPage = location.pathname.startsWith('/stories')
+  const isSupportPage = location.pathname === '/support'
 
   useEffect(() => {
-    if (isStoriesPage) {
+    if (isStoriesPage || isTrainingPage) {
       setIsScrolled(true)
       return
     }
@@ -41,7 +42,7 @@ function Header() {
     }
     window.addEventListener('scroll', handleScroll, { passive: true })
     return () => window.removeEventListener('scroll', handleScroll)
-  }, [isStoriesPage])
+  }, [isStoriesPage, isTrainingPage])
 
   useEffect(() => {
     if (isMobileOpen) {
@@ -92,7 +93,7 @@ function Header() {
 
     // Hash link — scroll to section
     if (link.hash) {
-      if (isSchoolsPage || isServicesPage || isAboutPage || isTrainingPage || isContactPage || isStoriesPage || location.pathname === '/reports') {
+      if (isSchoolsPage || isServicesPage || isAboutPage || isTrainingPage || isContactPage || isStoriesPage || isSupportPage || location.pathname === '/reports') {
         // Navigate home first, hash-scrolling happens in HomePage useEffect
         navigate('/#' + link.hash)
       } else {
@@ -123,7 +124,7 @@ function Header() {
           </div>
           <div className="logo-text">
             <span className="logo-name">Christian Hospital</span>
-            <span className="logo-location">Bissumcuttack</span>
+            <span className="logo-location">Bissamcuttack</span>
           </div>
         </Link>
 

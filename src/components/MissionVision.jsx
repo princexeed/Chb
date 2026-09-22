@@ -1,4 +1,5 @@
 import React, { useEffect, useRef } from 'react'
+import { Link } from 'react-router-dom'
 import './MissionVision.css'
 
 const pillars = [
@@ -22,9 +23,9 @@ function MissionVision() {
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
-          el.querySelectorAll('.mv-in').forEach((el, i) => {
-            el.style.transitionDelay = `${i * 0.12}s`
-            el.classList.add('mv-show')
+          el.querySelectorAll('.mv-in').forEach((node, i) => {
+            node.style.transitionDelay = `${i * 0.12}s`
+            node.classList.add('mv-show')
           })
           observer.unobserve(el)
         }
@@ -36,47 +37,59 @@ function MissionVision() {
   }, [])
 
   return (
-    <section className="mv-section" ref={sectionRef}>
-      {/* Image background with overlay */}
-      <div className="mv-bg">
-        <div className="mv-bg-img" />
-        <div className="mv-bg-overlay" />
-      </div>
+    <section className="mv-hero-section" ref={sectionRef} aria-label="Mission and Vision">
+      <div className="mv-hero">
+        <img
+          className="mv-hero-bg-img"
+          src="/photos/hospital/image.jpeg"
+          alt=""
+          aria-hidden="true"
+          loading="lazy"
+          decoding="async"
+        />
+        <div className="mv-hero-overlay" aria-hidden="true" />
 
-      <div className="container">
-        {/* Statement */}
-        <div className="mv-statement mv-in">
-          <span className="mv-badge">Mission &amp; Vision</span>
-          <h2 className="mv-statement-title">
-            We are a faith based<br />
-            <span className="mv-em">community, called to</span>
+        <div className="mv-hero-card mv-in">
+          <span className="mv-card-badge">Mission &amp; Vision</span>
+
+          <h2 className="mv-card-title">
+            <span className="mv-title-dark">We are a faith based</span>
+            <br />
+            <span className="mv-title-green">community, called to</span>
           </h2>
-        </div>
 
-        {/* Pillars */}
-        <div className="mv-pillars mv-in">
-          {pillars.map((p, i) => (
-            <div key={i} className="mv-pillar">
-              <i className={`fas ${p.icon}`} />
-              <span>{p.text}</span>
-            </div>
-          ))}
-        </div>
-
-        {/* Focus */}
-        <div className="mv-bottom mv-in">
-          <div className="mv-focus-label">Our Focus</div>
-          <div className="mv-focus-grid">
-            {focuses.map((f, i) => (
-              <div key={i} className="mv-focus-card">
-                <div className="mv-focus-icon">
-                  <i className={`fas ${f.icon}`} />
-                </div>
-                <h3 className="mv-focus-title">{f.title}</h3>
-                <p className="mv-focus-desc">{f.desc}</p>
-              </div>
+          <ul className="mv-pillars-list" aria-label="Our calling">
+            {pillars.map((p) => (
+              <li key={p.text} className="mv-pillar-item">
+                <span className="mv-pillar-icon" aria-hidden="true">
+                  <i className={`fas ${p.icon}`} />
+                </span>
+                <span className="mv-pillar-text">{p.text}</span>
+              </li>
             ))}
+          </ul>
+
+          <div className="mv-focus-block">
+            <div className="mv-focus-label">Our Focus</div>
+            <div className="mv-focus-grid">
+              {focuses.map((f) => (
+                <div key={f.title} className="mv-focus-item">
+                  <div className="mv-focus-icon" aria-hidden="true">
+                    <i className={`fas ${f.icon}`} />
+                  </div>
+                  <h3 className="mv-focus-title">{f.title}</h3>
+                  <p className="mv-focus-desc">{f.desc}</p>
+                </div>
+              ))}
+            </div>
           </div>
+
+          <Link to="/about" className="mv-card-cta" onClick={() => window.scrollTo(0, 0)}>
+            <span>Discover Our Story</span>
+            <span className="mv-cta-icon" aria-hidden="true">
+              <span className="mv-cta-arrow">→</span>
+            </span>
+          </Link>
         </div>
       </div>
     </section>

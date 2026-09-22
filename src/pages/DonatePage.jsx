@@ -1,6 +1,17 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
+import PaymentModal from '../components/PaymentModal'
 import './DonatePage.css'
+
+const loadRazorpayScript = () =>
+  new Promise((resolve) => {
+    if (window.Razorpay) return resolve(true)
+    const s = document.createElement('script')
+    s.src = 'https://checkout.razorpay.com/v1/checkout.js'
+    s.onload = () => resolve(true)
+    s.onerror = () => resolve(false)
+    document.body.appendChild(s)
+  })
 
 const formatter = new Intl.NumberFormat('en-IN', {
   style: 'currency',
@@ -15,10 +26,169 @@ function DonatePage() {
   const [email, setEmail] = useState('')
   const [phone, setPhone] = useState('')
   const [countryCode, setCountryCode] = useState('+91')
+  const [isModalOpen, setIsModalOpen] = useState(false)
+  const [errors, setErrors] = useState({})
+  const [submitted, setSubmitted] = useState(false)
 
   const numeric = Number(amount) || 0
   const displayAmount = formatter.format(numeric)
-  const payLabel = `Pay ${displayAmount}`
+  const payLabel = `Donate ${displayAmount}`
+
+  const validateField = (name, value) => {
+    switch (name) {
+      case 'amount':
+        const num = Number(value)
+        if (!value || !value.trim()) return 'This Amount field is mandatory'
+        if (num < 1) return 'Amount must be at least ₹1'
+        if (num > 1000000) return 'Amount cannot exceed ₹10,00,000'
+        return ''
+      case 'fullName':
+        if (!value || !value.trim()) return 'This field is required'
+        if (value.trim().length < 2) return 'Name must be at least 2 characters'
+        if (!/^[a-zA-Z\s.']+$/.test(value.trim())) return 'Name can only contain letters, spaces, dots, and apostrophes'
+        return ''
+      case 'email':
+        if (!value || !value.trim()) return 'This field is required'
+        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) return 'Please enter a valid email address'
+        return ''
+      case 'phone':
+        if (!value || !value.trim()) return 'This field is required'
+        const digits = value.replace(/\D/g, '')
+        if (countryCode === '+91' && digits.length !== 10) return 'Please enter a valid 10-digit Indian mobile number'
+        if (countryCode !== '+91' && digits.length < 7) return 'Please enter a valid phone number'
+        return ''
+      default:
+        return ''
+    }
+  }
+
+  const handleChange = (name, value) => {
+    // Clear error for this field when user starts typing
+    if (errors[name]) {
+      const error = validateField(name, value)
+      setErrors(prev => ({ ...prev, [name]: error }))
+    }
+    switch (name) {
+      case 'amount':
+        setAmount(value)
+        break
+      case 'fullName':
+        setFullName(value)
+        break
+      case 'email':
+        setEmail(value)
+        break
+      case 'phone':
+        setPhone(value)
+        break
+      default:
+        break
+    }
+  }
+
+  const validateAll = () => {
+    const newErrors = {}
+    let hasErrors = false
+    ;['amount', 'fullName', 'email', 'phone'].forEach(field => {
+      const value = field === 'amount' ? amount : field === 'fullName' ? fullName : field === 'email' ? email : phone
+      const error = validateField(field, value)
+      if (error) {
+        newErrors[field] = error
+        hasErrors = true
+      }
+    })
+    setErrors(newErrors)
+    setSubmitted(true)
+    return !hasErrors
+  }
+
+  const handlePayClick = async (e) => {
+    e.preventDefault()
+    const isValid = validateAll()
+    if (!isValid || numeric <= 0) return
+
+    try {
+      const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000'
+      const orderRes = await fetch(`${API_URL}/api/donate/create-order`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ amount, fullName, email, phone, countryCode }),
+      }).then((r) => r.json())
+
+      if (!orderRes.success) {
+        alert(orderRes.message || 'Failed to create order')
+        return
+      }
+
+      // Mock keys — fallback to old QR modal for local dev without Razorpay setup
+      if (orderRes.mock) {
+        setIsModalOpen(true)
+        return
+      }
+
+      const ok = await loadRazorpayScript()
+      if (!ok) {
+        alert('Failed to load Razorpay. Check your connection.')
+        return
+      }
+
+      const options = {
+        key: orderRes.key,
+        amount: orderRes.amount,
+        currency: orderRes.currency || 'INR',
+        name: 'Christian Hospital Bissamcuttack',
+        description: 'Donation',
+        image: '/photos/logo/logo.png',
+        order_id: orderRes.orderId,
+        prefill: { name: fullName, email, contact: `${countryCode}${phone}` },
+        theme: { color: '#009E5A' },
+        handler: async (resp) => {
+          // Verify signature server-side
+          const verifyRes = await fetch(`${API_URL}/api/donate/verify`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              razorpay_order_id: resp.razorpay_order_id,
+              razorpay_payment_id: resp.razorpay_payment_id,
+              razorpay_signature: resp.razorpay_signature,
+              fullName, email, phone, countryCode, amount: numeric,
+            }),
+          }).then((r) => r.json())
+
+          if (verifyRes.success) {
+            handlePaymentSuccess()
+            alert(verifyRes.message || 'Thank you for your donation! A receipt will be emailed shortly.')
+          } else {
+            alert(verifyRes.message || 'Payment verification failed. Contact chb.orissa@gmail.com')
+          }
+        },
+        modal: { ondismiss: () => {} },
+      }
+
+      new window.Razorpay(options).open()
+    } catch (err) {
+      console.error(err)
+      alert('Something went wrong. Please try again.')
+    }
+  }
+
+  const handlePaymentSuccess = () => {
+    setIsModalOpen(false)
+    setAmount('')
+    setFullName('')
+    setEmail('')
+    setPhone('')
+    setErrors({})
+    setSubmitted(false)
+  }
+
+  const showError = (name) => {
+    return (submitted || errors[name]) && errors[name]
+  }
+
+  const hasError = (name) => {
+    return (submitted || errors[name]) && !!errors[name]
+  }
 
   return (
     <div className="donate-page">
@@ -65,7 +235,7 @@ function DonatePage() {
 
             {/* Terms */}
             <div className="donate-terms">
-              <h2 className="donate-terms-heading">Terms &amp; Conditions:</h2>
+              <h2 className="donate-terms-heading">Terms & Conditions:</h2>
               <p className="donate-terms-text">
                 You agree to share information entered on this page with Christian
                 Hospital Bissamcuttack (owner of this page) and Razorpay, adhering
@@ -102,17 +272,18 @@ function DonatePage() {
                   Amount <span className="donate-required">*</span>
                 </label>
                 <div className="donate-input-area">
-                  <div className="donate-input-wrap">
+                  <div className={`donate-input-wrap ${hasError('amount') ? 'has-error' : ''}`}>
                     <span className="donate-input-prefix">₹</span>
                     <input
                       id="dk-amount"
                       type="number"
-                      min="0"
+                      min="1"
                       placeholder="Enter Amount"
                       value={amount}
-                      onChange={(e) => setAmount(e.target.value)}
+                      onChange={(e) => handleChange('amount', e.target.value)}
                     />
                   </div>
+                  {showError('amount') && <span className="donate-error">{errors.amount}</span>}
                 </div>
               </div>
 
@@ -126,9 +297,11 @@ function DonatePage() {
                     id="dk-name"
                     type="text"
                     placeholder="Your full name"
+                    className={hasError('fullName') ? 'has-error' : ''}
                     value={fullName}
-                    onChange={(e) => setFullName(e.target.value)}
+                    onChange={(e) => handleChange('fullName', e.target.value)}
                   />
+                  {showError('fullName') && <span className="donate-error">{errors.fullName}</span>}
                 </div>
               </div>
 
@@ -142,9 +315,11 @@ function DonatePage() {
                     id="dk-email"
                     type="email"
                     placeholder="your@email.com"
+                    className={hasError('email') ? 'has-error' : ''}
                     value={email}
-                    onChange={(e) => setEmail(e.target.value)}
+                    onChange={(e) => handleChange('email', e.target.value)}
                   />
+                  {showError('email') && <span className="donate-error">{errors.email}</span>}
                 </div>
               </div>
 
@@ -154,7 +329,7 @@ function DonatePage() {
                   Phone <span className="donate-required">*</span>
                 </label>
                 <div className="donate-input-area">
-                  <div className="donate-input-wrap donate-input-wrap-phone">
+                  <div className={`donate-input-wrap donate-input-wrap-phone ${hasError('phone') ? 'has-error' : ''}`}>
                     <select
                       className="donate-country"
                       value={countryCode}
@@ -170,9 +345,10 @@ function DonatePage() {
                       type="tel"
                       placeholder="Mobile number"
                       value={phone}
-                      onChange={(e) => setPhone(e.target.value)}
+                      onChange={(e) => handleChange('phone', e.target.value)}
                     />
                   </div>
+                  {showError('phone') && <span className="donate-error">{errors.phone}</span>}
                 </div>
               </div>
 
@@ -184,14 +360,23 @@ function DonatePage() {
                   <i className="fab fa-cc-mastercard donate-brand-icon" aria-label="Mastercard" />
                   <i className="fas fa-credit-card donate-brand-icon" aria-label="RuPay" />
                 </div>
-                <Link to="/donate" className="donate-pay-btn" onClick={(e) => e.preventDefault()}>
+                <button className="donate-pay-btn" onClick={handlePayClick}>
                   {payLabel}
-                </Link>
+                </button>
               </div>
             </div>
           </div>
         </div>
       </main>
+
+      <PaymentModal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        amount={numeric}
+        phone={phone}
+        countryCode={countryCode}
+        onPaymentSuccess={handlePaymentSuccess}
+      />
     </div>
   )
 }

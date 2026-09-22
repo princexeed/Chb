@@ -69,25 +69,28 @@
   clip-path: polygon(30% 0, 100% 25%, 85% 100%, 0 70%);
 }
 
-/* ── Header ── */
+/* ── Header — fixed alignment ── */
 .donate-header {
   position: relative;
   z-index: 2;
+  max-width: 1120px;
+  margin: 0 auto;
   display: flex;
   align-items: center;
   gap: 14px;
-  padding: 28px 20px 0;
+  padding: 22px 44px 0;
+  box-sizing: border-box;
 }
 
 .donate-header-logo {
-  position: absolute;
-  width: 72px;
-  height: 72px;
-  top: 40px;
-  left: 242px;
+  position: relative;
+  width: 56px;
+  height: 56px;
+  top: auto;
+  left: auto;
   background: #ffffff;
-  border-radius: 0;
-  box-shadow: 0 4px 18px rgba(27, 42, 74, 0.1);
+  border-radius: 8px;
+  box-shadow: 0 4px 14px rgba(27, 42, 74, 0.08);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -97,30 +100,31 @@
 }
 
 .donate-header-logo img {
-  width: 100%;
-  height: 100%;
+  width: 88%;
+  height: 88%;
   object-fit: contain;
 }
 
 .donate-merchant-name {
-  font-family: var(--font-display), sans-serif;
-  font-size: 18px;
+  font-family: 'Poppins', system-ui, -apple-system, sans-serif;
+  font-size: 16px;
   font-weight: 600;
   color: #14213d;
-  letter-spacing: -0.3px;
-  position: absolute;
-  top: 55px;
-  left: 325px;
+  letter-spacing: -0.2px;
+  position: relative;
+  top: auto;
+  left: auto;
   white-space: nowrap;
+  line-height: 1;
 }
 
-/* ── Main layout ── */
+/* ── Main layout — tightened top spacing for header alignment ── */
 .donate-main {
   position: relative;
   z-index: 2;
   max-width: 1120px;
   margin: 0 auto;
-  padding: 110px 44px 60px;
+  padding: 28px 44px 60px;
 }
 
 .donate-layout {
@@ -442,10 +446,23 @@
   box-shadow: 0 0 0 4px rgba(26, 115, 232, 0.12);
 }
 
+/* ── Error state — red border overrides hover/focus ── */
+.donate-input-area input.has-error,
+.donate-input-wrap.has-error {
+  border-color: #ef4444;
+}
+
+.donate-input-area input.has-error:hover,
+.donate-input-area input.has-error:focus,
+.donate-input-wrap.has-error:focus-within {
+  border-color: #ef4444;
+  box-shadow: none;
+}
+
 .donate-input-prefix {
   padding: 0 13px;
   font-size: 17px;
-  font-weight: 700;
+  font-weight: 400;
   color: #14213d;
   border-right: 1px solid #eef0f4;
   height: 100%;
@@ -476,7 +493,7 @@
   border-right: 1px solid #eef0f4;
   padding: 0 10px 0 12px;
   font-size: 14px;
-  font-weight: 600;
+  font-weight: 400;
   color: #14213d;
   cursor: pointer;
 }
@@ -542,19 +559,29 @@
   font-size: 16px;
   font-weight: 600;
   border-radius: 0;
-  text-decoration: none;
+  border: none;
+  cursor: pointer;
   transition: background 0.15s ease, box-shadow 0.15s ease, transform 0.15s ease;
   box-shadow: 0 6px 16px rgba(26, 115, 232, 0.28);
+  text-decoration: none;
 }
 
-.donate-pay-btn:hover {
+.donate-pay-btn:hover:not(:disabled) {
   background: #1557b0;
   box-shadow: 0 8px 22px rgba(26, 115, 232, 0.34);
   transform: translateY(-1px);
 }
 
-.donate-pay-btn:active {
+.donate-pay-btn:active:not(:disabled) {
   transform: translateY(0);
+}
+
+.donate-pay-btn:disabled {
+  background: #cbd4e3;
+  color: #94a3b8;
+  box-shadow: none;
+  cursor: not-allowed;
+  transform: none;
 }
 
 /* ── Responsive ── */
@@ -649,5 +676,21 @@
 
   .donate-geometry {
     display: none;
+  }
+}
+
+/* ── Error message styling ── */
+.donate-error {
+  display: block;
+  font-size: 12px;
+  color: #ef4444;
+  margin-top: 4px;
+  font-weight: 400;
+  line-height: 1.4;
+}
+
+@media (max-width: 480px) {
+  .donate-error {
+    font-size: 11px;
   }
 }

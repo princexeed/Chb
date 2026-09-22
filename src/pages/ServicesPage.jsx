@@ -190,12 +190,12 @@ function ServicesPage() {
         <div className="med-page-hero-bg" />
         <div className="med-page-hero-overlay" />
         <div className="med-page-hero-content">
-          <span className="med-page-badge">Medical Services</span>
-          <h1 className="med-page-title">
-            Care That Covers
-            <br />
-            <span className="med-page-highlight">Every Aspect of Health</span>
-          </h1>
+          <h1 className="med-page-title">Medical Services</h1>
+          <div className="med-page-divider" />
+          <p className="med-page-subtitle">
+            We believe quality healthcare should be accessible to every person.
+            Our mission is to serve with compassion, integrity, and dedication.
+          </p>
         </div>
         <div
           className="med-page-scroll"
@@ -211,10 +211,6 @@ function ServicesPage() {
         <div className="container">
           <div className="services-header">
             <span className="services-badge">Departments</span>
-            <h2 className="services-title">Expertise You Can Trust</h2>
-            <p className="services-subtitle">
-              Comprehensive medical services designed to meet the diverse health needs of our community.
-            </p>
           </div>
 
           <div className="services-grid">
@@ -248,7 +244,8 @@ function ServicesPage() {
 
           <div className="services-more">
             <button className="services-more-btn" onClick={() => document.getElementById('other-services')?.scrollIntoView({ behavior: 'smooth' })}>
-              Other Services <i className="fas fa-arrow-right" />
+              <span>Other Services</span>
+              <span className="services-more-icon" aria-hidden="true"><span className="services-more-arrow">→</span></span>
             </button>
           </div>
         </div>
@@ -274,7 +271,8 @@ function ServicesPage() {
           </div>
           <div className="mission-cta-wrap">
             <Link to="/about" className="mission-cta" onClick={() => window.scrollTo(0, 0)}>
-              Discover Our Story <span className="mission-cta-arrow">&rarr;</span>
+              <span>Discover Our Story</span>
+              <span className="mission-cta-icon" aria-hidden="true"><span className="mission-cta-arrow">→</span></span>
             </Link>
           </div>
         </div>

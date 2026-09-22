@@ -3,44 +3,37 @@ import './Testimonials.css'
 
 const testimonials = [
   {
-    name: 'Margaret Johnson',
+    name: 'Sunita Pradhan',
     role: 'Patient',
-    img: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?w=200&q=80',
+    icon: 'fa-user',
     text: 'The care I received was nothing short of extraordinary. The doctors took time to explain everything, and the nurses were incredibly kind.',
     rating: 5,
   },
   {
-    name: 'Robert Nwosu',
+    name: 'Ramesh Majhi',
     role: "Patient's Family Member",
-    img: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&q=80',
+    icon: 'fa-users',
     text: 'When my father needed emergency surgery, the team not only saved his life but also supported our family with prayers and encouragement.',
     rating: 5,
   },
   {
-    name: 'Amara Okafor',
+    name: 'Anjali Behera',
     role: 'New Mother',
-    img: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=200&q=80',
+    icon: 'fa-baby',
     text: "I gave birth at Christian Hospital's maternity wing — the most beautiful experience. The midwives and doctors were supportive every step.",
     rating: 5,
   },
   {
-    name: 'Thomas Adebayo',
-    role: 'Patient',
-    img: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=200&q=80',
-    text: 'After years of chronic back pain, the orthopedic team performed a life-changing surgery. I am now pain-free and enjoying time with my grandchildren.',
-    rating: 5,
-  },
-  {
-    name: 'Ameya Kamat',
+    name: 'Kavita Sharma',
     role: 'TAS Manager (Volunteer)',
-    img: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=200&q=80',
+    icon: 'fa-hand-holding-heart',
     text: 'Working with CHB-BCK was mind boggling. The work the hospital staff is doing is a true service to humanity — providing the best possible care despite challenging conditions.',
     rating: 5,
   },
   {
-    name: 'Dr. Shivapratap',
+    name: 'Dr. Rajesh Kumar',
     role: 'Visiting Surgeon',
-    img: 'https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=200&q=80',
+    icon: 'fa-user-doctor',
     text: 'My stay at CHB was absolutely life changing. Witnessing complex surgeries with outcomes comparable to the western world, with limited resources, was incredible.',
     rating: 5,
   },
@@ -85,17 +78,16 @@ function Testimonials() {
             <div className="marquee-row">
               {testimonials.map((t, i) => (
                 <div className="marquee-card" key={`a-${i}`}>
-                  <div className="marquee-stars">
-                    {[...Array(t.rating)].map((_, si) => (
-                      <i key={si} className="fas fa-star" />
-                    ))}
+                  <div className="marquee-heart">
+                    <i className="fas fa-heart" />
                   </div>
                   <p className="marquee-text">"{t.text}"</p>
                   <div className="marquee-author">
-                    <img src={t.img} alt={t.name} className="marquee-avatar" loading="lazy" />
+                    <div className="marquee-avatar-icon" aria-hidden="true">
+                      <i className={`fas ${t.icon}`} />
+                    </div>
                     <div>
                       <h4 className="marquee-name">{t.name}</h4>
-                      <span className="marquee-role">{t.role}</span>
                     </div>
                   </div>
                 </div>
@@ -105,17 +97,16 @@ function Testimonials() {
             <div className="marquee-row">
               {testimonials.map((t, i) => (
                 <div className="marquee-card" key={`b-${i}`}>
-                  <div className="marquee-stars">
-                    {[...Array(t.rating)].map((_, si) => (
-                      <i key={si} className="fas fa-star" />
-                    ))}
+                  <div className="marquee-heart">
+                    <i className="fas fa-heart" />
                   </div>
                   <p className="marquee-text">"{t.text}"</p>
                   <div className="marquee-author">
-                    <img src={t.img} alt={t.name} className="marquee-avatar" loading="lazy" />
+                    <div className="marquee-avatar-icon" aria-hidden="true">
+                      <i className={`fas ${t.icon}`} />
+                    </div>
                     <div>
                       <h4 className="marquee-name">{t.name}</h4>
-                      <span className="marquee-role">{t.role}</span>
                     </div>
                   </div>
                 </div>

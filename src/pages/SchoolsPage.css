@@ -248,6 +248,156 @@
   letter-spacing: 0.5px;
 }
 
+/* ───── Schools — Other Services style (same as Services) ───── */
+.schools-other-section {
+  padding: 36px 0 80px;
+  background: #F5F6FA;
+}
+.schools-other-section .other-header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+.schools-other-section .other-badge {
+  display: inline-block;
+  font-size: 0.68rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1.6px;
+  color: #60a5fa;
+  padding: 4px 12px;
+  border: 1px solid rgba(96,165,250,0.3);
+  border-radius: 50px;
+  background: rgba(96,165,250,0.08);
+}
+.schools-other-section .other-layout {
+  display: flex;
+  align-items: flex-start;
+  gap: 44px;
+}
+.schools-other-section .other-layout + .other-layout {
+  margin-top: 100px;
+}
+.schools-other-section .other-layout--reverse {
+  flex-direction: row-reverse;
+}
+.schools-other-section .other-image {
+  flex: 0 0 36%;
+  border-radius: 12px;
+  overflow: hidden;
+  background: #e2e8f0;
+}
+.schools-other-section .other-ri-wrap {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+.schools-other-section .other-ri-img {
+  width: 100%;
+  height: 280px;
+  object-fit: cover;
+  display: block;
+  border-radius: 12px;
+}
+.schools-other-section .other-ri-img--over {
+  position: absolute;
+  top: 0;
+  left: 0;
+  animation: otherFadeIn 0.5s ease forwards;
+}
+@keyframes otherFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+.schools-other-section .other-content {
+  flex: 1;
+  min-width: 0;
+}
+.schools-other-section .other-tagline {
+  display: block;
+  font-size: 0.76rem;
+  font-weight: 600;
+  color: #2563eb;
+  margin-bottom: 4px;
+  letter-spacing: 0.5px;
+}
+.schools-other-section .other-title {
+  font-family: var(--font-display, 'Poppins', sans-serif);
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: #111827;
+  margin-bottom: 6px;
+  line-height: 1.25;
+}
+.schools-other-section .other-grade {
+  display: inline-block;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: #0d9488;
+  background: rgba(13,148,136,0.08);
+  border: 1px solid rgba(13,148,136,0.14);
+  padding: 4px 10px;
+  border-radius: 999px;
+  margin-bottom: 12px;
+}
+.schools-other-section .other-text {
+  font-size: 0.90rem;
+  line-height: 1.75;
+  color: #4B5563;
+  margin-bottom: 14px;
+}
+.schools-other-section .other-features {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 7px 16px;
+  margin: 12px 0 16px;
+}
+.schools-other-section .other-feature {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 0.84rem;
+  color: #374151;
+  line-height: 1.4;
+}
+.schools-other-section .other-feature i {
+  color: #2563eb;
+  font-size: 0.76rem;
+  flex-shrink: 0;
+}
+.schools-other-section .other-stats {
+  display: flex;
+  gap: 28px;
+  padding: 14px 0 14px;
+  border-top: 1px solid #E5E7EB;
+  border-bottom: 1px solid #E5E7EB;
+  margin-bottom: 16px;
+}
+.schools-other-section .other-stat {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.schools-other-section .other-stats--plain {
+  border-top: 1px solid #eef2f7;
+  border-bottom: none;
+  padding: 12px 0 0;
+  margin-bottom: 0;
+  gap: 22px;
+}
+.schools-other-section .other-stat-num {
+  font-size: 1.05rem;
+  font-weight: 500;
+  color: #475569;
+  line-height: 1;
+}
+.schools-other-section .other-stat-label {
+  font-size: 0.70rem;
+  color: #94a3b8;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  font-weight: 500;
+}
+
 /* Responsive */
 @media (max-width: 1024px) {
   .schools-page-title {
@@ -257,6 +407,9 @@
   .schools-page-intro-grid {
     grid-template-columns: repeat(2, 1fr);
   }
+  .schools-other-section .other-layout { gap: 32px; }
+  .schools-other-section .other-image { flex: 0 0 38%; }
+  .schools-other-section .other-ri-img { height: 240px; }
 }
 
 @media (max-width: 768px) {
@@ -281,6 +434,13 @@
     grid-template-columns: 1fr;
     gap: 20px;
   }
+  .schools-other-section { padding: 28px 0 60px; }
+  .schools-other-section .other-layout,
+  .schools-other-section .other-layout--reverse { flex-direction: column; gap: 22px; }
+  .schools-other-section .other-image { flex: none; width: 100%; }
+  .schools-other-section .other-ri-img { height: 220px; }
+  .schools-other-section .other-features { grid-template-columns: 1fr; }
+  .schools-other-section .other-stats { gap: 18px; flex-wrap: wrap; }
 
   .schools-page-card-thumb {
     height: 160px;

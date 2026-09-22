@@ -29,11 +29,14 @@ function About() {
     <section id="about" className="about-split section" ref={sectionRef}>
       <div className="container">
         <div className="about-split-inner animate-in">
-          {/* Photo */}
+          {/* Video */}
           <div className="about-split-image">
-            <img
-              src="/photos/hospital/image.jpeg"
-              alt="Christian Hospital Bissamcuttack"
+            <iframe
+              src="https://www.youtube.com/embed/EwcIhWKSUYA"
+              title="Christian Hospital Bissamcuttack"
+              frameBorder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowFullScreen
               loading="lazy"
             />
           </div>

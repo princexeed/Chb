@@ -10,5 +10,7 @@ server/.env
 *.log
 nul
 NUL
+.backup-home-2026-08-26/
+.backup-*/
 
 .vercel

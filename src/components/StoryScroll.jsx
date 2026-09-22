@@ -11,7 +11,7 @@ function StoryScroll() {
       <div className="story-bg-note">
         <h2 className="story-bg-note-text">Every journey has a story</h2>
         <Link to={`/stories/${maaStory.slug}`} className="story-bg-note-btn">
-          Read Our Maa Story
+          Read Maa Story
         </Link>
       </div>
 

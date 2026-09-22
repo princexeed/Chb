@@ -1,4 +1,4 @@
-# 🚀 Deployment Guide — Christian Hospital Bissumcuttack
+# 🚀 Deployment Guide — Christian Hospital Bissamcuttack
 
 ## How to push changes to GitHub & Vercel
 

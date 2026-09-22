@@ -4,8 +4,9 @@
 
 .med-page-hero {
   position: relative;
-  height: 80vh;
-  min-height: 480px;
+  height: 70vh;
+  min-height: 380px;
+  margin-bottom: 40px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -50,34 +51,36 @@
   to { opacity: 1; transform: translateY(0); }
 }
 
-.med-page-badge {
-  display: inline-block;
-  font-size: 0.75rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  color: #60a5fa;
-  margin-bottom: 16px;
-  padding: 6px 16px;
-  border: 1px solid rgba(96,165,250,0.3);
-  border-radius: 50px;
-  background: rgba(96,165,250,0.15);
-}
-
 .med-page-title {
-  font-family: var(--font-display);
-  font-size: 3.2rem;
-  font-weight: 700;
-  color: white;
-  line-height: 1.15;
-  margin-bottom: 20px;
+  font-family: var(--font-primary), Arial, Helvetica, sans-serif;
+  font-size: 30px;
+  font-weight: 500;
+  color: #ffffff;
+  letter-spacing: 6px;
+  text-transform: uppercase;
+  text-align: center;
+  margin: 0;
+  line-height: 1.2;
 }
 
-.med-page-highlight {
-  background: linear-gradient(135deg, #60a5fa, #93c5fd);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+.med-page-divider {
+  width: 635px;
+  max-width: 80%;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.8);
+  margin: 20px auto 0;
+}
+
+.med-page-subtitle {
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: 17px;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.92);
+  text-align: center;
+  margin: 25px auto 0;
+  max-width: 620px;
+  line-height: 1.75;
+  letter-spacing: 0.2px;
 }
 
 .med-page-scroll {
@@ -158,32 +161,60 @@
 .services-more-btn {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
-  padding: 10px 26px;
-  border-radius: 50px;
-  border: 2px solid #1B4A8B;
+  gap: 14px;
+  padding: 0;
+  border: none;
   background: transparent;
-  color: #1B4A8B;
-  font-size: 0.85rem;
-  font-weight: 600;
-  font-family: inherit;
+  color: #009E5A;
+  font-family: 'Poppins', system-ui, -apple-system, sans-serif;
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: color 0.2s ease;
+}
+
+.services-more-btn > span:first-child {
+  padding-bottom: 6px;
+  border-bottom: 2px solid #009E5A;
+  transition: border-color 0.2s ease, color 0.2s ease;
+}
+
+.services-more-icon {
+  width: 38px;
+  height: 38px;
+  flex: 0 0 38px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: #009E5A;
+  color: #fff;
+  font-size: 15px;
+  transition: background 0.2s ease;
+}
+
+.services-more-arrow {
+  display: block;
+  line-height: 1;
+  transition: transform 0.2s ease;
 }
 
 .services-more-btn:hover {
-  background: #1B4A8B;
-  color: white;
-  gap: 14px;
+  color: #17283D;
 }
 
-.services-more-btn i {
-  font-size: 0.9rem;
-  transition: transform 0.3s ease;
+.services-more-btn:hover > span:first-child {
+  border-color: #17283D;
+  color: #17283D;
 }
 
-.services-more-btn:hover i {
-  transform: translateX(4px);
+.services-more-btn:hover .services-more-icon {
+  background: #17283D;
+}
+
+.services-more-btn:hover .services-more-arrow {
+  transform: translateX(2px);
 }
 
 .services-card {
@@ -322,8 +353,8 @@
 }
 
 /* ===========================
-   Mission Section
-   =========================== */
+    Mission Section
+    =========================== */
 
 .mission-section {
   padding: 50px 0 30px;
@@ -373,13 +404,13 @@
 
 .mission-badge {
   display: inline-block;
-  font-size: 0.75rem;
+  font-size: 0.68rem;
   font-weight: 600;
   text-transform: uppercase;
-  letter-spacing: 2px;
+  letter-spacing: 1.6px;
   color: #60a5fa;
-  margin-bottom: 16px;
-  padding: 6px 16px;
+  margin-bottom: 14px;
+  padding: 4px 12px;
   border: 1px solid rgba(96,165,250,0.3);
   border-radius: 50px;
   background: rgba(96,165,250,0.08);
@@ -430,32 +461,62 @@
 .mission-cta {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
-  padding: 8px 22px;
-  background: linear-gradient(135deg, #1B4A8B, #2563eb);
-  color: white;
+  gap: 14px;
+  padding: 0;
+  background: transparent;
+  color: #009E5A;
+  font-family: 'Poppins', system-ui, -apple-system, sans-serif;
   font-size: 0.82rem;
-  font-weight: 600;
-  font-family: inherit;
-  border-radius: 50px;
+  font-weight: 700;
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
   text-decoration: none;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 16px rgba(27,74,139,0.25);
+  border-radius: 0;
+  border: none;
+  box-shadow: none;
+  transition: color 0.2s ease;
 }
 
-.mission-cta:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 28px rgba(27,74,139,0.35);
-  gap: 10px;
+.mission-cta > span:first-child {
+  padding-bottom: 6px;
+  border-bottom: 2px solid #009E5A;
+  transition: border-color 0.2s ease, color 0.2s ease;
+}
+
+.mission-cta-icon {
+  width: 38px;
+  height: 38px;
+  flex: 0 0 38px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: #009E5A;
+  color: #fff;
+  font-size: 15px;
+  transition: background 0.2s ease, transform 0.2s ease;
 }
 
 .mission-cta-arrow {
-  font-size: 1.1rem;
-  transition: transform 0.3s ease;
+  display: block;
+  line-height: 1;
+  transition: transform 0.2s ease;
+}
+
+.mission-cta:hover {
+  color: #17283D;
+}
+
+.mission-cta:hover > span:first-child {
+  border-color: #17283D;
+  color: #17283D;
+}
+
+.mission-cta:hover .mission-cta-icon {
+  background: #17283D;
 }
 
 .mission-cta:hover .mission-cta-arrow {
-  transform: translateX(4px);
+  transform: translateX(2px);
 }
 
 
@@ -475,12 +536,12 @@
 
 .other-badge {
   display: inline-block;
-  font-size: 0.75rem;
+  font-size: 0.68rem;
   font-weight: 600;
   text-transform: uppercase;
-  letter-spacing: 2px;
+  letter-spacing: 1.6px;
   color: #60a5fa;
-  padding: 6px 16px;
+  padding: 4px 12px;
   border: 1px solid rgba(96,165,250,0.3);
   border-radius: 50px;
   background: rgba(96,165,250,0.08);
@@ -615,7 +676,7 @@
 }
 
 @media (max-width: 1024px) {
-  .med-page-title { font-size: 2.4rem; }
+  .med-page-title { font-size: 26px; letter-spacing: 4px; }
   .services-grid { gap: 14px; }
   .services-card { padding: 18px; }
   .mission-layout { gap: 40px; }
@@ -630,7 +691,9 @@
 
 @media (max-width: 768px) {
   .med-page-hero { height: 70vh; min-height: 400px; }
-  .med-page-title { font-size: 1.8rem; }
+  .med-page-title { font-size: 22px; letter-spacing: 3px; }
+
+  .med-page-subtitle { font-size: 15px; }
   .services-section { padding: 60px 0; }
   .services-title { font-size: 1.6rem; }
   .services-grid { grid-template-columns: 1fr; gap: 16px; }

@@ -56,24 +56,24 @@
 
 .reports-badge {
   display: inline-block;
-  font-size: 0.72rem;
+  font-size: 0.65rem;
   font-weight: 600;
   text-transform: uppercase;
-  letter-spacing: 3px;
+  letter-spacing: 2.5px;
   color: var(--color-secondary-light);
-  margin-bottom: 14px;
-  padding: 6px 16px;
+  margin-bottom: 12px;
+  padding: 5px 14px;
   border: 1px solid rgba(20, 184, 166, 0.3);
   border-radius: 50px;
 }
 
 .reports-title {
   font-family: var(--font-display);
-  font-size: clamp(1.9rem, 4.6vw, 3rem);
+  font-size: clamp(1.65rem, 4vw, 2.55rem);
   font-weight: 800;
   color: white;
   line-height: 1.12;
-  margin-bottom: 18px;
+  margin-bottom: 16px;
   text-shadow: 0 8px 40px rgba(0, 0, 0, 0.35);
 }
 
@@ -82,14 +82,15 @@
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+  font-size: 0.92em;
 }
 
 .reports-subtitle {
-  font-size: 0.98rem;
+  font-size: 0.88rem;
   line-height: 1.7;
   color: rgba(255, 255, 255, 0.78);
-  max-width: 620px;
-  margin: 0 auto 28px;
+  max-width: 580px;
+  margin: 0 auto 24px;
 }
 
 .reports-scroll {
@@ -128,13 +129,13 @@
 
 .reports-block-title {
   font-family: var(--font-display);
-  font-size: clamp(1.2rem, 2.6vw, 1.6rem);
+  font-size: clamp(0.95rem, 2vw, 1.2rem);
   font-weight: 700;
   color: var(--color-primary);
-  margin-bottom: 16px;
+  margin-bottom: 12px;
   text-align: center;
   text-transform: uppercase;
-  letter-spacing: 0.02em;
+  letter-spacing: 0.03em;
 }
 
 .report-row {
@@ -174,7 +175,7 @@
 .report-row-name {
   flex: 1;
   font-family: 'Cormorant Garamond', serif;
-  font-size: 1.35rem;
+  font-size: 1.18rem;
   font-weight: 700;
   font-style: italic;
   letter-spacing: 0.02em;

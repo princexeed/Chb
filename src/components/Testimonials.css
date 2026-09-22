@@ -145,13 +145,34 @@
   transform: translateY(-2px);
 }
 
-/* Stars */
-.marquee-stars {
+/* Small heart — CHB blue-teal (left corner) */
+.marquee-heart {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: linear-gradient(135deg, #1a73e8 0%, #0ea5e9 45%, #0d9488 100%);
+  border: 2px solid white;
+  color: white;
+  font-size: 0.70rem;
   margin-bottom: 10px;
-  color: var(--color-accent);
-  font-size: 0.8rem;
-  letter-spacing: 3px;
+  flex-shrink: 0;
+  align-self: flex-start;
+  box-shadow: 0 4px 12px rgba(26,115,232,0.28), 0 1px 3px rgba(0,0,0,0.08);
+  animation: heartBeat 2.2s ease-in-out infinite;
 }
+
+@keyframes heartBeat {
+  0%, 100% { transform: scale(1); box-shadow: 0 4px 12px rgba(26,115,232,0.28), 0 1px 3px rgba(0,0,0,0.08); }
+  15% { transform: scale(1.12); box-shadow: 0 6px 16px rgba(26,115,232,0.36), 0 2px 6px rgba(0,0,0,0.10); }
+  30% { transform: scale(1); }
+  45% { transform: scale(1.08); }
+}
+
+.marquee-badge,
+.marquee-stars,
+.marquee-quote { display: none; }
 
 /* Text */
 .marquee-text {
@@ -175,13 +196,18 @@
   gap: 10px;
 }
 
-.marquee-avatar {
+.marquee-avatar-icon {
   width: 36px;
   height: 36px;
   border-radius: 50%;
-  object-fit: cover;
-  border: 2px solid var(--color-primary-light);
+  display: grid;
+  place-items: center;
+  background: linear-gradient(135deg, #1a73e8 0%, #0d9488 100%);
+  color: white;
+  font-size: 0.82rem;
+  border: 2px solid #dbeafe;
   flex-shrink: 0;
+  box-shadow: 0 2px 8px rgba(26,115,232,0.18);
 }
 
 .marquee-name {

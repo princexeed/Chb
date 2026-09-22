@@ -83,17 +83,6 @@ function Institutions() {
 
   return (
     <section id="institutions" className="institutions section" ref={sectionRef}>
-      <div className="container">
-        <div className="section-header animate-in">
-          <span className="section-tag">Our Institutions</span>
-          <h2 className="section-title">One Mission, Four Ministries</h2>
-          <p className="section-subtitle">
-            The hospital, schools, and college of nursing together serve this region —
-            each a distinct expression of our commitment to health, education, and training.
-          </p>
-        </div>
-      </div>
-
       <StoryScroll />
 
       <div className="container">

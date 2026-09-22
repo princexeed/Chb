@@ -45,9 +45,15 @@
   z-index: 2;
 }
 
-/* Card – transparent, no box, fills its exact column width */
+/* Card – hover lift + shadow */
 .doctor-card {
   width: 100%;
+  transition: transform 0.35s cubic-bezier(.16,1,.3,1), box-shadow 0.35s ease;
+  border-radius: 14px;
+}
+
+.doctor-card:hover {
+  transform: translateY(-6px);
 }
 
 /* Scaled Photo fills the cell (the background) */
@@ -57,6 +63,29 @@
   aspect-ratio: 1 / 1;
   overflow: hidden;
   cursor: pointer;
+  border-radius: 14px;
+  border: 2px solid transparent;
+  transition: border-color 0.35s ease, box-shadow 0.35s ease, transform 0.35s ease;
+}
+
+.doctor-photo::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 55%, rgba(26,115,232,0.10) 100%);
+  opacity: 0;
+  transition: opacity 0.35s ease;
+  pointer-events: none;
+  border-radius: 12px;
+}
+
+.doctor-card:hover .doctor-photo::after {
+  opacity: 1;
+}
+
+.doctor-card:hover .doctor-photo {
+  border-color: #bfdbfe;
+  box-shadow: 0 14px 32px rgba(26,115,232,0.14), 0 6px 14px rgba(15,23,42,0.08);
 }
 .doctor-photo-img {
   position: absolute;
@@ -80,38 +109,22 @@
   font-size: 4rem;
   color: var(--color-primary, #4f46e5);
   opacity: .75;
-  transition: transform .45s ease;
+  transition: transform .45s ease, color 0.35s ease;
 }
 .doctor-card:hover .doctor-photo-icon {
-  transform: scale(1.04);
+  transform: scale(1.02);
+  background: linear-gradient(160deg, #dbeafe 0%, #bfdbfe 100%);
 }
 .doctor-card:hover .doctor-photo-icon i {
   transform: scale(1.06);
+  color: #1a73e8;
 }
-/* Blur photo slightly on hover */
 .doctor-card:hover .doctor-photo-img {
-  filter: blur(2.5px);
-  transform: scale(1.04);
+  transform: scale(1.07);
+  filter: brightness(1.04) saturate(1.05);
 }
 
-/* Details overlay – hidden by default, appears clearly on hover */
-.doctor-overlay {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 4px;
-  padding: 18px;
-  text-align: center;
-  background: rgba(15, 23, 42, .55);
-  opacity: 0;
-  transition: opacity .45s ease;
-}
-.doctor-card:hover .doctor-overlay {
-  opacity: 1;
-}
+.doctor-overlay { display: none; }
 
 /* Card Body – only the name */
 .doctor-card-body {
@@ -121,18 +134,39 @@
 
 /* Text */
 .doctor-name {
-  font-size: .9rem;
+  font-size: .88rem;
   font-weight: 700;
-  color: #1e1e1e;
-  letter-spacing: -.02em;
-  line-height: 1.25;
+  color: #1e293b;
+  letter-spacing: -.015em;
+  line-height: 1.3;
 }
 .doctor-qualification {
   display: block;
-  font-size: .72rem;
+  font-size: .67rem;
   font-weight: 600;
-  color: var(--color-primary, #4f46e5);
-  margin-top: 2px;
+  color: var(--color-primary, #1a73e8);
+  margin-top: 3px;
+  line-height: 1.3;
+  letter-spacing: 0.15px;
+}
+.doctor-role {
+  display: block;
+  font-size: .56rem;
+  font-weight: 700;
+  color: #1a73e8;
+  margin-top: 4px;
+  line-height: 1.2;
+  letter-spacing: 0.35px;
+  text-transform: uppercase;
+  background: #eff6ff;
+  border: 1px solid #dbeafe;
+  padding: 3px 7px;
+  border-radius: 999px;
+  width: fit-content;
+  max-width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  white-space: nowrap;
 }
 .doctor-specialty {
   font-size: .78rem;

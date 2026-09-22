@@ -5,8 +5,7 @@ import Header from './components/Header'
 import Footer from './components/Footer'
 import FloatingMessage from './components/FloatingMessage'
 import './App.css'
-
-const HomePage = lazy(() => import('./pages/HomePage'))
+import HomePage from './pages/HomePage'
 const SchoolsPage = lazy(() => import('./pages/SchoolsPage'))
 const ServicesPage = lazy(() => import('./pages/ServicesPage'))
 const AboutPage = lazy(() => import('./pages/AboutPage'))
@@ -60,6 +59,7 @@ function ScrollToTop() {
 function AppContent() {
   const { pathname } = useLocation()
   const standalone = pathname === '/donate'
+  const hideFooter = standalone || pathname === '/support'
 
   return (
     <div className="app">
@@ -81,7 +81,7 @@ function AppContent() {
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </Suspense>
-      {!standalone && <Footer />}
+      {!hideFooter && <Footer />}
       {!standalone && <FloatingMessage />}
     </div>
   )
