@@ -42,7 +42,8 @@ const seoConfig = {
   '/donate': {
     title: 'Donate to CHB | Christian Hospital Bissamcuttack',
     description: 'Donate securely to Christian Hospital Bissamcuttack via Razorpay - support healthcare for tribal communities in Odisha.',
-    canonical: `${SITE}/donate`,
+    canonical: `${SITE}/`,
+    noindex: true,
   },
   '/contact': {
     title: 'Contact Us | Christian Hospital Bissamcuttack',
@@ -93,7 +94,7 @@ function upsertMeta(selector, create) {
 
 export default function SEO({ pathname }) {
   useEffect(() => {
-    const { title, description, canonical } = getSEOForPath(pathname)
+    const { title, description, canonical, noindex } = getSEOForPath(pathname)
 
     // Title
     document.title = title
@@ -134,6 +135,19 @@ export default function SEO({ pathname }) {
     // twitter:description
     const twDesc = document.querySelector('meta[name="twitter:description"]')
     if (twDesc) twDesc.setAttribute('content', description)
+
+    // robots noindex for hidden pages (e.g. /donate)
+    let robots = document.querySelector('meta[name="robots"]')
+    if (noindex) {
+      if (!robots) {
+        robots = document.createElement('meta')
+        robots.setAttribute('name', 'robots')
+        document.head.appendChild(robots)
+      }
+      robots.setAttribute('content', 'noindex, follow')
+    } else if (robots) {
+      robots.setAttribute('content', 'index, follow')
+    }
 
     // twitter:url via og? not needed
   }, [pathname])

@@ -12,6 +12,10 @@
     {
       "source": "/robots.txt",
       "headers": [{ "key": "Content-Type", "value": "text/plain" }]
+    },
+    {
+      "source": "/donate",
+      "headers": [{ "key": "X-Robots-Tag", "value": "noindex, follow" }]
     }
   ]
 }
