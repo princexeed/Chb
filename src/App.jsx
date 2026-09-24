@@ -4,6 +4,7 @@ import { ErrorBoundary } from 'react-error-boundary'
 import Header from './components/Header'
 import Footer from './components/Footer'
 import FloatingMessage from './components/FloatingMessage'
+import SEO from './components/SEO'
 import './App.css'
 import HomePage from './pages/HomePage'
 const SchoolsPage = lazy(() => import('./pages/SchoolsPage'))
@@ -63,6 +64,7 @@ function AppContent() {
 
   return (
     <div className="app">
+      <SEO pathname={pathname} />
       <ScrollToTop />
       {!standalone && <Header />}
       <Suspense fallback={<PageLoader />}>
