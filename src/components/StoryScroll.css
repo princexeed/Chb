@@ -125,7 +125,7 @@
   margin-bottom: 18px;
 }
 
-.story-title {
+.story-panel-title {
   font-family: 'Montserrat', var(--font-display), sans-serif;
   font-size: clamp(1.35rem, 2.4vw, 1.78rem);
   font-weight: 600;
@@ -135,6 +135,11 @@
   color: #0f172a;
   margin-bottom: 14px;
   text-wrap: balance;
+}
+
+/* Legacy alias + scoped override — prevents StoryPage.css (.story-title: 3.2rem) from overriding home after client-side nav */
+.story-panel .story-title {
+  font-size: clamp(1.35rem, 2.4vw, 1.78rem);
 }
 
 .story-text {
@@ -166,7 +171,11 @@
     padding: 72px 20px;
   }
 
-  .story-title {
+  .story-panel-title {
+    font-size: 1.38rem;
+  }
+
+  .story-panel .story-title {
     font-size: 1.38rem;
   }
 

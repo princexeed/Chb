@@ -95,18 +95,18 @@
   50% { transform: scale(1.12); box-shadow: 0 5px 16px rgba(239,68,68,0.52); }
 }
 
-/* Card — premium entrance + subtle glow */
+/* Card — premium entrance + subtle glow — compact */
 .floating-card {
   position: fixed;
   right: 24px;
   bottom: 154px;
   z-index: 1100;
-  width: 348px;
+  width: 320px;
   max-width: calc(100vw - 32px);
   background: white;
-  border-radius: 20px;
+  border-radius: 16px;
   border: 1px solid #e2e8f0;
-  box-shadow: 0 24px 48px rgba(15,23,42,0.13), 0 10px 20px rgba(15,23,42,0.08);
+  box-shadow: 0 20px 40px rgba(15,23,42,0.12), 0 8px 16px rgba(15,23,42,0.07);
   overflow: hidden;
   animation: slideUp 0.34s cubic-bezier(.16,1,.3,1), cardGlow 3s ease-in-out infinite 0.5s;
 }
@@ -152,16 +152,16 @@
 }
 
 .floating-card-avatar {
-  width: 42px;
-  height: 42px;
-  border-radius: 12px;
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
   background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
   border: 1px solid #bfdbfe;
   display: grid;
   place-items: center;
   flex-shrink: 0;
-  padding: 7px;
-  box-shadow: 0 4px 12px rgba(26,115,232,0.10);
+  padding: 6px;
+  box-shadow: 0 3px 10px rgba(26,115,232,0.10);
 }
 
 .floating-card-avatar img {
@@ -180,7 +180,7 @@
 }
 
 .floating-card-title {
-  font-size: 0.90rem;
+  font-size: 0.84rem;
   font-weight: 800;
   color: #0f172a;
   letter-spacing: -0.015em;
@@ -234,9 +234,9 @@
   transform: rotate(90deg);
 }
 
-/* Body — chat bubble */
+/* Body — chat bubble — compact */
 .floating-card-body {
-  padding: 16px;
+  padding: 12px;
   background: #f8fafc;
 }
 
@@ -251,15 +251,15 @@
 .chat-bubble-label {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
-  margin: 12px 12px 0;
-  padding: 5px 10px;
+  gap: 5px;
+  margin: 10px 10px 0;
+  padding: 4px 8px;
   background: #eff6ff;
   border: 1px solid #dbeafe;
   border-radius: 100px;
-  font-size: 0.60rem;
+  font-size: 0.56rem;
   font-weight: 800;
-  letter-spacing: 0.85px;
+  letter-spacing: 0.7px;
   text-transform: uppercase;
   color: #1a73e8;
   line-height: 1;
@@ -269,9 +269,9 @@
 
 .chat-bubble-img {
   position: relative;
-  margin: 10px 12px 0;
-  height: 136px;
-  border-radius: 12px;
+  margin: 8px 10px 0;
+  height: 118px;
+  border-radius: 10px;
   overflow: hidden;
   background: #f1f5f9;
 }
@@ -307,12 +307,12 @@
 
 .chat-bubble-title {
   font-family: 'Poppins', 'Inter', sans-serif;
-  font-size: 0.94rem;
+  font-size: 0.86rem;
   font-weight: 800;
   color: #0f172a;
-  line-height: 1.32;
+  line-height: 1.30;
   letter-spacing: -0.015em;
-  padding: 12px 14px 0;
+  padding: 10px 12px 0;
   display: -webkit-box;
   -webkit-line-clamp: 2;
   line-clamp: 2;
@@ -321,10 +321,10 @@
 }
 
 .chat-bubble-excerpt {
-  font-size: 0.82rem;
-  line-height: 1.58;
+  font-size: 0.76rem;
+  line-height: 1.52;
   color: #475569;
-  padding: 6px 14px 0;
+  padding: 5px 12px 0;
   display: -webkit-box;
   -webkit-line-clamp: 2;
   line-clamp: 2;
@@ -335,12 +335,12 @@
 .chat-bubble-meta {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 6px;
   flex-wrap: wrap;
-  padding: 10px 14px 14px;
-  margin-top: 10px;
+  padding: 8px 12px 10px;
+  margin-top: 8px;
   border-top: 1px solid #f8fafc;
-  font-size: 0.67rem;
+  font-size: 0.62rem;
   font-weight: 600;
   color: #64748b;
 }
@@ -352,9 +352,9 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 6px;
-  margin-top: 10px;
-  font-size: 0.68rem;
+  gap: 5px;
+  margin-top: 8px;
+  font-size: 0.62rem;
   font-weight: 600;
   color: #94a3b8;
   letter-spacing: 0.15px;
@@ -362,56 +362,80 @@
 
 .chat-hint i { color: #1a73e8; font-size: 0.70rem; }
 
-/* Foot */
+/* Foot — v6: soft medical banner — light blue trusted */
 .floating-card-foot {
-  padding: 12px 16px 16px;
-  background: white;
+  padding: 12px;
+  background: #ffffff;
   border-top: 1px solid #f1f5f9;
 }
 
 .floating-card-link {
-  width: 100%;
-  display: inline-flex;
+  display: flex;
   align-items: center;
   justify-content: center;
-  gap: 8px;
-  padding: 12px 16px;
-  background: linear-gradient(135deg, #1a73e8 0%, #1557b0 100%);
-  color: white;
-  border-radius: 12px;
-  font-size: 0.85rem;
-  font-weight: 700;
+  gap: 6px;
+  width: 100%;
+  padding: 9px 14px;
+  background: #eff6ff;
+  border: 1px solid #dbeafe;
+  border-radius: 999px;
+  font-family: 'Poppins', 'Inter', system-ui, sans-serif;
+  font-size: 0.74rem;
+  font-weight: 600;
+  letter-spacing: 0.2px;
+  color: #1e40af;
   text-decoration: none;
-  letter-spacing: 0.15px;
   cursor: pointer;
-  box-shadow: 0 7px 18px rgba(26,115,232,0.30);
-  transition: all 0.22s cubic-bezier(.16,1,.3,1);
-  position: relative;
-  overflow: hidden;
-}
-
-.floating-card-link::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.16), transparent);
-  transform: translateX(-100%);
-  transition: transform 0.5s ease;
-}
-
-.floating-card-link:hover::before {
-  transform: translateX(100%);
+  box-shadow: none;
+  transition: all 0.20s ease;
 }
 
 .floating-card-link:hover {
-  background: linear-gradient(135deg, #1557b0 0%, #1a73e8 100%);
+  background: #dbeafe;
+  border-color: #bfdbfe;
   transform: translateY(-1px);
-  box-shadow: 0 10px 24px rgba(26,115,232,0.36);
-  color: white;
+  box-shadow: 0 4px 12px rgba(26,115,232,0.12);
 }
 
-.floating-card-link i { font-size: 0.78rem; transition: transform 0.22s ease; }
-.floating-card-link:hover i:last-child { transform: translateX(3px); }
+.floating-card-link .link-icon-box {
+  display: none;
+}
+
+.floating-card-link .link-text {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 0;
+}
+
+.floating-card-link .link-title {
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: #1e40af;
+  letter-spacing: 0.2px;
+}
+
+.floating-card-link .link-sub {
+  display: none;
+}
+
+.floating-card-link .arrow-circle {
+  width: 20px;
+  height: 20px;
+  display: grid;
+  place-items: center;
+  background: #1a73e8;
+  color: white;
+  border-radius: 50%;
+  font-size: 0.56rem;
+  flex-shrink: 0;
+  transition: transform 0.20s ease;
+}
+
+.floating-card-link:hover .arrow-circle {
+  transform: translateX(3px);
+}
 
 /* Responsive */
 @media (max-width: 480px) {

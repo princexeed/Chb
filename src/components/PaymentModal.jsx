@@ -39,22 +39,30 @@ function PaymentModal({ isOpen, onClose, amount, phone = '', countryCode = '+91'
   useEffect(() => {
     if (!isOpen) return
     document.body.style.overflow = 'hidden'
-    const canvas = document.createElement('canvas')
-    canvas.width = 160
-    canvas.height = 160
-    const ctx = canvas.getContext('2d')
-    ctx.fillStyle = '#ffffff'
-    ctx.fillRect(0, 0, 160, 160)
-    ctx.fillStyle = '#000000'
-    const size = 160 / 25
-    for (let i = 0; i < 25; i++) {
-      for (let j = 0; j < 25; j++) {
-        if (Math.random() > 0.5) {
-          ctx.fillRect(i * size, j * size, size, size)
+    try {
+      const canvas = document.createElement('canvas')
+      canvas.width = 160
+      canvas.height = 160
+      const ctx = canvas.getContext('2d')
+      if (!ctx) {
+        console.warn('Canvas 2D context not available for QR generation')
+        return () => { document.body.style.overflow = '' }
+      }
+      ctx.fillStyle = '#ffffff'
+      ctx.fillRect(0, 0, 160, 160)
+      ctx.fillStyle = '#000000'
+      const size = 160 / 25
+      for (let i = 0; i < 25; i++) {
+        for (let j = 0; j < 25; j++) {
+          if (Math.random() > 0.5) {
+            ctx.fillRect(i * size, j * size, size, size)
+          }
         }
       }
+      setQrCode(canvas.toDataURL())
+    } catch (e) {
+      console.error('QR generation failed:', e)
     }
-    setQrCode(canvas.toDataURL())
     return () => { document.body.style.overflow = '' }
   }, [isOpen])
 

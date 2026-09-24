@@ -48,14 +48,11 @@ function FloatingMessage() {
                 <span><i className="fas fa-clock" /> {story.readTime}</span>
               </div>
             </div>
-            <div className="chat-hint">
-              <i className="fas fa-comment-dots" /> Tap below to explore more stories
-            </div>
           </div>
 
           <div className="floating-card-foot">
             <Link to="/stories" className="floating-card-link" onClick={() => setOpen(false)}>
-              <i className="fas fa-book-open" /> Read Our Stories <i className="fas fa-arrow-right" />
+              Read Our Stories <span className="arrow-circle"><i className="fas fa-arrow-right" /></span>
             </Link>
           </div>
         </div>

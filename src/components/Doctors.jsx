@@ -17,7 +17,7 @@ const doctors = [
   {
     name: 'Chandra Sekhar Ray',
     specialty: 'General Administrator',
-    img: '/photos/doctors/Chandra Sekhar Ray.jpeg',
+    //img: '/photos/doctors/Chandra Sekhar Ray.jpeg',
     desc: 'General Administrator overseeing hospital operations, finance and strategic administration.',
   },
   {
@@ -53,7 +53,7 @@ const doctors = [
   {
     name: 'Dr. Bishal',
     specialty: 'MS Surgery',
-    img: '/photos/doctors/Dr Bishal.jpg',
+    //img: '/photos/doctors/Dr Bishal.jpg',
     desc: 'Dedicated pediatrician passionate about providing compassionate care to children of all ages.',
   },
     {
@@ -64,7 +64,7 @@ const doctors = [
    {
     name: 'Dr. Livingstone',
     specialty: 'MDS Oral & Maxillofacial Surgery',
-    img: '/photos/doctors/Dr Livingstone.jpg',
+   // img: '/photos/doctors/Dr Livingstone.jpg',
     desc: 'Dedicated pediatrician passionate about providing compassionate care to children of all ages.',
   },
     {

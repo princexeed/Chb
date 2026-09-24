@@ -18,7 +18,7 @@ function StoryScroll() {
       <div className="story-panel">
         <div className="story-panel-inner">
           <span className="story-kicker">One Mission, Four Ministries</span>
-          <h3 className="story-title">A Hospital. A School. A College. A Family.</h3>
+          <h3 className="story-panel-title">A Hospital. A School. A College. A Family.</h3>
           <p className="story-text">
             Every day, our teams move between operating theatres and classrooms, clinics
             and dormitories — because we believe health and hope belong together. The

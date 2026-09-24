@@ -6,28 +6,39 @@ import './ServicesPage.css'
 function RotatingImage({ images, alt }) {
   const [current, setCurrent] = useState(0)
   const [next, setNext] = useState(null)
-  const [transitioning, setTransitioning] = useState(false)
   const idxRef = useRef(0)
 
   useEffect(() => {
+    if (images.length <= 1) return
     const timer = setInterval(() => {
       idxRef.current = (idxRef.current + 1) % images.length
       setNext(idxRef.current)
-      setTransitioning(true)
       setTimeout(() => {
         setCurrent(idxRef.current)
         setNext(null)
-        setTransitioning(false)
       }, 500)
     }, 3000)
     return () => clearInterval(timer)
   }, [images.length])
 
+  const renderImg = (src) =>
+    src ? (
+      <img src={src} alt={alt} className="other-ri-img" />
+    ) : (
+      <div className="other-ri-img" style={{ display: 'grid', placeItems: 'center', background: '#f8fafc', border: '1px dashed #cbd5e1', borderRadius: '12px' }}>
+        <div style={{ textAlign: 'center', color: '#94a3b8', padding: '16px' }}>
+          <i className="fas fa-image" style={{ fontSize: '1.8rem', display: 'block' }} />
+        </div>
+      </div>
+    )
+
   return (
     <div className="other-ri-wrap">
-      <img src={images[current]} alt={alt} className="other-ri-img" />
+      {renderImg(images[current])}
       {next !== null && (
-        <img src={images[next]} alt={alt} className="other-ri-img other-ri-img--over" />
+        <div className="other-ri-img other-ri-img--over" style={!images[next] ? { display: 'grid', placeItems: 'center', background: '#f8fafc', border: '1px dashed #cbd5e1', borderRadius: '12px' } : {}}>
+          {images[next] ? <img src={images[next]} alt={alt} className="other-ri-img" style={{ width: '100%', height: '100%', objectFit: 'cover' }} /> : <div style={{ textAlign: 'center', color: '#94a3b8', padding: '16px' }}><i className="fas fa-image" style={{ fontSize: '1.8rem', display: 'block' }} /></div>}
+        </div>
       )}
     </div>
   )
@@ -38,7 +49,7 @@ const departments = [
     title: 'General Medicine',
     desc: 'Comprehensive care for tropical infectious diseases, chronic NCDs, sickle cell disease, and endoscopic services — guided by evidence-based, affordable, holistic medicine.',
     icon: 'fa-stethoscope',
-    img: 'https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=800&q=80',
+    img: '/photos/general medicine/image1.jpg',
     badgeBg: '#dbeafe',
     iconColor: '#1B4A8B',
     linkColor: '#1B4A8B'
@@ -56,7 +67,7 @@ const departments = [
     title: 'Maternity & Obstetrics',
     desc: 'Referral hospital for complicated cases from 2 districts — 2,700 deliveries/yr, 900 gynaecological surgeries, JSY programme accredited by NRHM.',
     icon: 'fa-baby-carriage',
-    img: 'https://images.unsplash.com/photo-1584820927498-cfe5211fd8bf?w=800&q=80',
+    img: '/photos/meternity/image1.png',
     badgeBg: '#fce7f3',
     iconColor: '#d946ef',
     linkColor: '#9333ea'
@@ -65,7 +76,7 @@ const departments = [
     title: 'Surgery',
     desc: 'Open & laparoscopic surgeries, orthopaedic care, paediatric surgery, and emergency trauma care — serving a 200 km radius with no other surgical facilities.',
     icon: 'fa-user-md',
-    img: 'https://images.unsplash.com/photo-1551601651-2a8555f1a0aa?w=800&q=80',
+    img: '/photos/surgery/image1.png',
     badgeBg: '#ffe4e6',
     iconColor: '#e11d48',
     linkColor: '#e11d48'
@@ -74,7 +85,7 @@ const departments = [
     title: 'Oral & Maxillofacial Surgery',
     desc: 'Surgical management of facial injuries, jaw disorders, oral pathology, cleft lip & palate, and impacted teeth — combining dental expertise with advanced surgical care.',
     icon: 'fa-tooth',
-    img: 'https://images.unsplash.com/photo-1606811971618-4486d14f3f99?w=800&q=80',
+    img: '/photos/oral/image1.jpg',
     badgeBg: '#e0f2fe',
     iconColor: '#0ea5e9',
     linkColor: '#0d9488'
@@ -83,7 +94,7 @@ const departments = [
     title: 'Ophthalmology',
     desc: 'Complete eye care from routine exams to advanced cataract, glaucoma, and retinal surgery.',
     icon: 'fa-eye',
-    img: 'https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=800&q=80',
+    img: '/photos/optomology/image1.jpg',
     badgeBg: '#fef3c7',
     iconColor: '#f59e0b',
     linkColor: '#d97706'
@@ -92,7 +103,7 @@ const departments = [
     title: 'Anaesthesiology',
     desc: 'General, spinal, local & regional anaesthesia for routine and emergency surgeries — with preanaesthetic evaluation and labour pain management.',
     icon: 'fa-syringe',
-    img: 'https://images.unsplash.com/photo-1551601651-2a8555f1a0aa?w=800&q=80',
+    img: '/photos/Anastesia/image1.jpg',
     badgeBg: '#e0f2fe',
     iconColor: '#0ea5e9',
     linkColor: '#0d9488'
@@ -110,7 +121,7 @@ const departments = [
     title: 'Pharmacy',
     desc: 'In-house pharmacy providing prescribed medications, clinical consultations, and medication management.',
     icon: 'fa-prescription',
-    img: 'https://images.unsplash.com/photo-1587854692152-cbe660dbde88?w=800&q=80',
+    img: '/photos/pharmacy/image1.jpg',
     badgeBg: '#f3e8ff',
     iconColor: '#9333ea',
     linkColor: '#7e22ce'
@@ -119,7 +130,7 @@ const departments = [
     title: 'Radiology & Imaging',
     desc: 'Cutting-edge diagnostic imaging including MRI, CT scan, ultrasound, X-ray, and interventional radiology.',
     icon: 'fa-x-ray',
-    img: 'https://images.unsplash.com/photo-1579154204601-01588f351e67?w=800&q=80',
+    img: '/photos/xray/image1.jpg',
     badgeBg: '#cffafe',
     iconColor: '#0891b2',
     linkColor: '#0e7490'
@@ -128,7 +139,7 @@ const departments = [
     title: 'Laboratory Services',
     desc: 'Full-service clinical laboratory offering comprehensive diagnostic testing with rapid turnaround times.',
     icon: 'fa-flask',
-    img: 'https://images.unsplash.com/photo-1579154204601-01588f351e67?w=800&q=80',
+    img: '/photos/lab/image1.jpg',
     badgeBg: '#ecfdf5',
     iconColor: '#10b981',
     linkColor: '#059669'
@@ -137,7 +148,7 @@ const departments = [
     title: 'Blood Bank',
     desc: 'Safe blood collection, screening, storage and transfusion services — available 24/7 for emergencies and routine procedures.',
     icon: 'fa-droplet',
-    img: 'https://images.unsplash.com/photo-1615461066841-6116e61059f4?w=800&q=80',
+    img: '/photos/bloodbank/image1.png',
     badgeBg: '#fce7f3',
     iconColor: '#e11d48',
     linkColor: '#be123c'
@@ -146,7 +157,7 @@ const departments = [
     title: 'Nursing Care',
     desc: 'Holistic nursing care — bedside care, medication management, wound care, patient education, and compassionate support for every patient.',
     icon: 'fa-user-nurse',
-    img: 'https://images.unsplash.com/photo-1584515933487-779824d29309?w=800&q=80',
+    img: '/photos/nursing care/image1.png',
     badgeBg: '#fef3c7',
     iconColor: '#d97706',
     linkColor: '#b45309'
@@ -167,7 +178,7 @@ function ServicesPage() {
   const [selected, setSelected] = useState(null)
   const [searchParams, setSearchParams] = useSearchParams()
 
-  const active = hovered || departments[0]
+  const active = hovered
 
   useEffect(() => {
     const dept = searchParams.get('dept')
@@ -215,7 +226,7 @@ function ServicesPage() {
 
           <div className="services-grid">
             {departments.map((dept) => {
-              const isActive = active.title === dept.title
+              const isActive = active?.title === dept.title
               return (
                 <div
                   key={dept.title}
@@ -224,10 +235,12 @@ function ServicesPage() {
                   onMouseLeave={() => setHovered(null)}
                   onClick={() => openDept(dept)}
                 >
-                  <div className="services-card-bg">
-                    <div className="services-card-gradient" />
-                    <img src={dept.img} alt="" />
-                  </div>
+                  {dept.img && (
+                    <div className="services-card-bg">
+                      <div className="services-card-gradient" />
+                      <img src={dept.img} alt="" />
+                    </div>
+                  )}
 
                   <div className="services-card-icon" style={{ background: dept.badgeBg }}>
                     <i className={`fas ${dept.icon}`} style={{ color: dept.iconColor }} />
@@ -285,7 +298,7 @@ function ServicesPage() {
           </div>
             <div className="other-layout">
             <div className="other-image">
-              <RotatingImage images={['/photos/administration%20and%20finance/IMG_20260625_102834100.jpg', 'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=600&q=80', 'https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=600&q=80']} alt="" />
+              <RotatingImage images={['/photos/administration%20and%20finance/IMG_20260625_102834100.jpg', '', '']} alt="" />
             </div>
             <div className="other-content">
               <span className="other-tagline">Stewarding resources for exceptional healthcare delivery</span>
@@ -309,7 +322,7 @@ function ServicesPage() {
 
           <div className="other-layout other-layout--reverse">
             <div className="other-image">
-              <RotatingImage images={['/photos/it/image1.png', 'https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=600&q=80', 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=600&q=80']} alt="" />
+              <RotatingImage images={['/photos/it/image1.png', '', '']} alt="" />
             </div>
             <div className="other-content">
               <span className="other-tagline">Powering healthcare with secure, seamless technology</span>
@@ -333,7 +346,7 @@ function ServicesPage() {
 
           <div className="other-layout">
             <div className="other-image">
-              <RotatingImage images={['https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=800&q=80', 'https://images.unsplash.com/photo-1559757175-5700dde675bc?w=600&q=80', 'https://images.unsplash.com/photo-1579154204601-01588f351e67?w=600&q=80']} alt="" />
+              <RotatingImage images={['', '', '']} alt="" />
             </div>
             <div className="other-content">
               <span className="other-tagline">Preserving your health story with accuracy and confidentiality</span>
@@ -357,7 +370,7 @@ function ServicesPage() {
 
           <div className="other-layout other-layout--reverse">
             <div className="other-image">
-              <RotatingImage images={['https://images.unsplash.com/photo-1579154204601-01588f351e67?w=800&q=80', 'https://images.unsplash.com/photo-1581595219747-8f5a12e3ae3e?w=600&q=80', 'https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?w=600&q=80']} alt="" />
+              <RotatingImage images={['', '', '']} alt="" />
             </div>
             <div className="other-content">
               <span className="other-tagline">Setting the gold standard in infection prevention</span>
@@ -381,7 +394,7 @@ function ServicesPage() {
 
           <div className="other-layout">
             <div className="other-image">
-              <RotatingImage images={['https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?w=800&q=80', 'https://images.unsplash.com/photo-1579154204601-01588f351e67?w=600&q=80', 'https://images.unsplash.com/photo-1581595219747-8f5a12e3ae3e?w=600&q=80']} alt="" />
+              <RotatingImage images={['', '', '']} alt="" />
             </div>
             <div className="other-content">
               <span className="other-tagline">Protecting our community through responsible waste management</span>
@@ -405,7 +418,7 @@ function ServicesPage() {
 
           <div className="other-layout other-layout--reverse">
             <div className="other-image">
-              <RotatingImage images={['https://images.unsplash.com/photo-1507692049790-de58290a4334?w=800&q=80', 'https://images.unsplash.com/photo-1473177104440-ffee2f3760f9?w=600&q=80', 'https://images.unsplash.com/photo-1490730141103-6cac27aaab94?w=600&q=80']} alt="" />
+              <RotatingImage images={['', '', '']} alt="" />
             </div>
             <div className="other-content">
               <span className="other-tagline">Nurturing the spirit, comforting the soul</span>
@@ -439,7 +452,7 @@ function ServicesPage() {
 
           <div className="other-layout">
             <div className="other-image">
-              <RotatingImage images={['https://images.unsplash.com/photo-1582735689369-4fe89db7114c?w=800&q=80', 'https://images.unsplash.com/photo-1540555700478-4be289fbec6d?w=600&q=80', 'https://images.unsplash.com/photo-1581091226033-d5c48150dbaa?w=600&q=80']} alt="" />
+              <RotatingImage images={['', '', '']} alt="" />
             </div>
             <div className="other-content">
               <span className="other-tagline">Clean linens, safe environment, comfort for all</span>
@@ -463,7 +476,7 @@ function ServicesPage() {
 
           <div className="other-layout other-layout--reverse">
             <div className="other-image">
-              <RotatingImage images={['https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=800&q=80', 'https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?w=600&q=80', 'https://images.unsplash.com/photo-1621905251918-48416bd8575a?w=600&q=80']} alt="" />
+              <RotatingImage images={['', '', '']} alt="" />
             </div>
             <div className="other-content">
               <span className="other-tagline">Keeping our hospital running smoothly every day</span>
@@ -487,7 +500,7 @@ function ServicesPage() {
 
           <div className="other-layout">
             <div className="other-image">
-              <RotatingImage images={['https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?w=800&q=80']} alt="" />
+              <RotatingImage images={['']} alt="" />
             </div>
             <div className="other-content">
               <span className="other-tagline">Moving patients and supplies with speed and care</span>

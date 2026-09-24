@@ -17,9 +17,16 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url))
 const app = express()
 const PORT = process.env.PORT || 5000
 
-// Middleware
-app.use(cors({ origin: process.env.CORS_ORIGIN || 'http://localhost:5173' }))
+// Middleware — allow Vite dev, Vercel and custom domain; comma-separated list in CORS_ORIGIN
+const allowedOrigins = process.env.CORS_ORIGIN ? process.env.CORS_ORIGIN.split(',').map(s => s.trim()) : null
+app.use(cors({
+  origin: allowedOrigins || true,
+  credentials: true,
+}))
 app.use(express.json())
+
+// Health check
+app.get('/api/health', (_req, res) => res.json({ success: true, status: 'ok', time: new Date().toISOString() }))
 
 // Serve built frontend in production
 if (process.env.NODE_ENV === 'production') {

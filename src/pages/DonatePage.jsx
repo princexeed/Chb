@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
 import PaymentModal from '../components/PaymentModal'
 import './DonatePage.css'
 
@@ -29,10 +28,12 @@ function DonatePage() {
   const [isModalOpen, setIsModalOpen] = useState(false)
   const [errors, setErrors] = useState({})
   const [submitted, setSubmitted] = useState(false)
+  const [apiError, setApiError] = useState('')
+  const [isProcessing, setIsProcessing] = useState(false)
 
   const numeric = Number(amount) || 0
   const displayAmount = formatter.format(numeric)
-  const payLabel = `Donate ${displayAmount}`
+  const payLabel = isProcessing ? 'Processing…' : `Donate ${displayAmount}`
 
   const validateField = (name, value) => {
     switch (name) {
@@ -104,19 +105,45 @@ function DonatePage() {
 
   const handlePayClick = async (e) => {
     e.preventDefault()
+    setApiError('')
     const isValid = validateAll()
     if (!isValid || numeric <= 0) return
 
+    // Use relative URL so it works both in dev (via Vite proxy) and production
+    // where the Express server serves the built frontend. Can be overridden with VITE_API_URL.
+    const rawApiUrl = import.meta.env.VITE_API_URL || ''
+    const API_URL = rawApiUrl.replace(/\/$/, '')
+
+    setIsProcessing(true)
     try {
-      const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000'
-      const orderRes = await fetch(`${API_URL}/api/donate/create-order`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ amount, fullName, email, phone, countryCode }),
-      }).then((r) => r.json())
+      let orderRes
+      try {
+        const res = await fetch(`${API_URL}/api/donate/create-order`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ amount, fullName, email, phone, countryCode }),
+        })
+        const text = await res.text()
+        try {
+          orderRes = text ? JSON.parse(text) : {}
+        } catch {
+          throw new Error(text?.slice(0, 200) || `Server error (${res.status})`)
+        }
+        if (!res.ok && !orderRes.success) {
+          throw new Error(orderRes.message || `Server error (${res.status})`)
+        }
+      } catch (fetchErr) {
+        // Provide actionable message instead of crashing to ErrorBoundary
+        const msg = fetchErr.message?.includes('Failed to fetch') || fetchErr.message?.includes('NetworkError')
+          ? 'Cannot reach payment server. Please ensure the backend is running (npm run server) or check your connection.'
+          : fetchErr.message || 'Failed to create order'
+        setApiError(msg)
+        console.error('Create order fetch failed:', fetchErr)
+        return
+      }
 
       if (!orderRes.success) {
-        alert(orderRes.message || 'Failed to create order')
+        setApiError(orderRes.message || 'Failed to create order')
         return
       }
 
@@ -128,7 +155,12 @@ function DonatePage() {
 
       const ok = await loadRazorpayScript()
       if (!ok) {
-        alert('Failed to load Razorpay. Check your connection.')
+        setApiError('Failed to load Razorpay. Check your connection and disable ad-blockers, then try again.')
+        return
+      }
+
+      if (!window.Razorpay) {
+        setApiError('Razorpay failed to initialise. Please refresh and try again.')
         return
       }
 
@@ -143,32 +175,42 @@ function DonatePage() {
         prefill: { name: fullName, email, contact: `${countryCode}${phone}` },
         theme: { color: '#009E5A' },
         handler: async (resp) => {
-          // Verify signature server-side
-          const verifyRes = await fetch(`${API_URL}/api/donate/verify`, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-              razorpay_order_id: resp.razorpay_order_id,
-              razorpay_payment_id: resp.razorpay_payment_id,
-              razorpay_signature: resp.razorpay_signature,
-              fullName, email, phone, countryCode, amount: numeric,
-            }),
-          }).then((r) => r.json())
+          try {
+            const verifyRes = await fetch(`${API_URL}/api/donate/verify`, {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({
+                razorpay_order_id: resp.razorpay_order_id,
+                razorpay_payment_id: resp.razorpay_payment_id,
+                razorpay_signature: resp.razorpay_signature,
+                fullName, email, phone, countryCode, amount: numeric,
+              }),
+            }).then(async (r) => {
+              const t = await r.text()
+              try { return t ? JSON.parse(t) : {} } catch { return { success: false, message: t } }
+            })
 
-          if (verifyRes.success) {
-            handlePaymentSuccess()
-            alert(verifyRes.message || 'Thank you for your donation! A receipt will be emailed shortly.')
-          } else {
-            alert(verifyRes.message || 'Payment verification failed. Contact chb.orissa@gmail.com')
+            if (verifyRes.success) {
+              handlePaymentSuccess()
+              setApiError('')
+              alert(verifyRes.message || 'Thank you for your donation! A receipt will be emailed shortly.')
+            } else {
+              setApiError(verifyRes.message || 'Payment verification failed. Contact chb.orissa@gmail.com')
+            }
+          } catch (verErr) {
+            console.error('Verify failed:', verErr)
+            setApiError('Verification failed. Please contact chb.orissa@gmail.com with your payment ID.')
           }
         },
-        modal: { ondismiss: () => {} },
+        modal: { ondismiss: () => setIsProcessing(false) },
       }
 
       new window.Razorpay(options).open()
     } catch (err) {
       console.error(err)
-      alert('Something went wrong. Please try again.')
+      setApiError(err.message || 'Something went wrong. Please try again.')
+    } finally {
+      setIsProcessing(false)
     }
   }
 
@@ -180,6 +222,8 @@ function DonatePage() {
     setPhone('')
     setErrors({})
     setSubmitted(false)
+    setApiError('')
+    setIsProcessing(false)
   }
 
   const showError = (name) => {
@@ -352,6 +396,12 @@ function DonatePage() {
                 </div>
               </div>
 
+              {apiError && (
+                <div role="alert" style={{ background: '#fef2f2', border: '1px solid #fecaca', color: '#991b1b', padding: '10px 12px', borderRadius: '6px', fontSize: '13px', lineHeight: '1.5', marginBottom: '16px' }}>
+                  {apiError}
+                </div>
+              )}
+
               {/* Footer */}
               <div className="donate-card-footer">
                 <div className="donate-pay-methods">
@@ -360,7 +410,7 @@ function DonatePage() {
                   <i className="fab fa-cc-mastercard donate-brand-icon" aria-label="Mastercard" />
                   <i className="fas fa-credit-card donate-brand-icon" aria-label="RuPay" />
                 </div>
-                <button className="donate-pay-btn" onClick={handlePayClick}>
+                <button className="donate-pay-btn" onClick={handlePayClick} disabled={isProcessing}>
                   {payLabel}
                 </button>
               </div>
